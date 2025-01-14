@@ -1,0 +1,36 @@
+ant\_pak.airpak package
+=======================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   ant_pak.airpak.geometry
+   ant_pak.airpak.material
+   ant_pak.airpak.object
+   ant_pak.airpak.property
+   ant_pak.airpak.sets
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   ant_pak.airpak.config
+   ant_pak.airpak.load
+   ant_pak.airpak.model
+   ant_pak.airpak.post
+   ant_pak.airpak.project
+   ant_pak.airpak.setting
+   ant_pak.airpak.utility
+
+Module contents
+---------------
+
+.. automodule:: ant_pak.airpak
+   :members:
+   :undoc-members:
+   :show-inheritance:

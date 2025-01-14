@@ -1,0 +1,423 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ant_pak.config &mdash; ant_pak 0.1.1 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/documentation_options.js?v=d06dfecd"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            ant_pak
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">ant_pak</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ant_pak</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">模块代码</a></li>
+      <li class="breadcrumb-item active">ant_pak.config</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>ant_pak.config 源代码</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding:UTF-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Copyright</span>
+<span class="sd">create on 2023.01.05</span>
+<span class="sd">@author ringo</span>
+<span class="sd">description:</span>
+<span class="sd">This is a setting file for ant tools.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">platform</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">socket</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">rhinoscriptsyntax</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rs</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">Rhino.DocObjects</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">Rhino</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rh</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scriptcontext</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sc</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scriptcontext</span><span class="w"> </span><span class="kn">import</span> <span class="n">sticky</span> <span class="k">as</span> <span class="n">st</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.utility</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+
+<span class="n">sc</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="n">rh</span><span class="o">.</span><span class="n">RhinoDoc</span><span class="o">.</span><span class="n">ActiveDoc</span>
+
+
+<div class="viewcode-block" id="get_cloud_ip">
+<a class="viewcode-back" href="../../ant_pak.config.html#ant_pak.config.get_cloud_ip">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_cloud_ip</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :return ip: ip地址</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># 获取本机计算机名称</span>
+    <span class="n">hostname</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">gethostname</span><span class="p">()</span>
+    <span class="c1"># 获取本机ip</span>
+    <span class="n">host_ip</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">gethostbyname</span><span class="p">(</span><span class="n">hostname</span><span class="p">)</span>
+    <span class="n">ip_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;192.168.1.2&quot;</span><span class="p">,</span> <span class="s2">&quot;10.8.6.1&quot;</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">ips</span> <span class="ow">in</span> <span class="n">ip_list</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">ips</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="ow">in</span> <span class="n">host_ip</span><span class="p">:</span>
+            <span class="n">ip</span> <span class="o">=</span> <span class="n">ips</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ip</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">ip</span></div>
+
+
+
+<div class="viewcode-block" id="check_and_set_doc_user_text">
+<a class="viewcode-back" href="../../ant_pak.config.html#ant_pak.config.check_and_set_doc_user_text">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">check_and_set_doc_user_text</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :param key: key</span>
+<span class="sd">    :param value: value</span>
+
+<span class="sd">    :return None: None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># 获取文档用户文本的值</span>
+    <span class="n">current_value</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">Strings</span><span class="o">.</span><span class="n">GetValue</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="c1"># 如果用户文本不存在，则设置它</span>
+    <span class="k">if</span> <span class="n">current_value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">sc</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">Strings</span><span class="o">.</span><span class="n">SetString</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="set_doc_user_text">
+<a class="viewcode-back" href="../../ant_pak.config.html#ant_pak.config.set_doc_user_text">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">set_doc_user_text</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="n">sc</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">Strings</span><span class="o">.</span><span class="n">SetString</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="get_doc_user_text">
+<a class="viewcode-back" href="../../ant_pak.config.html#ant_pak.config.get_doc_user_text">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_doc_user_text</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">Strings</span><span class="o">.</span><span class="n">GetValue</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot;Invaild key </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="get_doc_user_text_keys">
+<a class="viewcode-back" href="../../ant_pak.config.html#ant_pak.config.get_doc_user_text_keys">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_doc_user_text_keys</span><span class="p">():</span>
+    <span class="n">keys</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sc</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">Strings</span><span class="o">.</span><span class="n">DocumentUserTextCount</span><span class="p">):</span>
+        <span class="n">keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sc</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">Strings</span><span class="o">.</span><span class="n">GetKey</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">keys</span></div>
+
+
+
+<div class="viewcode-block" id="clean_objects">
+<a class="viewcode-back" href="../../ant_pak.config.html#ant_pak.config.clean_objects">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">clean_objects</span><span class="p">(</span><span class="n">all_objects</span><span class="p">,</span> <span class="n">valid_objects</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">all_objects</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">obj</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid_objects</span><span class="p">:</span>
+            <span class="n">obj</span><span class="o">.</span><span class="fm">__del__</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="init_config">
+<a class="viewcode-back" href="../../ant_pak.config.html#ant_pak.config.init_config">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">init_config</span><span class="p">():</span>
+    <span class="c1"># set_at_layers()</span>
+    <span class="c1"># get_program_objs()</span>
+
+    <span class="c1"># keys = DEFAULT_DOC_KEYS</span>
+    <span class="c1"># values = DEFAULT_DOC_VALUES</span>
+    <span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s2">&quot;AT_geometry&quot;</span><span class="p">):</span>
+        <span class="n">GEOS</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">st</span><span class="p">[</span><span class="s2">&quot;AT_geometry&quot;</span><span class="p">]))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">GEOS</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">st</span><span class="p">[</span><span class="s2">&quot;AT_geometry&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">rs</span><span class="o">.</span><span class="n">AddGroup</span><span class="p">(</span><span class="s2">&quot;ant_objs&quot;</span><span class="p">)</span>
+    <span class="c1"># for index, key in enumerate(keys):</span>
+    <span class="c1">#     value = values[index]</span>
+    <span class="c1">#     check_and_set_doc_user_text(key, value)</span>
+    <span class="k">return</span> <span class="n">GEOS</span></div>
+
+    
+
+
+
+<div class="viewcode-block" id="get_geometry">
+<a class="viewcode-back" href="../../ant_pak.config.html#ant_pak.config.get_geometry">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_geometry</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    此函数获取指定类型的几何体。</span>
+<span class="sd">    参数:</span>
+<span class="sd">      type:str-几何体类型</span>
+<span class="sd">    返回:</span>
+<span class="sd">      List [Object]-指定类型的几何体</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">all_geos</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">st</span><span class="p">[</span><span class="s2">&quot;AT_geometry&quot;</span><span class="p">]))</span>
+        <span class="k">if</span> <span class="nb">type</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">all_geos</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">geo</span> <span class="k">for</span> <span class="n">geo</span> <span class="ow">in</span> <span class="n">all_geos</span> <span class="k">if</span> <span class="n">geo</span><span class="o">.</span><span class="n">geometry_type</span> <span class="o">==</span> <span class="nb">type</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="get_all_buildings">
+<a class="viewcode-back" href="../../ant_pak.config.html#ant_pak.config.get_all_buildings">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_all_buildings</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">get_geometry</span><span class="p">(</span><span class="s2">&quot;building&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="get_all_surfaces">
+<a class="viewcode-back" href="../../ant_pak.config.html#ant_pak.config.get_all_surfaces">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_all_surfaces</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">get_geometry</span><span class="p">(</span><span class="s2">&quot;surface&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="get_all_floors">
+<a class="viewcode-back" href="../../ant_pak.config.html#ant_pak.config.get_all_floors">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_all_floors</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">get_geometry</span><span class="p">(</span><span class="s2">&quot;floor&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="get_all_rooms">
+<a class="viewcode-back" href="../../ant_pak.config.html#ant_pak.config.get_all_rooms">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_all_rooms</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">get_geometry</span><span class="p">(</span><span class="s2">&quot;room&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="get_all_apertures">
+<a class="viewcode-back" href="../../ant_pak.config.html#ant_pak.config.get_all_apertures">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_all_apertures</span><span class="p">():</span>
+    <span class="n">apertures</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">windows</span> <span class="o">=</span> <span class="n">get_all_windows</span><span class="p">()</span>
+    <span class="n">doors</span> <span class="o">=</span> <span class="n">get_all_doors</span><span class="p">()</span>
+    <span class="n">curt_walls</span> <span class="o">=</span> <span class="n">get_all_curt_walls</span><span class="p">()</span>
+    <span class="n">other_apertures</span> <span class="o">=</span> <span class="n">get_geometry</span><span class="p">(</span><span class="s2">&quot;aperture&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">windows</span><span class="p">:</span>
+        <span class="n">apertures</span> <span class="o">+=</span> <span class="n">windows</span>
+    <span class="k">if</span> <span class="n">doors</span><span class="p">:</span>
+        <span class="n">apertures</span> <span class="o">+=</span> <span class="n">doors</span>
+    <span class="k">if</span> <span class="n">curt_walls</span><span class="p">:</span>
+        <span class="n">apertures</span> <span class="o">+=</span> <span class="n">curt_walls</span>
+    <span class="k">if</span> <span class="n">other_apertures</span><span class="p">:</span>
+        <span class="n">apertures</span> <span class="o">+=</span> <span class="n">other_apertures</span>
+
+    <span class="k">return</span> <span class="n">apertures</span></div>
+
+
+
+<div class="viewcode-block" id="get_all_windows">
+<a class="viewcode-back" href="../../ant_pak.config.html#ant_pak.config.get_all_windows">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_all_windows</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">get_geometry</span><span class="p">(</span><span class="s2">&quot;window&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="get_all_curt_walls">
+<a class="viewcode-back" href="../../ant_pak.config.html#ant_pak.config.get_all_curt_walls">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_all_curt_walls</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">get_geometry</span><span class="p">(</span><span class="s2">&quot;curt_wall&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="get_all_doors">
+<a class="viewcode-back" href="../../ant_pak.config.html#ant_pak.config.get_all_doors">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_all_doors</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">get_geometry</span><span class="p">(</span><span class="s2">&quot;door&quot;</span><span class="p">)</span></div>
+
+
+
+<span class="n">CLOUD_IP</span> <span class="o">=</span> <span class="n">get_cloud_ip</span><span class="p">()</span>
+
+<span class="c1"># 定义全局常量</span>
+<span class="n">PLATFORM</span> <span class="o">=</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span>
+<span class="c1"># 定义路径</span>
+<span class="n">USER_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">)</span>
+<span class="n">CURRENT_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+<span class="k">if</span> <span class="n">PLATFORM</span> <span class="o">==</span> <span class="s2">&quot;Windows&quot;</span><span class="p">:</span>
+    <span class="n">DATA_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">resources</span><span class="se">\\</span><span class="s2">data&quot;</span>
+<span class="k">elif</span> <span class="n">PLATFORM</span> <span class="o">==</span> <span class="s2">&quot;Darwin&quot;</span><span class="p">:</span>
+    <span class="n">DATA_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;/resources/data&quot;</span>
+
+
+<span class="c1"># 定义数据文件</span>
+<span class="c1"># EPW_FILE = CURRENT_PATH + &quot;/resources/data/epw_list.json&quot;</span>
+<span class="c1"># EPWS = json.load(open(EPW_FILE, &quot;r&quot;))</span>
+
+
+<span class="c1"># 定义图层名称</span>
+<span class="n">ANT_LAYER</span> <span class="o">=</span> <span class="s2">&quot;ant&quot;</span>
+<span class="n">DEFAULT_LAYER</span> <span class="o">=</span> <span class="n">ANT_LAYER</span> <span class="o">+</span> <span class="s2">&quot;::0&quot;</span>
+<span class="n">D2_LAYER</span> <span class="o">=</span> <span class="n">ANT_LAYER</span> <span class="o">+</span> <span class="s2">&quot;::2d&quot;</span>
+<span class="n">D3_LAYER</span> <span class="o">=</span> <span class="n">ANT_LAYER</span> <span class="o">+</span> <span class="s2">&quot;::3d&quot;</span>
+
+<span class="n">PLAN_D2_LAYER</span> <span class="o">=</span> <span class="n">D2_LAYER</span> <span class="o">+</span> <span class="s2">&quot;::plans&quot;</span>
+<span class="n">FLOOR_D2_LAYER</span> <span class="o">=</span> <span class="n">D2_LAYER</span> <span class="o">+</span> <span class="s2">&quot;::floors&quot;</span>
+<span class="n">APERTURE_D2_LAYER</span> <span class="o">=</span> <span class="n">D2_LAYER</span> <span class="o">+</span> <span class="s2">&quot;::apertures&quot;</span>
+<span class="n">REGION_D2_LAYER</span> <span class="o">=</span> <span class="n">D2_LAYER</span> <span class="o">+</span> <span class="s2">&quot;::regions&quot;</span>
+<span class="n">TEXT_D2_LAYER</span> <span class="o">=</span> <span class="n">D2_LAYER</span> <span class="o">+</span> <span class="s2">&quot;::texts&quot;</span>
+<span class="n">SHADE_D2_LAYER</span> <span class="o">=</span> <span class="n">D2_LAYER</span> <span class="o">+</span> <span class="s2">&quot;::shades&quot;</span>
+<span class="n">DOOR_D2_LAYER</span> <span class="o">=</span> <span class="n">D2_LAYER</span> <span class="o">+</span> <span class="s2">&quot;::doors&quot;</span>
+<span class="n">SKYLIGHT_D2_LAYER</span> <span class="o">=</span> <span class="n">D2_LAYER</span> <span class="o">+</span> <span class="s2">&quot;::skylights&quot;</span>
+
+<span class="n">ROOM_D3_LAYER</span> <span class="o">=</span> <span class="n">D3_LAYER</span> <span class="o">+</span> <span class="s2">&quot;::rooms&quot;</span>
+<span class="n">APERTURE_D3_LAYER</span> <span class="o">=</span> <span class="n">D3_LAYER</span> <span class="o">+</span> <span class="s2">&quot;::apertures&quot;</span>
+<span class="n">REGION_D3_LAYER</span> <span class="o">=</span> <span class="n">D3_LAYER</span> <span class="o">+</span> <span class="s2">&quot;::regions&quot;</span>
+<span class="n">TEXT_D3_LAYER</span> <span class="o">=</span> <span class="n">D3_LAYER</span> <span class="o">+</span> <span class="s2">&quot;::texts&quot;</span>
+<span class="n">SHADE_D3_LAYER</span> <span class="o">=</span> <span class="n">D3_LAYER</span> <span class="o">+</span> <span class="s2">&quot;::shades&quot;</span>
+<span class="n">DOOR_D3_LAYER</span> <span class="o">=</span> <span class="n">D3_LAYER</span> <span class="o">+</span> <span class="s2">&quot;::doors&quot;</span>
+<span class="n">SKYLIGHT_D3_LAYER</span> <span class="o">=</span> <span class="n">D3_LAYER</span> <span class="o">+</span> <span class="s2">&quot;::skylights&quot;</span>
+
+<span class="c1"># 定义默认</span>
+<span class="n">DEFAULT_PJT_NAME</span> <span class="o">=</span> <span class="s2">&quot;新建项目&quot;</span>
+<span class="n">DEFAULT_CASE_NAME</span> <span class="o">=</span> <span class="s2">&quot;Case0&quot;</span>
+<span class="n">DEFAULT_ROOM_TYPE</span> <span class="o">=</span> <span class="s2">&quot;默认房间&quot;</span>
+
+<span class="n">DEFAULT_FLOOR_HEIGHT</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">DEFAULT_APERTURE_HEIGHT</span> <span class="o">=</span> <span class="mf">1.5</span>
+<span class="n">DEFAULT_STILL_HEIGHT</span> <span class="o">=</span> <span class="mf">0.9</span>
+<span class="n">DEFAULT_PROVINCE</span> <span class="o">=</span> <span class="s2">&quot;北京&quot;</span>
+<span class="n">DEFAULT_CITY</span> <span class="o">=</span> <span class="s2">&quot;北京市&quot;</span>
+<span class="n">DEFAULT_STATION</span> <span class="o">=</span> <span class="s2">&quot;545110&quot;</span>
+<span class="n">DEFAULT_PROVINCE_INDEX</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="c1"># DEFAULT_EPW_FILE = get_epw(DEFAULT_STATION)</span>
+<span class="c1"># DEFAULT_EPW_URL = get_epw_url(DEFAULT_STATION)</span>
+<span class="n">DEFAULT_CLMATE_REGION</span> <span class="o">=</span> <span class="s2">&quot;寒冷地区&quot;</span>
+<span class="n">DEFAULT_CLMATE_TYPE</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">DEFAULT_PROGRAM</span> <span class="o">=</span> <span class="s2">&quot;CHN_office_program.json&quot;</span>
+<span class="n">DEFAULT_CONSTRUCTION</span> <span class="o">=</span> <span class="s2">&quot;CHN_pub_constr_set_2021.json&quot;</span>
+<span class="n">DEFAULT_BLD_TYPE</span> <span class="o">=</span> <span class="s2">&quot;公共建筑&quot;</span>
+<span class="n">DEFAULT_BLD_SUB_TYPE</span> <span class="o">=</span> <span class="s2">&quot;办公&quot;</span>
+<span class="n">DEFAULT_PROGRAM_TYPE</span> <span class="o">=</span> <span class="s2">&quot;CHN_office_office&quot;</span>
+
+
+<span class="n">DEFAULT_WALL_THICKNESS</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">SUPPORTED_OBJECT_TYPES</span> <span class="o">=</span> <span class="p">[</span><span class="n">rd</span><span class="o">.</span><span class="n">ObjectType</span><span class="o">.</span><span class="n">Mesh</span><span class="p">,</span> <span class="n">rd</span><span class="o">.</span><span class="n">ObjectType</span><span class="o">.</span><span class="n">Brep</span><span class="p">]</span>
+
+<span class="n">DEFAULT_WORK_DIR</span> <span class="o">=</span> <span class="s2">&quot;C:</span><span class="se">\\</span><span class="s2">ant_pak</span><span class="se">\\</span><span class="s2">&quot;</span>
+
+<span class="n">DEFAULT_WALL_COLOR</span> <span class="o">=</span> <span class="s2">&quot;185,145,28,200&quot;</span>
+<span class="n">DEFAULT_ROOF_COLOR</span> <span class="o">=</span> <span class="s2">&quot;155, 20, 20,0&quot;</span>
+<span class="n">DEFAULT_FLOOR_COLOR</span> <span class="o">=</span> <span class="s2">&quot;125, 125, 125,0&quot;</span>
+<span class="n">DEFAULT_WINDOW_COLOR</span> <span class="o">=</span> <span class="s2">&quot;0, 200, 255,130&quot;</span>
+
+<span class="n">MATERIALS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;undefined&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;wall&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;window&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;floor&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;roof&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;column&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;furniture&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;people&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;shade&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;river&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;road&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;grass&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;tree&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">CLIMATE_ZONE_DICT</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;1A&quot;</span><span class="p">:</span> <span class="s2">&quot;严寒A区&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;1B&quot;</span><span class="p">:</span> <span class="s2">&quot;严寒B区&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;1C&quot;</span><span class="p">:</span> <span class="s2">&quot;严寒C区&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;2A&quot;</span><span class="p">:</span> <span class="s2">&quot;寒冷A区&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;2B&quot;</span><span class="p">:</span> <span class="s2">&quot;寒冷B区&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;3A&quot;</span><span class="p">:</span> <span class="s2">&quot;夏热冬冷A区&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;3B&quot;</span><span class="p">:</span> <span class="s2">&quot;夏热冬冷B区&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;4A&quot;</span><span class="p">:</span> <span class="s2">&quot;夏热冬暖A区&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;4B&quot;</span><span class="p">:</span> <span class="s2">&quot;夏热冬暖B区&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;5A&quot;</span><span class="p">:</span> <span class="s2">&quot;温和A区&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;5B&quot;</span><span class="p">:</span> <span class="s2">&quot;温和B区&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ringo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

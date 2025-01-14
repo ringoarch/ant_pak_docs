@@ -1,0 +1,161 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ant_pak.graphic.color &mdash; ant_pak 0.1.1 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/documentation_options.js?v=d06dfecd"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ant_pak
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">模块:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">ant_pak</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ant_pak</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">模块代码</a></li>
+      <li class="breadcrumb-item active">ant_pak.graphic.color</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>ant_pak.graphic.color 源代码</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding:UTF-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;Collection of methods for converting between Ladybug and .NET colors.&quot;&quot;&quot;</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">System.Drawing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Color</span>
+<span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;Failed to import Windows/.NET libraries</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+
+
+<div class="viewcode-block" id="color_to_color">
+<a class="viewcode-back" href="../../../ant_pak.graphic.color.html#ant_pak.graphic.color.color_to_color">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">color_to_color</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">255</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a ladybug color into .NET color.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        alpha: Optional integer between 1 and 255 for the alpha value of the color.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="o">.</span><span class="n">FromArgb</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">color</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">color</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">color</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;Input must be of type of Color:</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="argb_color_to_color">
+<a class="viewcode-back" href="../../../ant_pak.graphic.color.html#ant_pak.graphic.color.argb_color_to_color">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">argb_color_to_color</span><span class="p">(</span><span class="n">color</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a ladybug color into .NET color, including the alpha channel.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="o">.</span><span class="n">FromArgb</span><span class="p">(</span><span class="n">color</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">color</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">color</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">color</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;Input must be of type of Color:</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="gray">
+<a class="viewcode-back" href="../../../ant_pak.graphic.color.html#ant_pak.graphic.color.gray">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">gray</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get a .NET gray color object. Useful when you need a placeholder color.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">Color</span><span class="o">.</span><span class="n">Gray</span></div>
+
+
+
+<div class="viewcode-block" id="black">
+<a class="viewcode-back" href="../../../ant_pak.graphic.color.html#ant_pak.graphic.color.black">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">black</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get a .NET black color object. Useful for things like default text.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">Color</span><span class="o">.</span><span class="n">Black</span></div>
+
+
+
+<div class="viewcode-block" id="set_transparency">
+<a class="viewcode-back" href="../../../ant_pak.graphic.color.html#ant_pak.graphic.color.set_transparency">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">set_transparency</span><span class="p">(</span><span class="n">existing_color</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    对一个已知的Color对象设置透明度</span>
+<span class="sd">    :param existing_color: 已知的Color对象</span>
+<span class="sd">    :param alpha: 透明度 (0-255), 0 表示完全透明, 255 表示完全不透明</span>
+<span class="sd">    :return: 带有新透明度的Color对象</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">Color</span><span class="o">.</span><span class="n">FromArgb</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">existing_color</span><span class="o">.</span><span class="n">R</span><span class="p">,</span> <span class="n">existing_color</span><span class="o">.</span><span class="n">G</span><span class="p">,</span> <span class="n">existing_color</span><span class="o">.</span><span class="n">B</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ringo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

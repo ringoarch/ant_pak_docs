@@ -1,0 +1,7 @@
+ant\_pak.airpak.object.recirc\_opening module
+=============================================
+
+.. automodule:: ant_pak.airpak.object.recirc_opening
+   :members:
+   :undoc-members:
+   :show-inheritance:

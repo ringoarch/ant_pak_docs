@@ -1,0 +1,7 @@
+ant\_pak.airpak.sets.species module
+===================================
+
+.. automodule:: ant_pak.airpak.sets.species
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,223 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ant_pak.airpak.geometry.cylinder &mdash; ant_pak 0.1.1 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../../_static/documentation_options.js?v=d06dfecd"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            ant_pak
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">ant_pak</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">ant_pak</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">模块代码</a></li>
+      <li class="breadcrumb-item active">ant_pak.airpak.geometry.cylinder</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>ant_pak.airpak.geometry.cylinder 源代码</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">@DATE: 2024-12-24 11:41:55</span>
+<span class="sd">@Author: ringo</span>
+<span class="sd">@Version: 1.0</span>
+<span class="sd">@File: ant_pak\geometry\cylinder.py</span>
+<span class="sd">@Software: vscode</span>
+<span class="sd">@Description:</span>
+<span class="sd">        </span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._base_geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">_BaseGeo</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utility</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+
+<div class="viewcode-block" id="CylinderMixIn">
+<a class="viewcode-back" href="../../../../ant_pak.airpak.geometry.cylinder.html#ant_pak.airpak.geometry.cylinder.CylinderMixIn">[文档]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">CylinderMixIn</span><span class="p">(</span><span class="n">_BaseGeo</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">_BaseGeo</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">center1</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">center2</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_stype</span> <span class="o">=</span> <span class="s2">&quot;cyl&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shape_begin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape_type</span> <span class="o">+</span> <span class="s2">&quot;_shape shape_&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_stype</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">changes</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plane</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iradius</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">radius2</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iradius2</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_angle</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end_angle</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="mi">1</span>
+
+<div class="viewcode-block" id="CylinderMixIn.from_cyl">
+<a class="viewcode-back" href="../../../../ant_pak.airpak.geometry.cylinder.html#ant_pak.airpak.geometry.cylinder.CylinderMixIn.from_cyl">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_cyl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cylinder</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        从给定的圆柱对象中提取信息并初始化当前对象。</span>
+
+<span class="sd">        参数:</span>
+<span class="sd">            cylinder (Cylinder): 要从中提取信息的圆柱对象。</span>
+
+<span class="sd">        :return self: 返回当前对象，以便进行链式调用。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span> <span class="o">=</span> <span class="n">cylinder</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refresh_point</span><span class="p">()</span>
+        <span class="n">center</span> <span class="o">=</span> <span class="n">cylinder</span><span class="o">.</span><span class="n">Center</span>
+        <span class="n">radius</span> <span class="o">=</span> <span class="n">cylinder</span><span class="o">.</span><span class="n">Radius</span>
+        <span class="n">plane</span> <span class="o">=</span> <span class="n">cylinder</span><span class="o">.</span><span class="n">BasePlane</span>
+        <span class="n">normal</span> <span class="o">=</span> <span class="n">plane</span><span class="o">.</span><span class="n">Normal</span>
+        <span class="n">height</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">cylinder</span><span class="o">.</span><span class="n">Height2</span> <span class="o">-</span> <span class="n">cylinder</span><span class="o">.</span><span class="n">Height1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">height</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">center1</span> <span class="o">=</span> <span class="n">center</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">normal</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">normal</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">normal</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">plane</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">center2</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Point3d</span><span class="p">(</span><span class="n">center</span><span class="o">.</span><span class="n">X</span> <span class="o">+</span> <span class="n">height</span><span class="p">,</span> <span class="n">center</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span> <span class="n">center</span><span class="o">.</span><span class="n">Z</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">abs</span><span class="p">(</span><span class="n">normal</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">normal</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">normal</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">plane</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">center2</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Point3d</span><span class="p">(</span><span class="n">center</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">center</span><span class="o">.</span><span class="n">Y</span> <span class="o">+</span> <span class="n">height</span><span class="p">,</span> <span class="n">center</span><span class="o">.</span><span class="n">Z</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">abs</span><span class="p">(</span><span class="n">normal</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">normal</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">normal</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">plane</span> <span class="o">=</span> <span class="mi">2</span>
+            <span class="n">center2</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Point3d</span><span class="p">(</span><span class="n">center</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">center</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span> <span class="n">center</span><span class="o">.</span><span class="n">Z</span> <span class="o">+</span> <span class="n">height</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">center2</span> <span class="o">=</span> <span class="n">center2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="n">radius</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">radius2</span> <span class="o">=</span> <span class="n">radius</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">geo_to_str</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+    <span class="c1"># @classmethod</span>
+    <span class="c1"># def from_centers(self,cylinder):</span>
+    <span class="c1">#     object = CylinderMixIn()</span>
+    <span class="c1">#     object = object.from_cyl(cylinder)</span>
+    <span class="c1">#     return object</span>
+
+<div class="viewcode-block" id="CylinderMixIn.geo_to_str">
+<a class="viewcode-back" href="../../../../ant_pak.airpak.geometry.cylinder.html#ant_pak.airpak.geometry.cylinder.CylinderMixIn.geo_to_str">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">geo_to_str</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        将圆柱的几何信息转换为字符串表示形式。</span>
+
+<span class="sd">        该方法将圆柱的中心点、半径、高度等信息转换为字符串，并将这些字符串拼接成一个完整的形状字符串。</span>
+
+<span class="sd">        返回:</span>
+<span class="sd">        :return str: 表示圆柱几何信息的字符串。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">str_geo</span> <span class="o">=</span> <span class="n">points_to_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">center1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">center2</span><span class="p">)</span>
+
+        <span class="n">str_volume_flag</span> <span class="o">=</span> <span class="n">flag_to_str</span><span class="p">(</span><span class="s2">&quot;volume_flag&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">volume_flag</span><span class="p">)</span>
+        <span class="n">str_changes</span> <span class="o">=</span> <span class="n">flag_to_str</span><span class="p">(</span><span class="s2">&quot;changes&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">changes</span><span class="p">)</span>
+        <span class="n">str_plane</span> <span class="o">=</span> <span class="n">flag_to_str</span><span class="p">(</span><span class="s2">&quot;plane&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">plane</span><span class="p">)</span>
+        <span class="n">str_radius</span> <span class="o">=</span> <span class="n">flag_to_str</span><span class="p">(</span><span class="s2">&quot;radius&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span><span class="p">)</span>
+        <span class="n">str_iradius</span> <span class="o">=</span> <span class="n">flag_to_str</span><span class="p">(</span><span class="s2">&quot;iradius&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">iradius</span><span class="p">)</span>
+        <span class="n">str_radius2</span> <span class="o">=</span> <span class="n">flag_to_str</span><span class="p">(</span><span class="s2">&quot;radius2&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius2</span><span class="p">)</span>
+        <span class="n">str_iradius2</span> <span class="o">=</span> <span class="n">flag_to_str</span><span class="p">(</span><span class="s2">&quot;iradius2&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">iradius2</span><span class="p">)</span>
+        <span class="n">str_height</span> <span class="o">=</span> <span class="n">flag_to_str</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
+        <span class="n">str_start_angle</span> <span class="o">=</span> <span class="n">flag_to_str</span><span class="p">(</span><span class="s2">&quot;start_angle&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_angle</span><span class="p">)</span>
+        <span class="n">str_end_angle</span> <span class="o">=</span> <span class="n">flag_to_str</span><span class="p">(</span><span class="s2">&quot;end_angle&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_angle</span><span class="p">)</span>
+
+        <span class="n">flags</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">str_volume_flag</span><span class="p">,</span>
+            <span class="n">str_changes</span><span class="p">,</span>
+            <span class="n">str_plane</span><span class="p">,</span>
+            <span class="n">str_radius</span><span class="p">,</span>
+            <span class="n">str_iradius</span><span class="p">,</span>
+            <span class="n">str_radius2</span><span class="p">,</span>
+            <span class="n">str_iradius2</span><span class="p">,</span>
+            <span class="n">str_height</span><span class="p">,</span>
+            <span class="n">str_start_angle</span><span class="p">,</span>
+            <span class="n">str_end_angle</span><span class="p">,</span>
+        <span class="p">]</span>
+
+        <span class="n">str_flags</span> <span class="o">=</span> <span class="n">list_str</span><span class="p">(</span><span class="n">flags</span><span class="p">)</span>
+        <span class="n">shape</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">str_shape</span><span class="p">(</span><span class="n">str_geo</span><span class="p">,</span> <span class="n">str_flags</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="n">shape</span>
+        <span class="k">return</span> <span class="n">shape</span></div>
+</div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">pass</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ringo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

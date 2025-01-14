@@ -1,0 +1,496 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ant_pak.graphic.climate &mdash; ant_pak 0.1.1 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/documentation_options.js?v=d06dfecd"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ant_pak
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">模块:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">ant_pak</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ant_pak</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">模块代码</a></li>
+      <li class="breadcrumb-item active">ant_pak.graphic.climate</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>ant_pak.graphic.climate 源代码</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">@DATE: 2024-07-29 15:06:32</span>
+<span class="sd">@Author: ringo</span>
+<span class="sd">@Version: 1.0</span>
+<span class="sd">@File: graphic\climate.py</span>
+<span class="sd">@Software: vscode</span>
+<span class="sd">@Description:</span>
+<span class="sd">        </span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">Rhino.Geometry</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rg</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utility</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+
+<div class="viewcode-block" id="create_perpendicular_line_and_find_intersections">
+<a class="viewcode-back" href="../../../ant_pak.graphic.climate.html#ant_pak.graphic.climate.create_perpendicular_line_and_find_intersections">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_perpendicular_line_and_find_intersections</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="n">line_a</span><span class="p">):</span>
+    <span class="c1"># 获取圆的圆心</span>
+    <span class="n">circle_center</span> <span class="o">=</span> <span class="n">circle</span><span class="o">.</span><span class="n">Center</span>
+
+    <span class="c1"># 获取直线A的方向向量，并将其归一化</span>
+    <span class="n">direction_vector_a</span> <span class="o">=</span> <span class="n">line_a</span><span class="o">.</span><span class="n">Direction</span>
+    <span class="n">direction_vector_a</span><span class="o">.</span><span class="n">Unitize</span><span class="p">()</span>
+
+    <span class="c1"># 计算垂直于直线A的方向向量，这里假设直线A和直线B都在XY平面上</span>
+    <span class="n">direction_vector_b</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="p">(</span><span class="o">-</span><span class="n">direction_vector_a</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span> <span class="n">direction_vector_a</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># 创建直线B，使其通过圆心并垂直于直线A</span>
+    <span class="n">line_b_start</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">circle_center</span> <span class="o">-</span> <span class="n">direction_vector_b</span> <span class="o">*</span> <span class="n">circle</span><span class="o">.</span><span class="n">Radius</span> <span class="o">*</span> <span class="mi">2</span>
+    <span class="p">)</span>  <span class="c1"># 乘以2只是为了确保线足够长</span>
+    <span class="n">line_b_end</span> <span class="o">=</span> <span class="n">circle_center</span> <span class="o">+</span> <span class="n">direction_vector_b</span> <span class="o">*</span> <span class="n">circle</span><span class="o">.</span><span class="n">Radius</span> <span class="o">*</span> <span class="mi">2</span>
+    <span class="n">line_b</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Line</span><span class="p">(</span><span class="n">line_b_start</span><span class="p">,</span> <span class="n">line_b_end</span><span class="p">)</span>
+
+    <span class="c1"># 计算直线B与圆的交点</span>
+    <span class="n">intersection_results</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Intersect</span><span class="o">.</span><span class="n">Intersection</span><span class="o">.</span><span class="n">CurveCurve</span><span class="p">(</span>
+        <span class="n">line_b</span><span class="o">.</span><span class="n">ToNurbsCurve</span><span class="p">(),</span> <span class="n">circle</span><span class="o">.</span><span class="n">ToNurbsCurve</span><span class="p">(),</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.001</span>
+    <span class="p">)</span>
+
+    <span class="c1"># 提取交点</span>
+    <span class="n">intersection_points</span> <span class="o">=</span> <span class="p">[</span><span class="n">result</span><span class="o">.</span><span class="n">PointA</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">intersection_results</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">intersection_points</span></div>
+
+
+
+<div class="viewcode-block" id="create_line_at_angle">
+<a class="viewcode-back" href="../../../ant_pak.graphic.climate.html#ant_pak.graphic.climate.create_line_at_angle">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_line_at_angle</span><span class="p">(</span>
+    <span class="n">base_line</span><span class="p">,</span> <span class="n">negtive_direction</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">angle_degrees</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">line_length</span><span class="o">=</span><span class="mi">10</span>
+<span class="p">):</span>
+    <span class="c1"># Get the midpoint of the base line</span>
+    <span class="n">midpoint</span> <span class="o">=</span> <span class="n">base_line</span><span class="o">.</span><span class="n">PointAt</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+
+    <span class="c1"># Default direction vector (assume horizontal direction)</span>
+    <span class="k">if</span> <span class="n">negtive_direction</span><span class="p">:</span>
+        <span class="n">direction_vector</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">angle_radians</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">angle_degrees</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">direction_vector</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">angle_radians</span> <span class="o">=</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">angle_degrees</span><span class="p">)</span>
+    <span class="c1"># Normalize the vector</span>
+    <span class="n">direction_vector</span><span class="o">.</span><span class="n">Unitize</span><span class="p">()</span>
+
+    <span class="c1"># Calculate the rotation axis (assume Z-axis for 2D rotation)</span>
+    <span class="n">rotation_axis</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">ZAxis</span>
+
+    <span class="c1"># Create the rotation transformation</span>
+    <span class="n">rotation_transform</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Transform</span><span class="o">.</span><span class="n">Rotation</span><span class="p">(</span><span class="n">angle_radians</span><span class="p">,</span> <span class="n">rotation_axis</span><span class="p">,</span> <span class="n">midpoint</span><span class="p">)</span>
+
+    <span class="c1"># Rotate the direction vector</span>
+    <span class="n">rotated_vector</span> <span class="o">=</span> <span class="n">direction_vector</span>
+    <span class="n">rotated_vector</span><span class="o">.</span><span class="n">Transform</span><span class="p">(</span><span class="n">rotation_transform</span><span class="p">)</span>
+
+    <span class="c1"># Scale the vector to the desired length</span>
+    <span class="n">rotated_vector</span> <span class="o">*=</span> <span class="n">line_length</span>
+
+    <span class="c1"># Create the new end point</span>
+    <span class="n">end_point</span> <span class="o">=</span> <span class="n">midpoint</span> <span class="o">+</span> <span class="n">rotated_vector</span>
+
+    <span class="c1"># Create the new line</span>
+    <span class="n">new_line</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Line</span><span class="p">(</span><span class="n">midpoint</span><span class="p">,</span> <span class="n">end_point</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">new_line</span></div>
+
+
+
+<div class="viewcode-block" id="create_sun">
+<a class="viewcode-back" href="../../../ant_pak.graphic.climate.html#ant_pak.graphic.climate.create_sun">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_sun</span><span class="p">(</span><span class="n">base_line</span><span class="p">,</span> <span class="n">negtive_direction</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">angle_degrees</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
+    <span class="n">new_line</span> <span class="o">=</span> <span class="n">create_line_at_angle</span><span class="p">(</span><span class="n">base_line</span><span class="p">,</span> <span class="n">negtive_direction</span><span class="p">,</span> <span class="n">angle_degrees</span><span class="p">)</span>
+    <span class="n">circle</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Circle</span><span class="p">(</span><span class="n">new_line</span><span class="o">.</span><span class="n">To</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">intersection_points</span> <span class="o">=</span> <span class="n">create_perpendicular_line_and_find_intersections</span><span class="p">(</span>
+        <span class="n">circle</span><span class="p">,</span> <span class="n">new_line</span>
+    <span class="p">)</span>
+    <span class="c1"># Create a polyline (triangle) using the base line and the new end point</span>
+    <span class="n">polyline</span> <span class="o">=</span> <span class="p">[</span><span class="n">base_line</span><span class="o">.</span><span class="n">To</span><span class="p">,</span> <span class="n">base_line</span><span class="o">.</span><span class="n">From</span><span class="p">]</span> <span class="o">+</span> <span class="n">intersection_points</span>
+    <span class="k">return</span> <span class="n">circle</span><span class="p">,</span> <span class="n">polyline</span></div>
+
+
+
+<div class="viewcode-block" id="create_shade">
+<a class="viewcode-back" href="../../../ant_pak.graphic.climate.html#ant_pak.graphic.climate.create_shade">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_shade</span><span class="p">(</span><span class="n">base_line</span><span class="p">,</span> <span class="n">negtive_direction</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">shade_distance</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shade_depth</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="c1"># Get the midpoint of the base line</span>
+    <span class="n">midpoint</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">base_line</span><span class="o">.</span><span class="n">From</span><span class="p">,</span> <span class="n">base_line</span><span class="o">.</span><span class="n">To</span><span class="p">],</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">point</span><span class="p">:</span> <span class="n">point</span><span class="o">.</span><span class="n">Y</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">midpoint</span> <span class="o">=</span> <span class="n">move_point</span><span class="p">(</span><span class="n">midpoint</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">shade_distance</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="c1"># Default direction vector (assume horizontal direction)</span>
+    <span class="n">line_length</span> <span class="o">=</span> <span class="n">shade_depth</span>  <span class="c1"># Length of the new line</span>
+    <span class="k">if</span> <span class="n">negtive_direction</span><span class="p">:</span>
+        <span class="n">direction_vector</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">direction_vector</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">angle_radians</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># Normalize the vector</span>
+    <span class="n">direction_vector</span><span class="o">.</span><span class="n">Unitize</span><span class="p">()</span>
+
+    <span class="c1"># Calculate the rotation axis (assume Z-axis for 2D rotation)</span>
+    <span class="n">rotation_axis</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">ZAxis</span>
+
+    <span class="c1"># Create the rotation transformation</span>
+    <span class="n">rotation_transform</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Transform</span><span class="o">.</span><span class="n">Rotation</span><span class="p">(</span><span class="n">angle_radians</span><span class="p">,</span> <span class="n">rotation_axis</span><span class="p">,</span> <span class="n">midpoint</span><span class="p">)</span>
+
+    <span class="c1"># Rotate the direction vector</span>
+    <span class="n">rotated_vector</span> <span class="o">=</span> <span class="n">direction_vector</span>
+    <span class="n">rotated_vector</span><span class="o">.</span><span class="n">Transform</span><span class="p">(</span><span class="n">rotation_transform</span><span class="p">)</span>
+
+    <span class="c1"># Scale the vector to the desired length</span>
+    <span class="n">rotated_vector</span> <span class="o">*=</span> <span class="n">line_length</span>
+
+    <span class="c1"># Create the new end point</span>
+    <span class="n">end_point</span> <span class="o">=</span> <span class="n">midpoint</span> <span class="o">+</span> <span class="n">rotated_vector</span>
+
+    <span class="c1"># Create the new line</span>
+    <span class="n">new_line</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Line</span><span class="p">(</span><span class="n">midpoint</span><span class="p">,</span> <span class="n">end_point</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">new_line</span></div>
+
+
+
+<div class="viewcode-block" id="move_point">
+<a class="viewcode-back" href="../../../ant_pak.graphic.climate.html#ant_pak.graphic.climate.move_point">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">move_point</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">vector</span><span class="p">):</span>
+    <span class="c1"># point是一个rg.Point3d对象，vector是一个rg.Vector3d对象</span>
+    <span class="c1"># 直接修改点的坐标</span>
+    <span class="k">return</span> <span class="n">rg</span><span class="o">.</span><span class="n">Point3d</span><span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">X</span> <span class="o">+</span> <span class="n">vector</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">point</span><span class="o">.</span><span class="n">Y</span> <span class="o">+</span> <span class="n">vector</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span> <span class="n">point</span><span class="o">.</span><span class="n">Z</span> <span class="o">+</span> <span class="n">vector</span><span class="o">.</span><span class="n">Z</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="find_intersection">
+<a class="viewcode-back" href="../../../ant_pak.graphic.climate.html#ant_pak.graphic.climate.find_intersection">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">find_intersection</span><span class="p">(</span><span class="n">pointA</span><span class="p">,</span> <span class="n">pointB</span><span class="p">,</span> <span class="n">lineB</span><span class="p">):</span>
+    <span class="c1"># 根据两个点创建一条直线A</span>
+    <span class="n">lineA</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Line</span><span class="p">(</span><span class="n">pointA</span><span class="p">,</span> <span class="n">pointB</span><span class="p">)</span>
+
+    <span class="c1"># 创建无限长的直线</span>
+    <span class="n">infinite_lineA</span> <span class="o">=</span> <span class="n">extend_line_from_start</span><span class="p">(</span><span class="n">lineA</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+    <span class="c1"># 将线B也转换为NURBS曲线以确保可以进行交点计算</span>
+    <span class="n">infinite_lineB</span> <span class="o">=</span> <span class="n">lineB</span>  <span class="c1"># .ToNurbsCurve()</span>
+    <span class="k">return</span> <span class="n">find_line_intersection</span><span class="p">(</span><span class="n">infinite_lineA</span><span class="p">,</span> <span class="n">lineB</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="find_line_intersection">
+<a class="viewcode-back" href="../../../ant_pak.graphic.climate.html#ant_pak.graphic.climate.find_line_intersection">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">find_line_intersection</span><span class="p">(</span><span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">):</span>
+    <span class="c1"># 创建两条直线的交点</span>
+    <span class="n">intersection_success</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Intersect</span><span class="o">.</span><span class="n">Intersection</span><span class="o">.</span><span class="n">LineLine</span><span class="p">(</span><span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">)</span>
+
+    <span class="c1"># 如果成功找到交点，并且a和b的值非常接近，表示确实有交点</span>
+    <span class="k">if</span> <span class="n">intersection_success</span><span class="p">:</span>
+        <span class="c1"># 计算交点的位置</span>
+        <span class="n">intersection_point</span> <span class="o">=</span> <span class="n">line1</span><span class="o">.</span><span class="n">PointAt</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">intersection_point</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">print_time</span><span class="p">(</span><span class="s2">&quot;Can not find intersection point&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="sort_points_clockwise">
+<a class="viewcode-back" href="../../../ant_pak.graphic.climate.html#ant_pak.graphic.climate.sort_points_clockwise">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">sort_points_clockwise</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">base_point</span><span class="p">):</span>
+    <span class="c1"># 计算每个点相对于基准点的角度</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">angle_from_base</span><span class="p">(</span><span class="n">point</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">base_point</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">base_point</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="c1"># 排序函数，用角度进行比较</span>
+    <span class="n">points</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">point</span><span class="p">:</span> <span class="n">angle_from_base</span><span class="p">(</span><span class="n">point</span><span class="p">),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">points</span></div>
+
+
+
+<div class="viewcode-block" id="extend_line_from_start">
+<a class="viewcode-back" href="../../../ant_pak.graphic.climate.html#ant_pak.graphic.climate.extend_line_from_start">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">extend_line_from_start</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">):</span>
+    <span class="c1"># 获取线条的起点和终点</span>
+    <span class="n">start_point</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">From</span>
+    <span class="n">end_point</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">To</span>
+
+    <span class="c1"># 计算线条的方向向量</span>
+    <span class="n">direction_vector</span> <span class="o">=</span> <span class="n">end_point</span> <span class="o">-</span> <span class="n">start_point</span>
+
+    <span class="c1"># 根据给定的比例因子扩展这个向量</span>
+    <span class="n">extended_vector</span> <span class="o">=</span> <span class="n">direction_vector</span> <span class="o">*</span> <span class="n">scale_factor</span>
+
+    <span class="c1"># 计算新的终点</span>
+    <span class="n">new_end_point</span> <span class="o">=</span> <span class="n">start_point</span> <span class="o">+</span> <span class="n">extended_vector</span>
+
+    <span class="c1"># 创建新的线条</span>
+    <span class="n">extended_line</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Line</span><span class="p">(</span><span class="n">start_point</span><span class="p">,</span> <span class="n">new_end_point</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">extended_line</span></div>
+
+
+
+<div class="viewcode-block" id="create_curve_arrow">
+<a class="viewcode-back" href="../../../ant_pak.graphic.climate.html#ant_pak.graphic.climate.create_curve_arrow">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_curve_arrow</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="n">arrow_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
+
+    <span class="n">end_point</span> <span class="o">=</span> <span class="n">curve</span><span class="o">.</span><span class="n">PointAtEnd</span>
+    <span class="c1"># Create the arrow shaft</span>
+    <span class="n">shaft</span> <span class="o">=</span> <span class="n">curve</span>
+    <span class="c1"># Calculate the direction vector and normalize it</span>
+    <span class="n">direction</span> <span class="o">=</span> <span class="n">curve</span><span class="o">.</span><span class="n">TangentAtEnd</span>
+    <span class="n">direction</span><span class="o">.</span><span class="n">Unitize</span><span class="p">()</span>
+    <span class="n">arrow_thickness</span> <span class="o">=</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">arrow_size</span>
+    <span class="c1"># Calculate the base point of the arrowhead</span>
+    <span class="n">arrow_base</span> <span class="o">=</span> <span class="n">end_point</span> <span class="o">-</span> <span class="n">direction</span> <span class="o">*</span> <span class="n">arrow_size</span>
+
+    <span class="c1"># Create the arrowhead</span>
+    <span class="n">perp_vector1</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">CrossProduct</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">ZAxis</span><span class="p">)</span>
+    <span class="n">perp_vector1</span><span class="o">.</span><span class="n">Unitize</span><span class="p">()</span>
+    <span class="n">perp_vector2</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">CrossProduct</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="n">perp_vector1</span><span class="p">)</span>
+    <span class="n">perp_vector2</span><span class="o">.</span><span class="n">Unitize</span><span class="p">()</span>
+
+    <span class="n">arrowhead_point1</span> <span class="o">=</span> <span class="n">arrow_base</span> <span class="o">+</span> <span class="n">perp_vector1</span> <span class="o">*</span> <span class="n">arrow_thickness</span>
+    <span class="n">arrowhead_point2</span> <span class="o">=</span> <span class="n">arrow_base</span> <span class="o">-</span> <span class="n">perp_vector1</span> <span class="o">*</span> <span class="n">arrow_thickness</span>
+
+    <span class="n">arrowhead</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Polyline</span><span class="p">([</span><span class="n">arrowhead_point1</span><span class="p">,</span> <span class="n">end_point</span><span class="p">,</span> <span class="n">arrowhead_point2</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">shaft</span><span class="p">,</span> <span class="n">arrowhead</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="create_line_arrow">
+<a class="viewcode-back" href="../../../ant_pak.graphic.climate.html#ant_pak.graphic.climate.create_line_arrow">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_line_arrow</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">arrow_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
+    <span class="n">end_point</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">To</span>
+    <span class="c1"># Create the arrow shaft</span>
+    <span class="n">shaft</span> <span class="o">=</span> <span class="n">line</span>
+    <span class="c1"># Calculate the direction vector and normalize it</span>
+    <span class="n">direction</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">Direction</span>
+    <span class="n">direction</span><span class="o">.</span><span class="n">Unitize</span><span class="p">()</span>
+    <span class="n">arrow_thickness</span> <span class="o">=</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">arrow_size</span>
+    <span class="c1"># Calculate the base point of the arrowhead</span>
+    <span class="n">arrow_base</span> <span class="o">=</span> <span class="n">end_point</span> <span class="o">-</span> <span class="n">direction</span> <span class="o">*</span> <span class="n">arrow_size</span>
+
+    <span class="c1"># Create the arrowhead</span>
+    <span class="n">perp_vector1</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">CrossProduct</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">ZAxis</span><span class="p">)</span>
+    <span class="n">perp_vector1</span><span class="o">.</span><span class="n">Unitize</span><span class="p">()</span>
+    <span class="n">perp_vector2</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">CrossProduct</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="n">perp_vector1</span><span class="p">)</span>
+    <span class="n">perp_vector2</span><span class="o">.</span><span class="n">Unitize</span><span class="p">()</span>
+
+    <span class="n">arrowhead_point1</span> <span class="o">=</span> <span class="n">arrow_base</span> <span class="o">+</span> <span class="n">perp_vector1</span> <span class="o">*</span> <span class="n">arrow_thickness</span>
+    <span class="n">arrowhead_point2</span> <span class="o">=</span> <span class="n">arrow_base</span> <span class="o">-</span> <span class="n">perp_vector1</span> <span class="o">*</span> <span class="n">arrow_thickness</span>
+
+    <span class="n">arrowhead</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Polyline</span><span class="p">([</span><span class="n">arrowhead_point1</span><span class="p">,</span> <span class="n">end_point</span><span class="p">,</span> <span class="n">arrowhead_point2</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">shaft</span><span class="p">,</span> <span class="n">arrowhead</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="create_offset_curve_arrow">
+<a class="viewcode-back" href="../../../ant_pak.graphic.climate.html#ant_pak.graphic.climate.create_offset_curve_arrow">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_offset_curve_arrow</span><span class="p">(</span>
+    <span class="n">curve</span><span class="p">,</span> <span class="n">offset_distance</span><span class="p">,</span> <span class="n">arrow_tip_width</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">arrow_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">magnitude_factor</span><span class="o">=</span><span class="mf">0.02</span>
+<span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Curve</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">random_vector</span><span class="p">(</span><span class="n">magnitude</span><span class="p">,</span> <span class="n">negative</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="p">(</span><span class="n">negative</span> <span class="o">*</span> <span class="n">magnitude</span><span class="p">,</span> <span class="n">negative</span> <span class="o">*</span> <span class="n">magnitude</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">randomize_points</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="n">magnitude_factor</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">negative</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">nurbs_curve</span> <span class="o">=</span> <span class="n">curve</span><span class="o">.</span><span class="n">ToNurbsCurve</span><span class="p">()</span>
+        <span class="n">control_points</span> <span class="o">=</span> <span class="n">nurbs_curve</span><span class="o">.</span><span class="n">Points</span>
+        <span class="n">magnitude</span> <span class="o">=</span> <span class="n">nurbs_curve</span><span class="o">.</span><span class="n">GetLength</span><span class="p">()</span> <span class="o">*</span> <span class="n">magnitude_factor</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">control_points</span><span class="o">.</span><span class="n">Count</span> <span class="o">-</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="n">point</span> <span class="o">=</span> <span class="n">control_points</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">Location</span>
+            <span class="n">random_vec</span> <span class="o">=</span> <span class="n">random_vector</span><span class="p">(</span><span class="n">magnitude</span><span class="p">,</span> <span class="n">negative</span><span class="p">)</span>
+            <span class="n">control_points</span><span class="o">.</span><span class="n">SetPoint</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">point</span> <span class="o">+</span> <span class="n">random_vec</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">nurbs_curve</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">reduce_control_points</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="n">num_points</span><span class="p">):</span>
+        <span class="n">nurbs_curve</span> <span class="o">=</span> <span class="n">curve</span><span class="o">.</span><span class="n">ToNurbsCurve</span><span class="p">()</span>
+        <span class="n">degree</span> <span class="o">=</span> <span class="n">nurbs_curve</span><span class="o">.</span><span class="n">Degree</span>
+        <span class="k">if</span> <span class="n">num_points</span> <span class="o">&lt;</span> <span class="n">degree</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">num_points</span> <span class="o">=</span> <span class="n">degree</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">new_curve</span> <span class="o">=</span> <span class="n">nurbs_curve</span><span class="o">.</span><span class="n">Fit</span><span class="p">(</span><span class="n">degree</span><span class="p">,</span> <span class="n">num_points</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">new_curve</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">offset_curve</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="n">distance</span><span class="p">):</span>
+        <span class="n">offset_curves</span> <span class="o">=</span> <span class="n">curve</span><span class="o">.</span><span class="n">Offset</span><span class="p">(</span>
+            <span class="n">rg</span><span class="o">.</span><span class="n">Plane</span><span class="o">.</span><span class="n">WorldXY</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">CurveOffsetCornerStyle</span><span class="o">.</span><span class="n">Sharp</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">offset_curves</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">offset_curves</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># Reduce control points</span>
+    <span class="n">curve</span> <span class="o">=</span> <span class="n">reduce_control_points</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+    <span class="c1"># Calculate dimensions based on curve length</span>
+    <span class="n">length</span> <span class="o">=</span> <span class="n">curve</span><span class="o">.</span><span class="n">GetLength</span><span class="p">()</span>
+    <span class="n">arrow_tip_width</span> <span class="o">=</span> <span class="n">length</span> <span class="o">*</span> <span class="n">arrow_tip_width</span> <span class="o">*</span> <span class="n">offset_distance</span> <span class="o">/</span> <span class="mf">1.5</span>
+    <span class="n">arrow_size</span> <span class="o">=</span> <span class="n">length</span> <span class="o">*</span> <span class="n">arrow_size</span> <span class="o">*</span> <span class="n">offset_distance</span> <span class="o">/</span> <span class="mf">1.5</span>
+    <span class="n">offset_distance</span> <span class="o">=</span> <span class="n">offset_distance</span> <span class="o">*</span> <span class="n">length</span> <span class="o">/</span> <span class="mi">20</span>
+
+    <span class="c1"># Offset the curve in both directions</span>
+    <span class="n">offset_curve1</span> <span class="o">=</span> <span class="n">offset_curve</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="n">offset_distance</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">offset_curve1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">offset_curve2</span> <span class="o">=</span> <span class="n">offset_curve</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="o">-</span><span class="n">offset_distance</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">offset_curve2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="c1"># Randomize control points of the offset curves</span>
+    <span class="n">offset_curve1</span> <span class="o">=</span> <span class="n">randomize_points</span><span class="p">(</span>
+        <span class="n">offset_curve1</span><span class="p">,</span> <span class="n">negative</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">magnitude_factor</span><span class="o">=</span><span class="n">magnitude_factor</span>
+    <span class="p">)</span>
+    <span class="n">offset_curve2</span> <span class="o">=</span> <span class="n">randomize_points</span><span class="p">(</span><span class="n">offset_curve2</span><span class="p">,</span> <span class="n">magnitude_factor</span><span class="o">=</span><span class="n">magnitude_factor</span><span class="p">)</span>
+
+    <span class="c1"># Get the end and start points of the original curve</span>
+    <span class="n">end_point</span> <span class="o">=</span> <span class="n">curve</span><span class="o">.</span><span class="n">PointAtEnd</span>
+    <span class="c1"># start_point = curve.PointAtStart</span>
+
+    <span class="c1"># Calculate the direction vector and normalize it</span>
+    <span class="n">direction</span> <span class="o">=</span> <span class="o">-</span><span class="n">curve</span><span class="o">.</span><span class="n">TangentAtEnd</span>
+    <span class="n">direction</span><span class="o">.</span><span class="n">Unitize</span><span class="p">()</span>
+
+    <span class="c1"># Calculate the base point of the arrowhead</span>
+    <span class="n">arrow_base</span> <span class="o">=</span> <span class="n">end_point</span> <span class="o">-</span> <span class="n">direction</span> <span class="o">*</span> <span class="n">arrow_size</span>
+
+    <span class="c1"># Create the arrowhead</span>
+    <span class="n">perp_vector1</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">CrossProduct</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">ZAxis</span><span class="p">)</span>
+    <span class="n">perp_vector1</span><span class="o">.</span><span class="n">Unitize</span><span class="p">()</span>
+    <span class="n">arrowhead_point1</span> <span class="o">=</span> <span class="n">end_point</span> <span class="o">+</span> <span class="n">perp_vector1</span> <span class="o">*</span> <span class="n">arrow_tip_width</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">arrowhead_point2</span> <span class="o">=</span> <span class="n">end_point</span> <span class="o">-</span> <span class="n">perp_vector1</span> <span class="o">*</span> <span class="n">arrow_tip_width</span> <span class="o">/</span> <span class="mi">2</span>
+
+    <span class="n">arrowhead</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Polyline</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">offset_curve2</span><span class="o">.</span><span class="n">PointAtEnd</span><span class="p">,</span>
+            <span class="n">arrowhead_point1</span><span class="p">,</span>
+            <span class="n">arrow_base</span><span class="p">,</span>
+            <span class="n">arrowhead_point2</span><span class="p">,</span>
+            <span class="n">offset_curve1</span><span class="o">.</span><span class="n">PointAtEnd</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">end_curve</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Line</span><span class="p">(</span><span class="n">offset_curve1</span><span class="o">.</span><span class="n">PointAtStart</span><span class="p">,</span> <span class="n">offset_curve2</span><span class="o">.</span><span class="n">PointAtStart</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">offset_curve1</span><span class="p">,</span> <span class="n">offset_curve2</span><span class="p">,</span> <span class="n">end_curve</span><span class="p">,</span> <span class="n">arrowhead</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="create_teardrop_shape">
+<a class="viewcode-back" href="../../../ant_pak.graphic.climate.html#ant_pak.graphic.climate.create_teardrop_shape">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_teardrop_shape</span><span class="p">(</span><span class="n">circle_center</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+
+    <span class="c1"># 创建一个圆</span>
+    <span class="n">circle</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Circle</span><span class="p">(</span><span class="n">circle_center</span><span class="p">,</span> <span class="n">radius</span><span class="p">)</span>
+
+    <span class="c1"># 获取圆的上半部分作为雨滴的顶部</span>
+    <span class="n">upper_half_circle</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Arc</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+
+    <span class="c1"># 计算下部尖端的控制点</span>
+    <span class="n">control_point</span> <span class="o">=</span> <span class="n">move_point</span><span class="p">(</span><span class="n">circle_center</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+    <span class="c1"># 创建从圆的左侧到控制点再到圆的右侧的Bezier曲线</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">move_point</span><span class="p">(</span><span class="n">circle_center</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="p">(</span><span class="o">-</span><span class="n">radius</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+        <span class="n">control_point</span><span class="p">,</span>
+        <span class="n">move_point</span><span class="p">(</span><span class="n">circle_center</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+    <span class="p">]</span>
+    <span class="n">bezier_curve</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Curve</span><span class="o">.</span><span class="n">CreateInterpolatedCurve</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+    <span class="c1"># 合并上半圆和Bezier曲线形成雨滴形状</span>
+    <span class="n">curves</span> <span class="o">=</span> <span class="p">[</span><span class="n">upper_half_circle</span><span class="o">.</span><span class="n">ToNurbsCurve</span><span class="p">(),</span> <span class="n">bezier_curve</span><span class="p">]</span>
+
+    <span class="n">teardrop_shape</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Curve</span><span class="o">.</span><span class="n">JoinCurves</span><span class="p">(</span><span class="n">curves</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="kc">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">teardrop_shape</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ringo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

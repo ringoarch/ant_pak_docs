@@ -1,0 +1,790 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ant_pak.core &mdash; ant_pak 0.1.1 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/documentation_options.js?v=d06dfecd"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            ant_pak
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">ant_pak</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ant_pak</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">模块代码</a></li>
+      <li class="breadcrumb-item active">ant_pak.core</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>ant_pak.core 源代码</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">@DATE: 2024-07-29 15:10:44</span>
+<span class="sd">@Author: ringo</span>
+<span class="sd">@Version: 1.0</span>
+<span class="sd">@File: core.py</span>
+<span class="sd">@Software: vscode</span>
+<span class="sd">@Description:</span>
+<span class="sd">        </span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">division</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ghpythonlib.components</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gh</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">Rhino</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rh</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">Rhino.Geometry</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rg</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">rhinoscriptsyntax</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rs</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">System.Collections.Generic</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scriptcontext</span><span class="w"> </span><span class="kn">import</span> <span class="n">sticky</span> <span class="k">as</span> <span class="n">st</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.config</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.utility</span><span class="w"> </span><span class="kn">import</span> <span class="n">item_to_list</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">uuid</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+
+
+
+<div class="viewcode-block" id="set_user_texts">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.set_user_texts">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">set_user_texts</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+    <span class="c1"># set series user text base on guid</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">keys</span><span class="p">):</span>
+        <span class="n">rs</span><span class="o">.</span><span class="n">SetUserText</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">])</span></div>
+
+
+
+<div class="viewcode-block" id="id_point">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.id_point">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">id_point</span><span class="p">(</span><span class="n">point</span><span class="p">):</span>
+    <span class="c1"># 解构点对象，获取其坐标</span>
+    <span class="n">loc</span> <span class="o">=</span> <span class="n">gh</span><span class="o">.</span><span class="n">Deconstruct</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+
+    <span class="c1"># 创建一个唯一标识符</span>
+    <span class="c1"># 将x、y、z坐标四舍五入到小数点后3位</span>
+    <span class="c1"># 然后用下划线连接这些坐标值</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">3</span><span class="p">))</span>  <span class="c1"># x坐标</span>
+        <span class="o">+</span> <span class="s2">&quot;_&quot;</span>
+        <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">3</span><span class="p">))</span>  <span class="c1"># y坐标</span>
+        <span class="o">+</span> <span class="s2">&quot;_&quot;</span>
+        <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">3</span><span class="p">))</span>  <span class="c1"># z坐标</span>
+    <span class="p">)</span>
+
+    <span class="c1"># 返回生成的唯一标识符</span>
+    <span class="k">return</span> <span class="nb">id</span></div>
+
+
+
+<div class="viewcode-block" id="id_points">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.id_points">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">id_points</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
+    <span class="n">ids</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="n">item_to_list</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+    <span class="n">ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">id_point</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">points</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">ids</span></div>
+
+
+
+<div class="viewcode-block" id="id_geos">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.id_geos">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">id_geos</span><span class="p">(</span><span class="n">geos</span><span class="p">):</span>
+    <span class="n">geos</span> <span class="o">=</span> <span class="n">item_to_list</span><span class="p">(</span><span class="n">geos</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">geos</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">rg</span><span class="o">.</span><span class="n">Curve</span><span class="p">):</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">gh</span><span class="o">.</span><span class="n">endpoint</span><span class="p">(</span><span class="n">geos</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">geos</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">rg</span><span class="o">.</span><span class="n">Point3d</span><span class="p">):</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">geos</span>
+    <span class="k">elif</span> <span class="p">(</span>
+        <span class="nb">isinstance</span><span class="p">(</span><span class="n">geos</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">rg</span><span class="o">.</span><span class="n">Surface</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">geos</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">rg</span><span class="o">.</span><span class="n">Brep</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">geos</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">rg</span><span class="o">.</span><span class="n">Mesh</span><span class="p">)</span>
+    <span class="p">):</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">gh</span><span class="o">.</span><span class="n">Area</span><span class="p">(</span><span class="n">geos</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">id_points</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">id</span></div>
+
+
+
+<span class="c1"># 定义一个函数，接受一个曲线列表，一个布尔标志，一个平面和一个容差值作为输入</span>
+<div class="viewcode-block" id="curve_to_regions">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.curve_to_regions">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">curve_to_regions</span><span class="p">(</span><span class="n">curves</span><span class="p">,</span> <span class="n">union</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">plane</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># 如果没有给定平面，使用世界XY平面作为默认值</span>
+    <span class="k">if</span> <span class="n">plane</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">plane</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Plane</span><span class="o">.</span><span class="n">WorldXY</span>
+    <span class="c1"># 如果没有给定容差，使用文档的绝对容差作为默认值</span>
+    <span class="k">if</span> <span class="n">tol</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">tol</span> <span class="o">=</span> <span class="mf">0.01</span>
+    <span class="c1"># curves =[line.ToNurbsCurve() for line in curves if isinstance(line, rg.Line)]</span>
+    <span class="c1"># curves = simplify_curves(curves, tol * 100)</span>
+    <span class="c1"># 使用CreateBooleanRegions方法找到曲线包围的区域</span>
+    <span class="c1"># 如果union为True，将区域合并为一个</span>
+    <span class="c1"># 如果union为False，保持区域分开</span>
+    <span class="n">curves</span> <span class="o">=</span> <span class="n">convert_lines_to_curves</span><span class="p">(</span><span class="n">curves</span><span class="p">)</span>
+    <span class="n">rc</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Curve</span><span class="o">.</span><span class="n">CreateBooleanRegions</span><span class="p">(</span><span class="n">curves</span><span class="p">,</span> <span class="n">plane</span><span class="p">,</span> <span class="n">union</span><span class="p">,</span> <span class="n">tol</span><span class="p">)</span>
+
+    <span class="c1"># 如果方法成功，创建一个空列表来存储区域曲线</span>
+    <span class="k">if</span> <span class="n">rc</span><span class="p">:</span>
+        <span class="n">regions</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># 遍历区域，将它们的曲线添加到列表中</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rc</span><span class="o">.</span><span class="n">RegionCount</span><span class="p">):</span>
+            <span class="n">regions</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">rc</span><span class="o">.</span><span class="n">RegionCurves</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+        <span class="c1"># 返回区域曲线列表</span>
+        <span class="k">return</span> <span class="n">regions</span>
+    <span class="c1"># 如果方法失败，返回None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+
+<div class="viewcode-block" id="is_collinear">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.is_collinear">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">is_collinear</span><span class="p">(</span><span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    检查两条线段是否共线</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 获取线段的起点和终点</span>
+    <span class="n">p1_start</span> <span class="o">=</span> <span class="n">line1</span><span class="o">.</span><span class="n">From</span>
+    <span class="n">p1_end</span> <span class="o">=</span> <span class="n">line1</span><span class="o">.</span><span class="n">To</span>
+    <span class="n">p2_start</span> <span class="o">=</span> <span class="n">line2</span><span class="o">.</span><span class="n">From</span>
+    <span class="n">p2_end</span> <span class="o">=</span> <span class="n">line2</span><span class="o">.</span><span class="n">To</span>
+
+    <span class="c1"># 计算向量</span>
+    <span class="n">vec1</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="p">(</span><span class="n">p1_end</span> <span class="o">-</span> <span class="n">p1_start</span><span class="p">)</span>
+    <span class="n">vec2</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="p">(</span><span class="n">p2_end</span> <span class="o">-</span> <span class="n">p2_start</span><span class="p">)</span>
+
+    <span class="c1"># 计算向量的叉积</span>
+    <span class="n">cross_product</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">CrossProduct</span><span class="p">(</span><span class="n">vec1</span><span class="p">,</span> <span class="n">vec2</span><span class="p">)</span>
+
+    <span class="c1"># 检查叉积的长度是否在容差范围内</span>
+    <span class="k">if</span> <span class="n">cross_product</span><span class="o">.</span><span class="n">Length</span> <span class="o">&lt;=</span> <span class="n">tolerance</span><span class="p">:</span>
+        <span class="c1"># 检查线段是否在同一直线上</span>
+        <span class="n">vec_between_starts</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="p">(</span><span class="n">p2_start</span> <span class="o">-</span> <span class="n">p1_start</span><span class="p">)</span>
+        <span class="n">cross_product_between_starts</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">CrossProduct</span><span class="p">(</span>
+            <span class="n">vec1</span><span class="p">,</span> <span class="n">vec_between_starts</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">cross_product_between_starts</span><span class="o">.</span><span class="n">Length</span> <span class="o">&lt;=</span> <span class="n">tolerance</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">return</span> <span class="kc">False</span></div>
+
+
+
+<div class="viewcode-block" id="convert_lines_to_curves">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.convert_lines_to_curves">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">convert_lines_to_curves</span><span class="p">(</span><span class="n">geometries</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    将几何对象列表转换为曲线列表。</span>
+
+<span class="sd">    参数:</span>
+<span class="sd">    geometries (list): 包含几何对象的列表，可能是Line或Curve对象。</span>
+
+<span class="sd">    返回:</span>
+<span class="sd">    list: 包含转换后的Curve对象的列表。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">curves</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">geom</span> <span class="ow">in</span> <span class="n">geometries</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Line</span><span class="p">):</span>
+            <span class="c1"># 将Line对象转换为Curve</span>
+            <span class="n">curves</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rg</span><span class="o">.</span><span class="n">LineCurve</span><span class="p">(</span><span class="n">geom</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Curve</span><span class="p">):</span>
+            <span class="c1"># 如果已经是Curve对象，直接添加</span>
+            <span class="n">curves</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">curves</span></div>
+
+
+
+<div class="viewcode-block" id="simplify_polyline">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.simplify_polyline">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">simplify_polyline</span><span class="p">(</span><span class="n">polyline</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    简化polyline，去除共线线段内的点</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">polyline</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">polyline</span><span class="o">.</span><span class="n">Count</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">polyline</span>
+
+    <span class="n">new_points</span> <span class="o">=</span> <span class="p">[</span><span class="n">polyline</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">polyline</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">line1</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Line</span><span class="p">(</span><span class="n">polyline</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">polyline</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">line2</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Line</span><span class="p">(</span><span class="n">polyline</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">polyline</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_collinear</span><span class="p">(</span><span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">):</span>
+            <span class="n">new_points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">polyline</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">new_points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">polyline</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">rg</span><span class="o">.</span><span class="n">Polyline</span><span class="p">(</span><span class="n">new_points</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="simplify_curve">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.simplify_curve">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">simplify_curve</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">0.01</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simplify a curve by removing unnecessary control points.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        curve (Rhino.Geometry.Curve): The curve to simplify.</span>
+<span class="sd">        tolerance (float): The maximum distance between the simplified and original curves.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Rhino.Geometry.Curve: The simplified curve.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">PolylineCurve</span><span class="p">):</span>
+        <span class="c1"># If the input is already a polyline curve, use the ToPolyline method to simplify it.</span>
+        <span class="n">polyline</span> <span class="o">=</span> <span class="n">curve</span><span class="o">.</span><span class="n">ToPolyline</span><span class="p">()</span>
+        <span class="n">new_curve</span> <span class="o">=</span> <span class="n">simplify_polyline</span><span class="p">(</span><span class="n">polyline</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Polyline</span><span class="p">):</span>
+        <span class="n">new_curve</span> <span class="o">=</span> <span class="n">simplify_polyline</span><span class="p">(</span><span class="n">curve</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Otherwise, use the Simplify method to simplify the curve.</span>
+        <span class="n">new_curve</span> <span class="o">=</span> <span class="n">curve</span><span class="o">.</span><span class="n">Simplify</span><span class="p">(</span><span class="n">rg</span><span class="o">.</span><span class="n">CurveSimplifyOptions</span><span class="o">.</span><span class="n">All</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">new_curve</span></div>
+
+
+
+<div class="viewcode-block" id="simplify_curves">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.simplify_curves">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">simplify_curves</span><span class="p">(</span><span class="n">curves</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">0.01</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simplify a curve by removing unnecessary control points.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        curve (Rhino.Geometry.Curve): A list of curves to simplify.</span>
+<span class="sd">        tolerance (float): The maximum distance between the simplified and original curves.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Rhino.Geometry.Curve: A list of  simplified curves.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">curves</span> <span class="o">=</span> <span class="n">item_to_list</span><span class="p">(</span><span class="n">curves</span><span class="p">)</span>
+    <span class="n">new_curves</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">curve</span> <span class="ow">in</span> <span class="n">curves</span><span class="p">:</span>
+        <span class="n">new_curves</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">simplify_curve</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">new_curves</span></div>
+
+
+
+<span class="c1"># 定义比较函数，根据点的x坐标和y坐标之和进行比较</span>
+<div class="viewcode-block" id="compare_points">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.compare_points">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compare_points</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">):</span>
+    <span class="c1"># 如果p1的x坐标和y坐标之和小于p2的x坐标和y坐标之和，返回-1</span>
+    <span class="k">if</span> <span class="nb">sum</span><span class="p">([</span><span class="n">p1</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">p1</span><span class="o">.</span><span class="n">Y</span><span class="p">])</span> <span class="o">&lt;</span> <span class="nb">sum</span><span class="p">([</span><span class="n">p2</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">p2</span><span class="o">.</span><span class="n">Y</span><span class="p">]):</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="c1"># 如果p1的x坐标和y坐标之和大于p2的x坐标和y坐标之和，返回1</span>
+    <span class="k">elif</span> <span class="nb">sum</span><span class="p">([</span><span class="n">p1</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">p1</span><span class="o">.</span><span class="n">Y</span><span class="p">])</span> <span class="o">&gt;</span> <span class="nb">sum</span><span class="p">([</span><span class="n">p2</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">p2</span><span class="o">.</span><span class="n">Y</span><span class="p">]):</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="c1"># 如果p1的x坐标和y坐标之和等于p2的x坐标和y坐标之和，继续比较z坐标</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># 如果p1的z坐标小于p2的z坐标，返回-1</span>
+        <span class="k">if</span> <span class="n">p1</span><span class="o">.</span><span class="n">Z</span> <span class="o">&lt;</span> <span class="n">p2</span><span class="o">.</span><span class="n">Z</span><span class="p">:</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="c1"># 如果p1的z坐标大于p2的z坐标，返回1</span>
+        <span class="k">elif</span> <span class="n">p1</span><span class="o">.</span><span class="n">Z</span> <span class="o">&gt;</span> <span class="n">p2</span><span class="o">.</span><span class="n">Z</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span>
+        <span class="c1"># 如果p1的z坐标等于p2的z坐标，返回0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span></div>
+
+
+
+<div class="viewcode-block" id="sort_points">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.sort_points">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">sort_points</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
+    <span class="c1"># 使用比较函数对点列表进行排序</span>
+    <span class="n">points</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">compare_points</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="line_normal_towards_point">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.line_normal_towards_point">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">line_normal_towards_point</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">point</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    此函数计算指向给定点的线的法向量。</span>
+<span class="sd">    :param line: 要计算法向量的线。</span>
+<span class="sd">    :type line: Rhino.Geometry.Line</span>
+<span class="sd">    :param point: 法向量应指向的点。</span>
+<span class="sd">    :type point: Rhino.Geometry.Point3d</span>
+<span class="sd">    :return: 指向给定点的线的法向量。</span>
+<span class="sd">    :rtype: Rhino.Geometry.Vector3d</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tangent</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">To</span> <span class="o">-</span> <span class="n">line</span><span class="o">.</span><span class="n">From</span>
+    <span class="n">normal</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="p">(</span><span class="n">tangent</span><span class="p">)</span>
+    <span class="n">normal</span><span class="o">.</span><span class="n">Unitize</span><span class="p">()</span>
+    <span class="n">normal</span><span class="o">.</span><span class="n">Rotate</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">90</span><span class="p">),</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">ZAxis</span><span class="p">)</span>
+    <span class="n">line_to_point</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Line</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">From</span><span class="p">,</span> <span class="n">point</span><span class="p">)</span>
+    <span class="n">angle</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">VectorAngle</span><span class="p">(</span><span class="n">normal</span><span class="p">,</span> <span class="n">line_to_point</span><span class="o">.</span><span class="n">Direction</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">angle</span> <span class="o">&lt;</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">90</span><span class="p">):</span>
+        <span class="n">normal</span><span class="o">.</span><span class="n">Reverse</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">normal</span></div>
+
+
+
+<span class="c1"># 根据矢量判断其朝向</span>
+<div class="viewcode-block" id="vector_direction">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.vector_direction">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">vector_direction</span><span class="p">(</span><span class="n">vector</span><span class="p">):</span>
+    <span class="c1"># 计算矢量与x轴正方向的夹角</span>
+    <span class="n">angle</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">vector</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span> <span class="n">vector</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+    <span class="c1"># 根据夹角判断方向</span>
+    <span class="n">directions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;West&quot;</span><span class="p">,</span> <span class="s2">&quot;South&quot;</span><span class="p">,</span> <span class="s2">&quot;East&quot;</span><span class="p">,</span> <span class="s2">&quot;North&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">directions</span><span class="p">[</span><span class="nb">int</span><span class="p">((</span><span class="n">angle</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span> <span class="o">%</span> <span class="mi">4</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="union_bottom">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.union_bottom">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">union_bottom</span><span class="p">(</span><span class="n">bld</span><span class="p">):</span>
+    <span class="c1"># 使用ghpython，判断实体下方是否有实体，如果有则与下方实体进行布尔合并。</span>
+    <span class="n">entities</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">bld</span><span class="o">.</span><span class="n">geometry</span> <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">display_name</span> <span class="ow">is</span> <span class="s2">&quot;空&quot;</span><span class="p">]</span>
+    <span class="c1"># 获取输入的实体</span>
+    <span class="n">entities</span> <span class="o">=</span> <span class="n">item_to_list</span><span class="p">(</span><span class="n">entities</span><span class="p">)</span>
+
+    <span class="c1"># 创建一个空列表来存储下方实体</span>
+    <span class="n">bottom_entities</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># 遍历输入的实体</span>
+    <span class="k">for</span> <span class="n">entity</span> <span class="ow">in</span> <span class="n">entities</span><span class="p">:</span>
+        <span class="c1"># 获取实体的底部中心点</span>
+        <span class="n">center</span> <span class="o">=</span> <span class="n">gh</span><span class="o">.</span><span class="n">EvaluateSurface</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Point2d</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="c1"># 将底部中心点向下移动一定距离，以便检测下方是否有实体</span>
+        <span class="n">center_down</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Point3d</span><span class="p">(</span><span class="n">center</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">center</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span> <span class="n">center</span><span class="o">.</span><span class="n">Z</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">)</span>
+        <span class="c1"># 创建一个射线，从底部中心点向下发射</span>
+        <span class="n">ray</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Ray3d</span><span class="p">(</span><span class="n">center_down</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="c1"># 使用IntersectBreps方法检测射线与实体的交点</span>
+        <span class="n">hits</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Intersect</span><span class="o">.</span><span class="n">Intersection</span><span class="o">.</span><span class="n">BrepRay</span><span class="p">(</span>
+            <span class="n">entity</span><span class="p">,</span> <span class="n">ray</span><span class="p">,</span> <span class="n">rh</span><span class="o">.</span><span class="n">RhinoDoc</span><span class="o">.</span><span class="n">ActiveDoc</span><span class="o">.</span><span class="n">ModelAbsoluteTolerance</span>
+        <span class="p">)</span>
+        <span class="c1"># 如果有交点，说明下方有实体</span>
+        <span class="k">if</span> <span class="n">hits</span><span class="p">:</span>
+            <span class="c1"># 遍历交点，将交点对应的实体添加到下方实体列表中</span>
+            <span class="k">for</span> <span class="n">hit</span> <span class="ow">in</span> <span class="n">hits</span><span class="p">:</span>
+                <span class="n">bottom_entities</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hit</span><span class="o">.</span><span class="n">Geometry</span><span class="p">)</span>
+
+    <span class="c1"># 如果下方有实体，将输入的实体与下方实体进行布尔合并</span>
+    <span class="k">if</span> <span class="n">bottom_entities</span><span class="p">:</span>
+        <span class="c1"># 将下方实体添加到输入实体列表中</span>
+        <span class="n">entities</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">bottom_entities</span><span class="p">)</span>
+        <span class="c1"># 将实体转换为曲面</span>
+        <span class="n">surfaces</span> <span class="o">=</span> <span class="n">gh</span><span class="o">.</span><span class="n">BrepToSurface</span><span class="p">(</span><span class="n">entities</span><span class="p">)</span>
+        <span class="c1"># 将曲面转换为区域</span>
+        <span class="n">regions</span> <span class="o">=</span> <span class="n">curve_to_regions</span><span class="p">(</span><span class="n">surfaces</span><span class="p">)</span>
+        <span class="c1"># 将区域进行布尔合并</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">gh</span><span class="o">.</span><span class="n">BooleanUnion</span><span class="p">(</span><span class="n">regions</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+
+<div class="viewcode-block" id="polyline_to_lines">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.polyline_to_lines">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">polyline_to_lines</span><span class="p">(</span><span class="n">polyline</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">rg</span><span class="o">.</span><span class="n">Line</span><span class="p">(</span><span class="n">polyline</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">polyline</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">polyline</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span></div>
+
+
+
+<div class="viewcode-block" id="curve_to_lines">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.curve_to_lines">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">curve_to_lines</span><span class="p">(</span><span class="n">curves</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">90</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a list of polyline and linecurve objects to a list of line objects.&quot;&quot;&quot;</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">curves</span> <span class="o">=</span> <span class="n">item_to_list</span><span class="p">(</span><span class="n">curves</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">curve</span> <span class="ow">in</span> <span class="n">curves</span><span class="p">:</span>
+        <span class="c1"># print type(curve)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span><span class="n">rg</span><span class="o">.</span><span class="n">Polyline</span><span class="p">):</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">polyline_to_lines</span><span class="p">(</span><span class="n">curve</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="p">(</span> <span class="n">rg</span><span class="o">.</span><span class="n">PolylineCurve</span><span class="p">)):</span>
+            <span class="c1"># print curve</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">polyline_to_lines</span><span class="p">(</span><span class="n">curve</span><span class="o">.</span><span class="n">ToPolyline</span><span class="p">()))</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="p">(</span><span class="n">rg</span><span class="o">.</span><span class="n">PolyCurve</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">NurbsCurve</span><span class="p">)):</span>
+            <span class="c1"># print </span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">polyline_to_lines</span><span class="p">(</span><span class="n">curve</span><span class="o">.</span><span class="n">ToPolyline</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">999</span><span class="p">)</span><span class="o">.</span><span class="n">ToPolyline</span><span class="p">()))</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="p">(</span><span class="n">rg</span><span class="o">.</span><span class="n">Line</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">LineCurve</span><span class="p">)):</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">curve</span><span class="o">.</span><span class="n">Line</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">LineCurve</span><span class="p">)</span> <span class="k">else</span> <span class="n">curve</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="p">(</span><span class="n">rg</span><span class="o">.</span><span class="n">ArcCurve</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Arc</span><span class="p">)):</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">polyline_to_lines</span><span class="p">(</span><span class="n">arc_to_polyline</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="n">angle</span><span class="p">)))</span>
+            
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unsupported curve type: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">curve</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">rg</span><span class="o">.</span><span class="n">Line</span><span class="p">)]</span></div>
+
+
+
+<div class="viewcode-block" id="arc_to_polyline">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.arc_to_polyline">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">arc_to_polyline</span><span class="p">(</span><span class="n">arc</span><span class="p">,</span> <span class="n">angle_deg</span><span class="o">=</span><span class="mi">90</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert an arc to a polyline with segments divided by the given angle.</span>
+<span class="sd">    arc: Rhino.Geometry arc object.</span>
+<span class="sd">    angle_deg: angle in degrees to divide the arc into segments.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">arc</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">ArcCurve</span><span class="p">):</span>
+        <span class="n">arc</span> <span class="o">=</span> <span class="n">arc</span><span class="o">.</span><span class="n">Arc</span>
+    <span class="n">center</span> <span class="o">=</span> <span class="n">arc</span><span class="o">.</span><span class="n">Center</span>
+    <span class="n">circle_points</span> <span class="o">=</span> <span class="n">points_from_circle</span><span class="p">(</span><span class="n">arc</span><span class="p">,</span> <span class="n">angle_deg</span><span class="p">)</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="p">[</span><span class="n">arc</span><span class="o">.</span><span class="n">StartPoint</span><span class="p">,</span> <span class="n">arc</span><span class="o">.</span><span class="n">EndPoint</span><span class="p">]</span>
+    <span class="n">points</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">point</span> <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">circle_points</span> <span class="k">if</span> <span class="n">is_point_near_arc</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">arc</span><span class="p">)])</span>
+
+    <span class="c1"># Sort points in clockwise order around the center</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+        <span class="n">points</span><span class="p">,</span>
+        <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">pt</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">pt</span><span class="o">.</span><span class="n">Y</span> <span class="o">-</span> <span class="n">center</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span> <span class="n">pt</span><span class="o">.</span><span class="n">X</span> <span class="o">-</span> <span class="n">center</span><span class="o">.</span><span class="n">X</span><span class="p">),</span>
+        <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">rg</span><span class="o">.</span><span class="n">Polyline</span><span class="p">(</span><span class="n">points</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="points_from_circle">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.points_from_circle">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">points_from_circle</span><span class="p">(</span><span class="n">arc</span><span class="p">,</span> <span class="n">angle_deg</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate points around a circle with given arc, and angle division.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">num_points</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">360</span> <span class="o">/</span> <span class="n">angle_deg</span><span class="p">)</span>
+    <span class="n">angle_step</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">num_points</span>
+    <span class="n">center</span> <span class="o">=</span> <span class="n">arc</span><span class="o">.</span><span class="n">Center</span>
+    <span class="n">radius</span> <span class="o">=</span> <span class="n">arc</span><span class="o">.</span><span class="n">Radius</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_points</span><span class="p">):</span>
+        <span class="n">angle</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">angle_step</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">center</span><span class="o">.</span><span class="n">X</span> <span class="o">+</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">center</span><span class="o">.</span><span class="n">Y</span> <span class="o">+</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+        <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rg</span><span class="o">.</span><span class="n">Point3d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">center</span><span class="o">.</span><span class="n">Z</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">points</span></div>
+
+
+
+<div class="viewcode-block" id="is_point_near_arc">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.is_point_near_arc">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">is_point_near_arc</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">arc</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check if a point is near an arc within a certain tolerance.</span>
+<span class="sd">    point: rg.Point3d, the point to check.</span>
+<span class="sd">    arc: rg.Arc, the arc to check against.</span>
+<span class="sd">    tolerance: float, the allowable distance from the arc.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">arc_curve</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">ArcCurve</span><span class="p">(</span><span class="n">arc</span><span class="p">)</span>
+    <span class="n">success</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">arc_curve</span><span class="o">.</span><span class="n">ClosestPoint</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+        <span class="n">closest_point</span> <span class="o">=</span> <span class="n">arc_curve</span><span class="o">.</span><span class="n">PointAt</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">point</span><span class="o">.</span><span class="n">DistanceTo</span><span class="p">(</span><span class="n">closest_point</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">tolerance</span>
+
+    <span class="k">return</span> <span class="kc">False</span></div>
+
+
+
+<div class="viewcode-block" id="explode_objs">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.explode_objs">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">explode_objs</span><span class="p">(</span><span class="n">objects</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    拆解对象列表中的组实例和实例定义对象。</span>
+
+<span class="sd">    参数:</span>
+<span class="sd">    objects: 要处理的对象列表</span>
+
+<span class="sd">    返回:</span>
+<span class="sd">    处理后的对象列表</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">objects</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">IsGroupInstance</span><span class="p">():</span>
+            <span class="c1"># 如果对象是组实例，将其组计数设为0以拆解</span>
+            <span class="n">obj</span><span class="o">.</span><span class="n">GroupCount</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">IsInstanceDefinitionObject</span><span class="p">():</span>
+            <span class="c1"># 如果对象是实例定义对象，调用Explode方法拆解</span>
+            <span class="n">obj</span><span class="o">.</span><span class="n">Explode</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">objects</span></div>
+
+
+
+<div class="viewcode-block" id="get_surface_area">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.get_surface_area">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_surface_area</span><span class="p">(</span><span class="n">surface</span><span class="p">):</span>
+    <span class="c1"># 将曲面离散化为网格</span>
+    <span class="n">mesh</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Mesh</span><span class="p">()</span>
+    <span class="n">mesh</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Mesh</span><span class="o">.</span><span class="n">CreateFromBrep</span><span class="p">(</span><span class="n">surface</span><span class="o">.</span><span class="n">ToBrep</span><span class="p">(),</span> <span class="n">rg</span><span class="o">.</span><span class="n">MeshingParameters</span><span class="o">.</span><span class="n">Default</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">get_mesh_area</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="get_mesh_area">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.get_mesh_area">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_mesh_area</span><span class="p">(</span><span class="n">mesh</span><span class="p">):</span>
+    <span class="c1"># 计算网格的面积</span>
+    <span class="n">area</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">Faces</span><span class="o">.</span><span class="n">Count</span><span class="p">):</span>
+        <span class="n">face</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">Faces</span><span class="o">.</span><span class="n">GetFace</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">face</span><span class="o">.</span><span class="n">IsTriangle</span><span class="p">:</span>
+            <span class="c1"># vertices = face.GetVertices()</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">Vertices</span><span class="p">[</span><span class="n">face</span><span class="o">.</span><span class="n">A</span><span class="p">]</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">Vertices</span><span class="p">[</span><span class="n">face</span><span class="o">.</span><span class="n">B</span><span class="p">]</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">Vertices</span><span class="p">[</span><span class="n">face</span><span class="o">.</span><span class="n">C</span><span class="p">]</span>
+            <span class="n">triangle_area</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">CrossProduct</span><span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">Length</span> <span class="o">*</span> <span class="mf">0.5</span>
+            <span class="n">area</span> <span class="o">+=</span> <span class="n">triangle_area</span>
+    <span class="k">return</span> <span class="n">area</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">arc_endpoints_center_line</span><span class="p">(</span><span class="n">arc</span><span class="p">):</span>
+    <span class="c1"># 获取弧的起点、终点和中心点</span>
+    <span class="n">start_point</span> <span class="o">=</span> <span class="n">arc</span><span class="o">.</span><span class="n">PointAtStart</span>
+    <span class="n">end_point</span> <span class="o">=</span> <span class="n">arc</span><span class="o">.</span><span class="n">PointAtEnd</span>
+    <span class="n">center_point</span> <span class="o">=</span> <span class="n">arc</span><span class="o">.</span><span class="n">Arc</span><span class="o">.</span><span class="n">Center</span>
+
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="nb">abs</span><span class="p">(</span><span class="n">start_point</span><span class="o">.</span><span class="n">X</span> <span class="o">-</span> <span class="n">center_point</span><span class="o">.</span><span class="n">X</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.01</span>
+        <span class="ow">or</span> <span class="nb">abs</span><span class="p">(</span><span class="n">start_point</span><span class="o">.</span><span class="n">Y</span> <span class="o">-</span> <span class="n">center_point</span><span class="o">.</span><span class="n">Y</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.01</span>
+    <span class="p">):</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Line</span><span class="p">(</span><span class="n">start_point</span><span class="p">,</span> <span class="n">center_point</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Line</span><span class="p">(</span><span class="n">end_point</span><span class="p">,</span> <span class="n">center_point</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">line</span>
+
+
+<div class="viewcode-block" id="merge_from_collinear_lines">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.merge_from_collinear_lines">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">merge_from_collinear_lines</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Merge a list of collinear lines into a single line.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        lines (list): A list of Rhino.Geometry.Line objects.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Rhino.Geometry.Line: A single line that represents the merged lines.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">lines</span><span class="p">:</span>
+        <span class="c1"># If the input list is empty, return None</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">Xs</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">From</span><span class="o">.</span><span class="n">X</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">]</span>
+    <span class="n">Xs</span> <span class="o">+=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">To</span><span class="o">.</span><span class="n">X</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">]</span>
+
+    <span class="n">Ys</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">From</span><span class="o">.</span><span class="n">Y</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">]</span>
+    <span class="n">Ys</span> <span class="o">+=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">To</span><span class="o">.</span><span class="n">Y</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">]</span>
+
+    <span class="c1"># Check if all lines are collinear</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">Xs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">Xs</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="ow">or</span> <span class="n">Ys</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">Ys</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Xs</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)):</span>
+        <span class="c1"># If not all lines are collinear, raise an exception</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Not all lines are collinear&quot;</span><span class="p">)</span>
+
+    <span class="n">from_point</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Point3d</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">Xs</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">Ys</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">end_point</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Point3d</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">Xs</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">Ys</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">rg</span><span class="o">.</span><span class="n">Line</span><span class="p">(</span><span class="n">from_point</span><span class="p">,</span> <span class="n">end_point</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="nurbs_curve_center">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.nurbs_curve_center">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">nurbs_curve_center</span><span class="p">(</span><span class="n">nurbs_curve</span><span class="p">):</span>
+    <span class="c1"># nurbs_curve = your_nurbs_curve_input</span>
+    <span class="c1"># print type(nurbs_curve)</span>
+    <span class="c1"># 检查曲线是否是圆</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># 如果曲线是圆，直接获取其圆心</span>
+        
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">nurbs_curve</span><span class="p">,</span><span class="n">rg</span><span class="o">.</span><span class="n">Circle</span><span class="p">):</span>
+            <span class="n">circle</span><span class="o">=</span> <span class="n">nurbs_curve</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">circle</span> <span class="o">=</span> <span class="n">nurbs_curve</span><span class="o">.</span><span class="n">Circle</span>
+        <span class="n">center_point</span> <span class="o">=</span> <span class="n">circle</span><span class="o">.</span><span class="n">Center</span>
+
+    <span class="k">except</span><span class="p">:</span>
+        <span class="c1"># 如果曲线不是圆，尝试将其转换为圆</span>
+        <span class="c1">#        circle = rg.Circle()</span>
+        <span class="k">if</span> <span class="n">nurbs_curve</span><span class="o">.</span><span class="n">IsArc</span><span class="p">():</span>
+            <span class="n">p1</span> <span class="o">=</span> <span class="n">nurbs_curve</span><span class="o">.</span><span class="n">PointAtStart</span>
+            <span class="n">p2</span> <span class="o">=</span> <span class="n">nurbs_curve</span><span class="o">.</span><span class="n">PointAt</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+            <span class="n">p3</span> <span class="o">=</span> <span class="n">nurbs_curve</span><span class="o">.</span><span class="n">PointAtEnd</span>
+            <span class="n">circle</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Circle</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">p3</span><span class="p">)</span>
+            <span class="n">center_point</span> <span class="o">=</span> <span class="n">circle</span><span class="o">.</span><span class="n">Center</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The curve is not a circle.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">center_point</span></div>
+
+
+
+<div class="viewcode-block" id="arc_endpoints_center_line">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.arc_endpoints_center_line">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">arc_endpoints_center_line</span><span class="p">(</span><span class="n">arc</span><span class="p">):</span>
+    <span class="c1"># 获取弧的起点、终点和中心点</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">arc</span><span class="p">,</span> <span class="p">(</span><span class="n">rg</span><span class="o">.</span><span class="n">NurbsCurve</span><span class="p">,</span><span class="n">rg</span><span class="o">.</span><span class="n">PolyCurve</span><span class="p">)):</span>
+        <span class="n">center_point</span> <span class="o">=</span> <span class="n">nurbs_curve_center</span><span class="p">(</span><span class="n">arc</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">arc</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">ArcCurve</span><span class="p">):</span>
+        <span class="n">center_point</span> <span class="o">=</span> <span class="n">arc</span><span class="o">.</span><span class="n">Arc</span><span class="o">.</span><span class="n">Center</span>
+    
+    <span class="n">start_point</span> <span class="o">=</span> <span class="n">arc</span><span class="o">.</span><span class="n">PointAtStart</span>
+    <span class="n">end_point</span> <span class="o">=</span> <span class="n">arc</span><span class="o">.</span><span class="n">PointAtEnd</span>
+
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="nb">abs</span><span class="p">(</span><span class="n">start_point</span><span class="o">.</span><span class="n">X</span> <span class="o">-</span> <span class="n">center_point</span><span class="o">.</span><span class="n">X</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.01</span>
+        <span class="ow">or</span> <span class="nb">abs</span><span class="p">(</span><span class="n">start_point</span><span class="o">.</span><span class="n">Y</span> <span class="o">-</span> <span class="n">center_point</span><span class="o">.</span><span class="n">Y</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.01</span>
+    <span class="p">):</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Line</span><span class="p">(</span><span class="n">start_point</span><span class="p">,</span> <span class="n">center_point</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Line</span><span class="p">(</span><span class="n">end_point</span><span class="p">,</span> <span class="n">center_point</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">line</span></div>
+
+
+
+<div class="viewcode-block" id="arc_endpoints_center_lines">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.arc_endpoints_center_lines">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">arc_endpoints_center_lines</span><span class="p">(</span><span class="n">arcs</span><span class="p">):</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="n">arc_endpoints_center_line</span><span class="p">(</span><span class="n">arc</span><span class="p">)</span> <span class="k">for</span> <span class="n">arc</span> <span class="ow">in</span> <span class="n">arcs</span><span class="p">]</span>
+    
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">lines</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">rg</span><span class="o">.</span><span class="n">Line</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">To</span><span class="p">,</span> <span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">To</span><span class="p">)]</span></div>
+
+
+    <span class="c1"># if len(lines) == 1:</span>
+    <span class="c1">#     return lines[0]</span>
+    <span class="c1"># elif len(lines) &gt; 1:</span>
+    <span class="c1">#     return long_line_from_lines(lines)</span>
+    <span class="c1"># else:</span>
+    <span class="c1">#     return None</span>
+
+
+<div class="viewcode-block" id="kmeans_geos">
+<a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.kmeans_geos">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">kmeans_geos</span><span class="p">(</span><span class="n">geos</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">distance</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">p1</span><span class="o">.</span><span class="n">DistanceTo</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">closest_center</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">centers</span><span class="p">):</span>
+        <span class="n">distances</span> <span class="o">=</span> <span class="p">[</span><span class="n">distance</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">center</span><span class="p">)</span> <span class="k">for</span> <span class="n">center</span> <span class="ow">in</span> <span class="n">centers</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">distances</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">distances</span><span class="p">))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_centers</span><span class="p">(</span><span class="n">clusters</span><span class="p">):</span>
+        <span class="n">new_centers</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">clusters</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">cluster</span><span class="p">:</span>
+                <span class="n">x_coords</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">X</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">cluster</span><span class="p">]</span>
+                <span class="n">y_coords</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">Y</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">cluster</span><span class="p">]</span>
+                <span class="n">z_coords</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">Z</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">cluster</span><span class="p">]</span>
+                <span class="n">new_centers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="n">rg</span><span class="o">.</span><span class="n">Point3d</span><span class="p">(</span>
+                        <span class="nb">sum</span><span class="p">(</span><span class="n">x_coords</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_coords</span><span class="p">),</span>
+                        <span class="nb">sum</span><span class="p">(</span><span class="n">y_coords</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_coords</span><span class="p">),</span>
+                        <span class="nb">sum</span><span class="p">(</span><span class="n">z_coords</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">z_coords</span><span class="p">),</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+        <span class="k">return</span> <span class="n">new_centers</span>
+
+    <span class="n">points</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_point_from_geo</span><span class="p">(</span><span class="n">geo</span><span class="p">)</span> <span class="k">for</span> <span class="n">geo</span> <span class="ow">in</span> <span class="n">geos</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">:</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">centers</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>  <span class="c1"># Initialize centers randomly</span>
+    <span class="n">clusters</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)]</span>
+
+    <span class="k">for</span> <span class="n">iteration</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">):</span>
+        <span class="n">clusters</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)]</span>
+        <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">points</span><span class="p">:</span>
+            <span class="n">cluster_index</span> <span class="o">=</span> <span class="n">closest_center</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">centers</span><span class="p">)</span>
+            <span class="n">clusters</span><span class="p">[</span><span class="n">cluster_index</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+
+        <span class="n">new_centers</span> <span class="o">=</span> <span class="n">compute_centers</span><span class="p">(</span><span class="n">clusters</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">new_centers</span> <span class="o">==</span> <span class="n">centers</span><span class="p">:</span>
+            <span class="k">break</span>
+
+        <span class="n">centers</span> <span class="o">=</span> <span class="n">new_centers</span>
+
+    <span class="n">clustered_geos</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">clusters</span><span class="p">:</span>
+        <span class="n">clustered_geos</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">geos</span><span class="p">[</span><span class="n">points</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">point</span><span class="p">)]</span> <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">cluster</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">clustered_geos</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ringo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,706 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ant_pak.utility module &mdash; Ant pak 0.1.1 文档</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/documentation_options.js?v=d06dfecd"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="prev" title="ant_pak.setup module" href="ant_pak.setup.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Ant pak
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">模块:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">ant_pak</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="ant_pak.html">ant_pak package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ant_pak.html#subpackages">Subpackages</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="ant_pak.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.config.html">ant_pak.config module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.core.html">ant_pak.core module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.setup.html">ant_pak.setup module</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">ant_pak.utility module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ant_pak.html#module-ant_pak">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Ant pak</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">ant_pak</a></li>
+          <li class="breadcrumb-item"><a href="ant_pak.html">ant_pak package</a></li>
+      <li class="breadcrumb-item active">ant_pak.utility module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/ant_pak.utility.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-ant_pak.utility">
+<span id="ant-pak-utility-module"></span><h1>ant_pak.utility module<a class="headerlink" href="#module-ant_pak.utility" title="Link to this heading">¶</a></h1>
+<p>&#64;DATE: 2024-07-29 15:08:36
+&#64;Author: ringo
+&#64;Version: 1.0
+&#64;File: utility.py
+&#64;Software: vscode
+&#64;Description:</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.PointCloudKNeighbors">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">PointCloudKNeighbors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point_cloud</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#PointCloudKNeighbors"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.PointCloudKNeighbors" title="Link to this definition">¶</a></dt>
+<dd><p>找到点云中与给定点最近的k个点</p>
+<p>参数:
+point_cloud (list of list of float): 点云数据，每个点是一个由三个浮点数组成的列表 [x, y, z]
+point (list of float): 给定的点 [x, y, z]
+k (int): 最近邻的数量</p>
+<p>返回:
+list of list of float: 最近的k个点</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.align_lists">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">align_lists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aligned_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#align_lists"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.align_lists" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.are_geometries_similar">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">are_geometries_similar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geo1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geo2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#are_geometries_similar"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.are_geometries_similar" title="Link to this definition">¶</a></dt>
+<dd><p>Check if two geometries are similar based on the distance threshold.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.compare_geo_lists">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">compare_geo_lists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#compare_geo_lists"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.compare_geo_lists" title="Link to this definition">¶</a></dt>
+<dd><p>比较新旧几何对象列表,返回保留、添加和删除的对象列表。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>new</strong> -- 要比较的对象列表。</p></li>
+<li><p><strong>old</strong> -- 要比较的对象列表。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>保留、添加和删除的对象列表。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.compare_lists">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">compare_lists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#compare_lists"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.compare_lists" title="Link to this definition">¶</a></dt>
+<dd><p>保存new_list和old list相交部分.
+新增new list有但old list没有的部分.
+删除new list没有但old list有的部分 .</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>new</strong> -- A list of objects to compare.</p></li>
+<li><p><strong>old</strong> -- A list of objects to compare.</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>reserve, add, delete.</p>
+</dd>
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A tuple of three lists</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.contains_arc_and_line">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">contains_arc_and_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geo_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#contains_arc_and_line"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.contains_arc_and_line" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>geo_list</strong> -- 几何对象列表</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>如果列表中同时包含弧和直线，则返回True，否则返回False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.convert_nurbscurve">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">convert_nurbscurve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nurbs_curve</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#convert_nurbscurve"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.convert_nurbscurve" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nurbs_curve</strong> -- 输入的NurbsCurve对象</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>如果可以转换为Arc或Line，则返回对应的曲线对象，否则返回None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.convert_to_polyline">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">convert_to_polyline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_curve</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#convert_to_polyline"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.convert_to_polyline" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.copy_object">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">copy_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">translation_vector</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#copy_object"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.copy_object" title="Link to this definition">¶</a></dt>
+<dd><p>复制一个几何对象并移动到新的位置</p>
+<p>参数:
+geometry (rg.GeometryBase): 要复制的几何对象
+translation_vector (rg.Vector3d): 移动向量</p>
+<p>返回:
+rg.GeometryBase: 移动后的新几何对象</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.create_arc">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">create_arc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#create_arc"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.create_arc" title="Link to this definition">¶</a></dt>
+<dd><p>创建弧</p>
+<p>Parameters:
+base_point (Rhino.Geometry.Point3d): 弧的基准点
+radius (float): 弧的半径
+domain (list): 包含两个角度的列表，表示起始和结束角度</p>
+<p>Returns:
+Rhino.Geometry.Arc: 创建的弧</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.create_closed_brep">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">create_closed_brep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curve</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#create_closed_brep"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.create_closed_brep" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.delete_duplicate_geos">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">delete_duplicate_geos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geo_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#delete_duplicate_geos"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.delete_duplicate_geos" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.delete_empty_group">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">delete_empty_group</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#delete_empty_group"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.delete_empty_group" title="Link to this definition">¶</a></dt>
+<dd><p>删除空组</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.destroy_instance">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">destroy_instance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#destroy_instance"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.destroy_instance" title="Link to this definition">¶</a></dt>
+<dd><p>销毁Rhino对象。
+:param obj: 要销毁的Rhino对象。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>如果销毁成功,则为True。否则为False。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.dict_to_text">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">dict_to_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#dict_to_text"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.dict_to_text" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.distance_between_locations">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">distance_between_locations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lat1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#distance_between_locations"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.distance_between_locations" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.euclidean_distance">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">euclidean_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#euclidean_distance"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.euclidean_distance" title="Link to this definition">¶</a></dt>
+<dd><p>计算两个点之间的欧几里得距离</p>
+<p>参数:
+point1, point2 (list of float): 两个点，每个点是一个由三个浮点数组成的列表 [x, y, z]</p>
+<p>返回:
+float: 欧几里得距离</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.explode_brep_to_faces">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">explode_brep_to_faces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">brep</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#explode_brep_to_faces"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.explode_brep_to_faces" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.find_BCA_exe_file">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">find_BCA_exe_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#find_BCA_exe_file"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.find_BCA_exe_file" title="Link to this definition">¶</a></dt>
+<dd><p>查找指定目录及其子目录下的blueCFD-AIR..exe文件</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.find_adjacent_curve">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">find_adjacent_curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_curve</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_curves</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#find_adjacent_curve"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.find_adjacent_curve" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.find_exe_files">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">find_exe_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">software</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ParaView'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#find_exe_files"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.find_exe_files" title="Link to this definition">¶</a></dt>
+<dd><p>查找指定目录及其子目录下的.exe文件</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.geometry_complexity">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">geometry_complexity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#geometry_complexity"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.geometry_complexity" title="Link to this definition">¶</a></dt>
+<dd><p>Define a complexity metric for geometries.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.get_area">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">get_area</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#get_area"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.get_area" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.get_aspect_ratio">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">get_aspect_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curve</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#get_aspect_ratio"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.get_aspect_ratio" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.get_block_mesh_ids">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">get_block_mesh_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">block_instance_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#get_block_mesh_ids"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.get_block_mesh_ids" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.get_block_meshes">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">get_block_meshes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">block_instance_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#get_block_meshes"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.get_block_meshes" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.get_centroid_of_curve">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">get_centroid_of_curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curve</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#get_centroid_of_curve"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.get_centroid_of_curve" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.get_closest_textgeo_by_curve">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">get_closest_textgeo_by_curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text_geos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">curve</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#get_closest_textgeo_by_curve"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.get_closest_textgeo_by_curve" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.get_common_program_files">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">get_common_program_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#get_common_program_files"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.get_common_program_files" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.get_doc_objects_geometry">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">get_doc_objects_geometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objects</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#get_doc_objects_geometry"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.get_doc_objects_geometry" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.get_extreme_point">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">get_extreme_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#get_extreme_point"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.get_extreme_point" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.get_geometry_by_floors">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">get_geometry_by_floors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">floors</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#get_geometry_by_floors"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.get_geometry_by_floors" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.get_geometry_by_layer_and_floors">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">get_geometry_by_layer_and_floors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">floors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flatten</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#get_geometry_by_layer_and_floors"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.get_geometry_by_layer_and_floors" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.get_index">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">get_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lst</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#get_index"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.get_index" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.get_instance_geometry">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">get_instance_geometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance_ref</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#get_instance_geometry"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.get_instance_geometry" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.get_lastest_folder">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">get_lastest_folder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">blueCFDAIR</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#get_lastest_folder"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.get_lastest_folder" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.get_objects_from_block">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">get_objects_from_block</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">block_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#get_objects_from_block"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.get_objects_from_block" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.get_point_from_geo">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">get_point_from_geo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#get_point_from_geo"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.get_point_from_geo" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.get_polyline_normal">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">get_polyline_normal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">polyline</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#get_polyline_normal"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.get_polyline_normal" title="Link to this definition">¶</a></dt>
+<dd><p>获取多段线所在平面的法向向量。</p>
+<p>参数:
+- polyline: Rhino.Geometry.Polyline对象。</p>
+<p>返回:
+- 多段线所在平面的法向向量。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.get_surface_centroid">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">get_surface_centroid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">srf</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#get_surface_centroid"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.get_surface_centroid" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.get_text_basepoint">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">get_text_basepoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#get_text_basepoint"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.get_text_basepoint" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.get_text_dot_by_crv">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">get_text_dot_by_crv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">crv</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#get_text_dot_by_crv"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.get_text_dot_by_crv" title="Link to this definition">¶</a></dt>
+<dd><p>获取与曲线相关联的文本点。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>crv</strong> -- Rhino曲线对象。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>如果存在,则与曲线相关联的文本点。否则为None。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.get_textentity_basepoint">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">get_textentity_basepoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">textentity</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#get_textentity_basepoint"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.get_textentity_basepoint" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.get_vertices_from_brep">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">get_vertices_from_brep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">brep</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#get_vertices_from_brep"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.get_vertices_from_brep" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.grid_key">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">grid_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#grid_key"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.grid_key" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the grid cell key for a point.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.has_faces">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">has_faces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">brep</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#has_faces"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.has_faces" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.inherit_user_text">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">inherit_user_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">child</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#inherit_user_text"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.inherit_user_text" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.inherit_user_text_by_dict">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">inherit_user_text_by_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">child</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#inherit_user_text_by_dict"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.inherit_user_text_by_dict" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.is_contains_arc_and_line">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">is_contains_arc_and_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geo_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#is_contains_arc_and_line"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.is_contains_arc_and_line" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>geo_list</strong> -- 几何对象列表</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>如果列表中同时包含弧和直线，则返回True，否则返回False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.is_curve_centroid_in_curve2">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">is_curve_centroid_in_curve2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curve</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">curve2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#is_curve_centroid_in_curve2"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.is_curve_centroid_in_curve2" title="Link to this definition">¶</a></dt>
+<dd><p>判断曲线的中心点是否在另一条曲线内。</p>
+<p>参数:
+curve -- Rhino.Geometry.Curve, 要判断的曲线
+curve2 -- Rhino.Geometry.Curve, 参考曲线</p>
+<p>返回:
+bool -- 如果曲线的中心点在参考曲线内返回True，否则返回False</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.is_curve_centroid_in_curves">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">is_curve_centroid_in_curves</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curve</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">curves</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#is_curve_centroid_in_curves"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.is_curve_centroid_in_curves" title="Link to this definition">¶</a></dt>
+<dd><p>判断曲线的中心点是否在曲线列表中的任意一条曲线内。
+参数:
+curve -- Rhino.Geometry.Curve, 要判断的曲线
+curves -- list of Rhino.Geometry.Curve, 曲线列表</p>
+<p>返回:
+bool -- 如果曲线的中心点在曲线列表中的任意一条曲线内返回True，否则返回False</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.is_curve_in_brep">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">is_curve_in_brep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curve</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coverage_ratio</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#is_curve_in_brep"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.is_curve_in_brep" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.is_curve_in_geo">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">is_curve_in_geo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curve</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coverage_ratio</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#is_curve_in_geo"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.is_curve_in_geo" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.is_curve_in_geos">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">is_curve_in_geos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curve</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#is_curve_in_geos"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.is_curve_in_geos" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.is_curve_in_mesh">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">is_curve_in_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curve</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coverage_ratio</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#is_curve_in_mesh"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.is_curve_in_mesh" title="Link to this definition">¶</a></dt>
+<dd><p>判断曲线是否在网格内。</p>
+<p>参数:
+curve -- Rhino.Geometry.Curve, 要判断的曲线
+mesh -- Rhino.Geometry.Mesh, 网格
+coverage_ratio -- float, 曲线在网格内的覆盖率比例，默认为0.5</p>
+<p>返回:
+bool -- 如果曲线在网格内返回True，否则返回False</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.is_open_brep">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">is_open_brep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">brep</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#is_open_brep"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.is_open_brep" title="Link to this definition">¶</a></dt>
+<dd><p>判断Brep是否为开放Brep且不是修剪过的曲面。</p>
+<dl class="simple">
+<dt>参数:</dt><dd><p>brep: 要检查的Brep对象。</p>
+</dd>
+<dt>返回值:</dt><dd><p>一个布尔值，True表示Brep是开放且未修剪的，False表示不是。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.is_point_in_curve">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">is_point_in_curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#is_point_in_curve"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.is_point_in_curve" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.is_point_inside_open_breps">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">is_point_inside_open_breps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">breps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_rays</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#is_point_inside_open_breps"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.is_point_inside_open_breps" title="Link to this definition">¶</a></dt>
+<dd><p>判断一个点是否在开放Brep内。</p>
+<p>参数:
+point -- Rhino.Geometry.Point3d, 要判断的点
+breps -- Rhino.Geometry.Brep, 开放的Brep list
+threshold -- float, 遮蔽点比例的阈值，默认值为0.5
+num_rays -- int, 射线的数量，默认值为20</p>
+<p>返回:
+bool -- 如果点在开放的Brep内返回True，否则返回False</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.is_point_on_surface">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">is_point_on_surface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surface</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#is_point_on_surface"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.is_point_on_surface" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.is_points_in_curve">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">is_points_in_curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">curve</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#is_points_in_curve"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.is_points_in_curve" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.is_points_on_surface">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">is_points_on_surface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surface</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#is_points_on_surface"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.is_points_on_surface" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.item_to_list">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">item_to_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#item_to_list"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.item_to_list" title="Link to this definition">¶</a></dt>
+<dd><p>将输入的item转换为列表形式,如果item本身就是列表,则将其展开</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.list_to_certain_number">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">list_to_certain_number</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'object'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#list_to_certain_number"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.list_to_certain_number" title="Link to this definition">¶</a></dt>
+<dd><p>将输入的list转换为特定长度</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.merge_st_duplicate_values">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">merge_st_duplicate_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sticky_key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#merge_st_duplicate_values"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.merge_st_duplicate_values" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.mesh_to_brep">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">mesh_to_brep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#mesh_to_brep"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.mesh_to_brep" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.meshes_transform">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">meshes_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">meshes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xform</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#meshes_transform"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.meshes_transform" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.mkdir">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">mkdir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#mkdir"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.mkdir" title="Link to this definition">¶</a></dt>
+<dd><p>如果目录不存在,则创建目录</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.optimize_vertices">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">optimize_vertices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">verts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#optimize_vertices"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.optimize_vertices" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.parallel_get_geometry_by_floors">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">parallel_get_geometry_by_floors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#parallel_get_geometry_by_floors"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.parallel_get_geometry_by_floors" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.parse_value">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">parse_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_string</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#parse_value"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.parse_value" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.point_of_retangles">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">point_of_retangles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rectangles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#point_of_retangles"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.point_of_retangles" title="Link to this definition">¶</a></dt>
+<dd><p>获取矩形的某个点</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rectangles</strong> -- 矩形</p></li>
+<li><p><strong>index</strong> -- 索引</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>矩形的某个点</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.print_time">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">print_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#print_time"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.print_time" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.read_json_by_key">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">read_json_by_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#read_json_by_key"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.read_json_by_key" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.remove_approx_duplicate_geos">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">remove_approx_duplicate_geos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#remove_approx_duplicate_geos"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.remove_approx_duplicate_geos" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.round_custom">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">round_custom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">times</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#round_custom"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.round_custom" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.set_text_dot_text">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">set_text_dot_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">crv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#set_text_dot_text"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.set_text_dot_text" title="Link to this definition">¶</a></dt>
+<dd><p>设置与曲线相关联的文本点的文本。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>crv</strong> -- Rhino曲线对象。</p></li>
+<li><p><strong>key</strong> -- 用户文本键。</p></li>
+<li><p><strong>value</strong> -- 用户文本值。</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.str_to_dict">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">str_to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#str_to_dict"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.str_to_dict" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.str_to_list">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">str_to_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#str_to_list"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.str_to_list" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.text_to_dict">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">text_to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#text_to_dict"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.text_to_dict" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.uniquify">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">uniquify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#uniquify"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.uniquify" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.vector_unitize">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">vector_unitize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#vector_unitize"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.vector_unitize" title="Link to this definition">¶</a></dt>
+<dd><p>将一个向量单位化</p>
+<p>参数:
+vector (rg.Vector3d): 输入的向量</p>
+<p>返回:
+rg.Vector3d: 单位化后的向量</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ant_pak.utility.vert_id">
+<span class="sig-prename descclassname"><span class="pre">ant_pak.utility.</span></span><span class="sig-name descname"><span class="pre">vert_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vert</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/utility.html#vert_id"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.utility.vert_id" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ant_pak.setup.html" class="btn btn-neutral float-left" title="ant_pak.setup module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ringo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

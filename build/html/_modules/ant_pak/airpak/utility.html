@@ -1,0 +1,761 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ant_pak.airpak.utility &mdash; ant_pak 0.1.1 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/documentation_options.js?v=d06dfecd"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ant_pak
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">ant_pak</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ant_pak</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">模块代码</a></li>
+      <li class="breadcrumb-item active">ant_pak.airpak.utility</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>ant_pak.airpak.utility 源代码</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">@DATE: 2024-12-23 13:53:36</span>
+<span class="sd">@Author: ringo</span>
+<span class="sd">@Version: 1.0</span>
+<span class="sd">@File: ant_pak utility.py</span>
+<span class="sd">@Software: vscode</span>
+<span class="sd">@Description:</span>
+<span class="sd">        </span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">Rhino.Geometry</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rg</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ghpythonlib.components</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gh</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utility</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.config</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="n">dict_plane</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;yz&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;xz&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;xy&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+
+
+<div class="viewcode-block" id="flag_to_str">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.flag_to_str">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">flag_to_str</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; {&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;}&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="str_to_flag">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.str_to_flag">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">str_to_flag</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
+    <span class="n">splits</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+    <span class="n">flag</span> <span class="o">=</span> <span class="n">splits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">splits</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;{&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;}&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">flag</span><span class="p">,</span> <span class="n">value</span></div>
+
+
+
+<div class="viewcode-block" id="point_to_str">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.point_to_str">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">point_to_str</span><span class="p">(</span><span class="n">point</span><span class="p">):</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2"> </span><span class="si">{:.2f}</span><span class="s2"> </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">point</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span> <span class="n">point</span><span class="o">.</span><span class="n">Z</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot;{&quot;</span> <span class="o">+</span> <span class="n">text</span> <span class="o">+</span> <span class="s2">&quot;}&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="str_to_point">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.str_to_point">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">str_to_point</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
+    <span class="n">split_str</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">split_str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;{&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">split_str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">split_str</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;}&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">point</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Point3d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">point</span></div>
+
+
+
+<div class="viewcode-block" id="points_to_diff_str">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.points_to_diff_str">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">points_to_diff_str</span><span class="p">(</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">):</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2"> </span><span class="si">{:.2f}</span><span class="s2"> </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">point2</span><span class="o">.</span><span class="n">X</span> <span class="o">-</span> <span class="n">point1</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">point2</span><span class="o">.</span><span class="n">Y</span> <span class="o">-</span> <span class="n">point1</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span> <span class="n">point2</span><span class="o">.</span><span class="n">Z</span> <span class="o">-</span> <span class="n">point1</span><span class="o">.</span><span class="n">Z</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot;{&quot;</span> <span class="o">+</span> <span class="n">text</span> <span class="o">+</span> <span class="s2">&quot;}&quot;</span></div>
+
+    <span class="c1"># return &#39;{&#39;+str(point2.X-point1.X)+&#39; &#39;\</span>
+    <span class="c1">#                 +str(point2.Y-point1.Y)+&#39; &#39;\</span>
+    <span class="c1">#                 +str(point2.Z-point1.Z)\</span>
+    <span class="c1">#             +&#39;}&#39;</span>
+
+
+<div class="viewcode-block" id="body_setting_to_str">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.body_setting_to_str">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">body_setting_to_str</span><span class="p">(</span><span class="n">boy_setting</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s2">&quot;    </span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">boy_setting</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="param_unit_to_str">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.param_unit_to_str">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">param_unit_to_str</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">unit</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s2">&quot;    param_units </span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">param</span><span class="p">),</span> <span class="n">unit</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="param_units_to_str">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.param_units_to_str">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">param_units_to_str</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">string</span> <span class="o">+=</span> <span class="n">param_unit_to_str</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="n">string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">string</span></div>
+
+
+
+<div class="viewcode-block" id="list_str">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.list_str">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">list_str</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">add_string</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">):</span>
+    <span class="n">new_str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="n">new_str</span> <span class="o">+=</span> <span class="n">l</span> <span class="o">+</span> <span class="n">add_string</span>
+    <span class="k">return</span> <span class="n">new_str</span></div>
+
+
+
+<div class="viewcode-block" id="points_to_str">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.points_to_str">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">points_to_str</span><span class="p">(</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">):</span>
+    <span class="n">str_point1</span> <span class="o">=</span> <span class="s2">&quot;point1 </span><span class="si">{}</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">point_to_str</span><span class="p">(</span><span class="n">point1</span><span class="p">))</span>
+    <span class="n">str_point2</span> <span class="o">=</span> <span class="s2">&quot;point2 </span><span class="si">{}</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">point_to_str</span><span class="p">(</span><span class="n">point2</span><span class="p">))</span>
+    <span class="n">str_diff</span> <span class="o">=</span> <span class="s2">&quot;diff </span><span class="si">{}</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">points_to_diff_str</span><span class="p">(</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">))</span>
+    <span class="n">geos</span> <span class="o">=</span> <span class="p">[</span><span class="n">str_point1</span><span class="p">,</span> <span class="n">str_point2</span><span class="p">,</span> <span class="n">str_diff</span><span class="p">]</span>
+    <span class="n">str_geo</span> <span class="o">=</span> <span class="n">list_str</span><span class="p">(</span><span class="n">geos</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">str_geo</span></div>
+
+
+
+<div class="viewcode-block" id="centers_to_str">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.centers_to_str">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">centers_to_str</span><span class="p">(</span><span class="n">center1</span><span class="p">,</span> <span class="n">center2</span><span class="p">):</span>
+    <span class="n">str_center1</span> <span class="o">=</span> <span class="s2">&quot;center </span><span class="si">{}</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">point_to_str</span><span class="p">(</span><span class="n">center1</span><span class="p">))</span>
+    <span class="n">str_center2</span> <span class="o">=</span> <span class="s2">&quot;center2 </span><span class="si">{}</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">point_to_str</span><span class="p">(</span><span class="n">center2</span><span class="p">))</span>
+    <span class="n">geos</span> <span class="o">=</span> <span class="p">[</span><span class="n">str_center1</span><span class="p">,</span> <span class="n">str_center2</span><span class="p">]</span>
+    <span class="n">str_geo</span> <span class="o">=</span> <span class="n">list_str</span><span class="p">(</span><span class="n">geos</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">str_geo</span></div>
+
+
+
+<div class="viewcode-block" id="verts_to_str">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.verts_to_str">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">verts_to_str</span><span class="p">(</span><span class="n">verts</span><span class="p">):</span>
+    <span class="n">str_geo</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">vert</span> <span class="ow">in</span> <span class="n">verts</span><span class="p">:</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">str_vert</span> <span class="o">=</span> <span class="s2">&quot;vert</span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">point_to_str</span><span class="p">(</span><span class="n">vert</span><span class="p">))</span>
+        <span class="n">str_geo</span> <span class="o">+=</span> <span class="n">str_vert</span>
+    <span class="k">return</span> <span class="n">str_geo</span></div>
+
+
+
+<div class="viewcode-block" id="circle_to_str">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.circle_to_str">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">circle_to_str</span><span class="p">(</span><span class="n">circle</span><span class="p">):</span>
+    <span class="n">center</span> <span class="o">=</span> <span class="n">circle</span><span class="o">.</span><span class="n">Center</span>
+    <span class="k">return</span> <span class="s2">&quot;center </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">point_to_str</span><span class="p">(</span><span class="n">center</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="str_to_circle">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.str_to_circle">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">str_to_circle</span><span class="p">(</span><span class="n">str_geo</span><span class="p">,</span> <span class="n">str_plane</span><span class="p">,</span> <span class="n">str_radius</span><span class="p">):</span>
+    <span class="n">center_str</span> <span class="o">=</span> <span class="n">str_geo</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;center &quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">center</span> <span class="o">=</span> <span class="n">str_to_point</span><span class="p">(</span><span class="n">center_str</span><span class="p">)</span>
+    <span class="n">flag1</span><span class="p">,</span> <span class="n">value1</span> <span class="o">=</span> <span class="n">str_to_flag</span><span class="p">(</span><span class="n">str_plane</span><span class="p">)</span>
+    <span class="n">value1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">flag1</span> <span class="o">==</span> <span class="s2">&quot;plane&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">value1</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">plane</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Plane</span><span class="o">.</span><span class="n">WorldXY</span>
+        <span class="k">elif</span> <span class="n">value1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">plane</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Plane</span><span class="o">.</span><span class="n">WorldYZ</span>
+        <span class="k">elif</span> <span class="n">value1</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">plane</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Plane</span><span class="o">.</span><span class="n">WorldZX</span>
+    <span class="n">flag2</span><span class="p">,</span> <span class="n">value2</span> <span class="o">=</span> <span class="n">str_to_flag</span><span class="p">(</span><span class="n">str_radius</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">flag2</span> <span class="o">==</span> <span class="s2">&quot;radius&quot;</span><span class="p">:</span>
+        <span class="n">radius</span> <span class="o">=</span> <span class="n">value2</span>
+    <span class="n">circle</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Circle</span><span class="p">(</span><span class="n">plane</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">radius</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">circle</span></div>
+
+
+
+<div class="viewcode-block" id="object_begin">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.object_begin">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">object_begin</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s2">&quot;object </span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">object</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="nb">object</span><span class="o">.</span><span class="n">display_name</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="add_body_settings">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.add_body_settings">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">add_body_settings</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">body_settings</span><span class="p">):</span>
+    <span class="n">body_settings</span> <span class="o">=</span> <span class="n">item_to_list</span><span class="p">(</span><span class="n">body_settings</span><span class="p">)</span>
+
+    <span class="n">add_body_settings</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">body_settings</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">body_settings</span><span class="p">]</span>
+
+    <span class="n">obj</span><span class="o">.</span><span class="n">body_settings</span> <span class="o">+=</span> <span class="n">add_body_settings</span>
+
+    <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">body_settings</span></div>
+
+
+
+<div class="viewcode-block" id="remove_body_settings">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.remove_body_settings">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">remove_body_settings</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">body_settings</span><span class="p">):</span>
+    <span class="n">body_settings</span> <span class="o">=</span> <span class="n">item_to_list</span><span class="p">(</span><span class="n">body_settings</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">body_settings</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">body_settings</span><span class="p">:</span>
+            <span class="n">obj</span><span class="o">.</span><span class="n">body_settings</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">body_settings</span></div>
+
+
+
+<div class="viewcode-block" id="set_obj_display_names">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.set_obj_display_names">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">set_obj_display_names</span><span class="p">(</span><span class="n">objs</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="n">align_lists</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">objs</span><span class="p">,</span> <span class="s2">&quot;object&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">objs</span><span class="p">)):</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">objs</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">display_name</span> <span class="o">=</span> <span class="n">names</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+    <span class="k">return</span> <span class="kc">True</span></div>
+
+
+
+<div class="viewcode-block" id="get_plane_from_points">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.get_plane_from_points">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_plane_from_points</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check if a list of points are coplanar.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Create a plane from the first three points</span>
+    <span class="n">plane</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Plane</span><span class="o">.</span><span class="n">FitPlaneToPoints</span><span class="p">([</span><span class="n">rg</span><span class="o">.</span><span class="n">Point3d</span><span class="p">(</span><span class="n">pt</span><span class="p">)</span> <span class="k">for</span> <span class="n">pt</span> <span class="ow">in</span> <span class="n">points</span><span class="p">[:</span><span class="mi">3</span><span class="p">]])[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c1"># Check if the remaining points lie on the plane</span>
+    <span class="k">for</span> <span class="n">pt</span> <span class="ow">in</span> <span class="n">points</span><span class="p">[</span><span class="mi">3</span><span class="p">:]:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">plane</span><span class="o">.</span><span class="n">DistanceTo</span><span class="p">(</span><span class="n">pt</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.001</span><span class="p">:</span>  <span class="c1"># You can adjust the tolerance here</span>
+            <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="n">plane</span></div>
+
+
+
+<div class="viewcode-block" id="is_parallel_to_plane">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.is_parallel_to_plane">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">is_parallel_to_plane</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">plane_type</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check if points are parallel to the specified plane.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Define the normal vector of the specified plane type</span>
+    <span class="k">if</span> <span class="n">plane_type</span> <span class="o">==</span> <span class="s2">&quot;xy&quot;</span><span class="p">:</span>
+        <span class="n">normal</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">ZAxis</span>
+    <span class="k">elif</span> <span class="n">plane_type</span> <span class="o">==</span> <span class="s2">&quot;yz&quot;</span><span class="p">:</span>
+        <span class="n">normal</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">XAxis</span>
+    <span class="k">elif</span> <span class="n">plane_type</span> <span class="o">==</span> <span class="s2">&quot;xz&quot;</span><span class="p">:</span>
+        <span class="n">normal</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">YAxis</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="c1"># Calculate the plane that fits the points</span>
+    <span class="n">plane</span> <span class="o">=</span> <span class="n">get_plane_from_points</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+
+    <span class="c1"># Check if the plane normal is parallel to the specified plane type</span>
+    <span class="k">if</span> <span class="n">plane</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">plane</span><span class="o">.</span><span class="n">Normal</span><span class="o">.</span><span class="n">IsParallelTo</span><span class="p">(</span><span class="n">normal</span><span class="p">,</span> <span class="n">RADIANS_TOL</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+
+<div class="viewcode-block" id="get_apk_plane_from_verts">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.get_apk_plane_from_verts">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_apk_plane_from_verts</span><span class="p">(</span><span class="n">verts</span><span class="p">):</span>
+
+    <span class="n">dict_plane</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;yz&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;xz&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;xy&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+    <span class="n">apk_plane</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">for</span> <span class="n">plane_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;xy&quot;</span><span class="p">,</span> <span class="s2">&quot;yz&quot;</span><span class="p">,</span> <span class="s2">&quot;xz&quot;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">is_parallel_to_plane</span><span class="p">(</span><span class="n">verts</span><span class="p">,</span> <span class="n">plane_type</span><span class="p">):</span>
+            <span class="n">apk_plane</span> <span class="o">=</span> <span class="n">dict_plane</span><span class="p">[</span><span class="n">plane_type</span><span class="p">]</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Verts are parallel to </span><span class="si">{}</span><span class="s2"> plane&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">plane_type</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Verts are not parallel to any plane&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">apk_plane</span></div>
+
+
+
+<div class="viewcode-block" id="get_corner_points">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.get_corner_points">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_corner_points</span><span class="p">(</span><span class="n">polyline</span><span class="p">):</span>
+    <span class="n">corner_points</span> <span class="o">=</span> <span class="p">[</span><span class="n">polyline</span><span class="o">.</span><span class="n">PointAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">polyline</span><span class="o">.</span><span class="n">SegmentCount</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">current_segment</span> <span class="o">=</span> <span class="n">polyline</span><span class="o">.</span><span class="n">SegmentAt</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">next_segment</span> <span class="o">=</span> <span class="n">polyline</span><span class="o">.</span><span class="n">SegmentAt</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">current_vector</span> <span class="o">=</span> <span class="n">current_segment</span><span class="o">.</span><span class="n">Direction</span>
+        <span class="n">next_vector</span> <span class="o">=</span> <span class="n">next_segment</span><span class="o">.</span><span class="n">Direction</span>
+
+        <span class="n">angle_radians</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">VectorAngle</span><span class="p">(</span><span class="n">current_vector</span><span class="p">,</span> <span class="n">next_vector</span><span class="p">)</span>
+        <span class="n">angle_degrees</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">angle_radians</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">angle_degrees</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>  <span class="c1"># check if angle is not straight</span>
+            <span class="n">corner_points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">polyline</span><span class="o">.</span><span class="n">PointAt</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">corner_points</span></div>
+
+
+
+<span class="c1"># 定义一个函数，输入一个 polyline 对象，返回一个包含所有点的列表</span>
+<div class="viewcode-block" id="get_polyline_points">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.get_polyline_points">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_polyline_points</span><span class="p">(</span><span class="n">crv</span><span class="p">):</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># 创建一个空列表，用于存储点</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">PolylineCurve</span><span class="p">):</span>
+        <span class="n">polyline</span> <span class="o">=</span> <span class="n">crv</span><span class="o">.</span><span class="n">ToPolyline</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">NurbsCurve</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">PolyCurve</span><span class="p">):</span>
+        <span class="n">polyline_curve</span> <span class="o">=</span> <span class="n">crv</span><span class="o">.</span><span class="n">ToPolyline</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+        <span class="n">polyline</span> <span class="o">=</span> <span class="n">polyline_curve</span><span class="o">.</span><span class="n">ToPolyline</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Polyline</span><span class="p">):</span>
+        <span class="n">polyline</span> <span class="o">=</span> <span class="n">crv</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">get_corner_points</span><span class="p">(</span><span class="n">polyline</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="split_text_by_last_space">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.split_text_by_last_space">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">split_text_by_last_space</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">last_space_index</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">last_space_index</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">first_part</span> <span class="o">=</span> <span class="n">text</span><span class="p">[:</span><span class="n">last_space_index</span><span class="p">]</span>
+        <span class="n">second_part</span> <span class="o">=</span> <span class="n">text</span><span class="p">[</span><span class="n">last_space_index</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:]</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">first_part</span><span class="p">,</span> <span class="n">second_part</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="parallel_to_axis">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.parallel_to_axis">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">parallel_to_axis</span><span class="p">(</span><span class="n">plane</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">axis</span> <span class="ow">in</span> <span class="p">[</span><span class="n">plane</span><span class="o">.</span><span class="n">XAxis</span><span class="p">,</span> <span class="n">plane</span><span class="o">.</span><span class="n">YAxis</span><span class="p">]:</span>
+        <span class="n">all_axis</span> <span class="o">=</span> <span class="p">[</span><span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">XAxis</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">YAxis</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">ZAxis</span><span class="p">]</span>
+        <span class="n">bools</span> <span class="o">=</span> <span class="p">[</span><span class="n">axis</span><span class="o">.</span><span class="n">IsParallelTo</span><span class="p">(</span><span class="n">to_axis</span><span class="p">,</span> <span class="n">RADIANS_TOL</span><span class="p">)</span> <span class="k">for</span> <span class="n">to_axis</span> <span class="ow">in</span> <span class="n">all_axis</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="nb">sum</span><span class="p">([</span><span class="nb">abs</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">bools</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">elif</span> <span class="nb">sum</span><span class="p">([</span><span class="nb">abs</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">bools</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="n">index</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bools</span><span class="p">)</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">to_axis</span> <span class="o">=</span> <span class="n">all_axis</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;plane is aligned with </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">to_axis</span><span class="p">)))</span>
+            <span class="k">return</span> <span class="n">to_axis</span>
+        <span class="k">elif</span> <span class="nb">sum</span><span class="p">([</span><span class="nb">abs</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">bools</span><span class="p">])</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;plane is not rotated&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;plane is rotated around an arbitrary axis&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="get_rectangle_rotated_axis">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.get_rectangle_rotated_axis">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_rectangle_rotated_axis</span><span class="p">(</span><span class="n">rectangle</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check if a rectangle is rotated around x, y, or z axis.</span>
+<span class="sd">    Return rotation axis, direction and angle if rotated, otherwise return None.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check if rectangle is oriented aligned with world axes</span>
+    <span class="n">plane</span> <span class="o">=</span> <span class="n">rectangle</span><span class="o">.</span><span class="n">Plane</span>
+    <span class="n">rotation_axis</span> <span class="o">=</span> <span class="n">parallel_to_axis</span><span class="p">(</span><span class="n">plane</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">rotation_axis</span><span class="p">:</span>
+        <span class="c1">#        rotation_direction = rectangle.Plane.ZAxis.IsParallelTo(rotation_axis)</span>
+        <span class="k">if</span> <span class="n">rotation_axis</span> <span class="o">==</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">ZAxis</span><span class="p">:</span>
+            <span class="n">angle</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">acos</span><span class="p">(</span><span class="n">rectangle</span><span class="o">.</span><span class="n">Plane</span><span class="o">.</span><span class="n">ZAxis</span> <span class="o">*</span> <span class="n">rg</span><span class="o">.</span><span class="n">Plane</span><span class="o">.</span><span class="n">WorldXY</span><span class="o">.</span><span class="n">XAxis</span><span class="p">)</span>
+            <span class="n">index_axis</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="k">elif</span> <span class="n">rotation_axis</span> <span class="o">==</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">YAxis</span><span class="p">:</span>
+            <span class="n">angle</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">acos</span><span class="p">(</span><span class="n">rectangle</span><span class="o">.</span><span class="n">Plane</span><span class="o">.</span><span class="n">ZAxis</span> <span class="o">*</span> <span class="n">rg</span><span class="o">.</span><span class="n">Plane</span><span class="o">.</span><span class="n">WorldXY</span><span class="o">.</span><span class="n">ZAxis</span><span class="p">)</span>
+            <span class="n">index_axis</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">rotation_axis</span> <span class="o">==</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">XAxis</span><span class="p">:</span>
+            <span class="n">angle</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">acos</span><span class="p">(</span><span class="n">rectangle</span><span class="o">.</span><span class="n">Plane</span><span class="o">.</span><span class="n">ZAxis</span> <span class="o">*</span> <span class="n">rg</span><span class="o">.</span><span class="n">Plane</span><span class="o">.</span><span class="n">WorldXY</span><span class="o">.</span><span class="n">YAxis</span><span class="p">)</span>
+            <span class="n">index_axis</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">if</span> <span class="n">angle</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">rotation_direction</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rotation_direction</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">index_axis</span><span class="p">,</span> <span class="n">rotation_direction</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span> <span class="o">+</span> <span class="mi">90</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+
+<div class="viewcode-block" id="get_polyline_rotated_axis">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.get_polyline_rotated_axis">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_polyline_rotated_axis</span><span class="p">(</span><span class="n">polyline</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check if a polyline is rotated around x, y, or z axis.</span>
+<span class="sd">    Return rotation axis, direction and angle if rotated, otherwise return None.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check if polyline is oriented aligned with world axes</span>
+    <span class="n">verts</span> <span class="o">=</span> <span class="n">get_polyline_points</span><span class="p">(</span><span class="n">polyline</span><span class="p">)</span>
+    <span class="n">plane</span> <span class="o">=</span> <span class="n">get_plane_from_points</span><span class="p">(</span><span class="n">verts</span><span class="p">)</span>
+    <span class="n">rotation_axis</span> <span class="o">=</span> <span class="n">parallel_to_axis</span><span class="p">(</span><span class="n">plane</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">rotation_axis</span><span class="p">:</span>
+        <span class="c1">#        rotation_direction = polyline.Plane.ZAxis.IsParallelTo(rotation_axis)</span>
+        <span class="k">if</span> <span class="n">rotation_axis</span> <span class="o">==</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">ZAxis</span><span class="p">:</span>
+            <span class="n">angle</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">acos</span><span class="p">(</span><span class="n">plane</span><span class="o">.</span><span class="n">ZAxis</span> <span class="o">*</span> <span class="n">rg</span><span class="o">.</span><span class="n">Plane</span><span class="o">.</span><span class="n">WorldXY</span><span class="o">.</span><span class="n">XAxis</span><span class="p">)</span>
+            <span class="n">index_axis</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="k">elif</span> <span class="n">rotation_axis</span> <span class="o">==</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">YAxis</span><span class="p">:</span>
+            <span class="n">angle</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">acos</span><span class="p">(</span><span class="n">plane</span><span class="o">.</span><span class="n">ZAxis</span> <span class="o">*</span> <span class="n">rg</span><span class="o">.</span><span class="n">Plane</span><span class="o">.</span><span class="n">WorldXY</span><span class="o">.</span><span class="n">ZAxis</span><span class="p">)</span>
+            <span class="n">index_axis</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">rotation_axis</span> <span class="o">==</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">XAxis</span><span class="p">:</span>
+            <span class="n">angle</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">acos</span><span class="p">(</span><span class="n">plane</span><span class="o">.</span><span class="n">ZAxis</span> <span class="o">*</span> <span class="n">rg</span><span class="o">.</span><span class="n">Plane</span><span class="o">.</span><span class="n">WorldXY</span><span class="o">.</span><span class="n">YAxis</span><span class="p">)</span>
+            <span class="n">index_axis</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">if</span> <span class="n">angle</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">rotation_direction</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rotation_direction</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">index_axis</span><span class="p">,</span> <span class="n">rotation_direction</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span> <span class="o">+</span> <span class="mi">90</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+
+<div class="viewcode-block" id="brep_edges_to_polyline">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.brep_edges_to_polyline">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">brep_edges_to_polyline</span><span class="p">(</span><span class="n">brep</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">brep</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">brep</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Surface</span><span class="p">):</span>
+            <span class="n">edges</span> <span class="o">=</span> <span class="n">brep</span><span class="o">.</span><span class="n">ToBrep</span><span class="p">()</span><span class="o">.</span><span class="n">Edges</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">brep</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Brep</span><span class="p">):</span>
+            <span class="n">edges</span> <span class="o">=</span> <span class="n">brep</span><span class="o">.</span><span class="n">Edges</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="c1"># 将边缘曲线转换为Polyline</span>
+        <span class="n">merged_curve</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Curve</span><span class="o">.</span><span class="n">JoinCurves</span><span class="p">(</span><span class="n">edges</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">convert_to_polyline</span><span class="p">(</span><span class="n">merged_curve</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="polyline_to_rectangle">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.polyline_to_rectangle">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">polyline_to_rectangle</span><span class="p">(</span><span class="n">polyline</span><span class="p">):</span>
+
+    <span class="n">tol</span> <span class="o">=</span> <span class="mf">0.01</span>
+    <span class="c1"># lines = polyline.GetSegments()</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="n">get_polyline_points</span><span class="p">(</span><span class="n">polyline</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1- Polyline points is </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)))</span>
+    <span class="c1"># Step 1: Check if the curve has 4 lines</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">polyline</span>
+
+    <span class="c1"># Step 2: Check if opposite sides are parallel and of equal length</span>
+    <span class="n">side_lengths</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">side_vectors</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+        <span class="n">start_pt</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">end_pt</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span> <span class="k">else</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># if i==3:</span>
+        <span class="c1">#     end_pt = points[0]</span>
+        <span class="c1"># else:</span>
+        <span class="c1">#     end_pt = points[i+1]</span>
+        <span class="n">side_vector</span> <span class="o">=</span> <span class="n">end_pt</span> <span class="o">-</span> <span class="n">start_pt</span>
+        <span class="n">side_length</span> <span class="o">=</span> <span class="n">side_vector</span><span class="o">.</span><span class="n">Length</span>
+        <span class="n">side_lengths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">side_length</span><span class="p">)</span>
+        <span class="n">side_vectors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">side_vector</span><span class="p">)</span>
+
+    <span class="c1">#  Check if opposite sides are parallel</span>
+
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="n">side_vectors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">IsParallelTo</span><span class="p">(</span><span class="n">side_vectors</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">RADIANS_TOL</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="ow">or</span> <span class="n">side_vectors</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">IsParallelTo</span><span class="p">(</span><span class="n">side_vectors</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">RADIANS_TOL</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2-Opposite sides are not parallel&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">polyline</span>
+
+    <span class="c1"># Check if opposite sides are of equal length</span>
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="nb">abs</span><span class="p">(</span><span class="n">side_lengths</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">side_lengths</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">&gt;</span> <span class="n">tol</span>
+        <span class="ow">or</span> <span class="nb">abs</span><span class="p">(</span><span class="n">side_lengths</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">side_lengths</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="o">&gt;</span> <span class="n">tol</span>
+    <span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;4-Opposite sides are not of equal length&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">polyline</span>
+
+    <span class="c1"># Step 3: Check if Adjacent sides are Perpendicular</span>
+    <span class="k">if</span> <span class="n">side_vectors</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">IsPerpendicularTo</span><span class="p">(</span><span class="n">side_vectors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">RADIANS_TOL</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;3- Adjacent sides are not Perpendicular&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">polyline</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The given polyline is a rectangle.&quot;</span><span class="p">)</span>
+    <span class="c1"># points = [line.From for line in lines]</span>
+
+    <span class="c1"># Create a rectangle</span>
+    <span class="n">base_plane</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Plane</span><span class="o">.</span><span class="n">FitPlaneToPoints</span><span class="p">(</span><span class="n">points</span><span class="p">[:</span><span class="mi">3</span><span class="p">])[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">rectangle</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Rectangle3d</span><span class="p">(</span><span class="n">base_plane</span><span class="p">,</span> <span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">points</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">rectangle</span></div>
+
+
+
+<div class="viewcode-block" id="is_vector_parallel_to_axis">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.is_vector_parallel_to_axis">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">is_vector_parallel_to_axis</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">axis</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    检查向量是否与给定的轴平行。</span>
+
+<span class="sd">    参数:</span>
+<span class="sd">    - vector: 要检查的向量。</span>
+<span class="sd">    - axis: 要与之比较的轴。</span>
+
+<span class="sd">    返回:</span>
+<span class="sd">    - 如果向量与轴平行，返回True；否则，返回False。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># normalized_vector = vector.Unitize()</span>
+    <span class="c1"># normalized_axis = axis.Unitize()</span>
+    <span class="n">dot_product</span> <span class="o">=</span> <span class="n">vector</span> <span class="o">*</span> <span class="n">axis</span>  <span class="c1"># 使用重载的运算符*来计算点积</span>
+    <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">dot_product</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mf">0.999</span>  <span class="c1"># 使用一个小的容差来允许浮点数精度误差</span></div>
+
+
+
+<div class="viewcode-block" id="vector_parallel_to_axis">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.vector_parallel_to_axis">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">vector_parallel_to_axis</span><span class="p">(</span><span class="n">vector</span><span class="p">):</span>
+    <span class="c1"># 检查向量是否与X轴、Y轴或Z轴平行</span>
+    <span class="k">if</span> <span class="n">is_vector_parallel_to_axis</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">XAxis</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">vector</span><span class="o">.</span><span class="n">X</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">is_vector_parallel_to_axis</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">YAxis</span><span class="p">):</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">vector</span><span class="o">.</span><span class="n">Y</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">is_vector_parallel_to_axis</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">ZAxis</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">vector</span><span class="o">.</span><span class="n">Z</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+
+<div class="viewcode-block" id="plane_distance">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.plane_distance">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">plane_distance</span><span class="p">(</span><span class="n">plane1</span><span class="p">,</span> <span class="n">plane2</span><span class="p">):</span>
+    <span class="c1"># 提取两个平面的原点</span>
+    <span class="c1"># origin1 = plane1.Origin</span>
+    <span class="c1"># origin2 = plane2.Origin</span>
+
+    <span class="c1"># 提取平面的法向量</span>
+    <span class="n">normal1</span> <span class="o">=</span> <span class="n">plane1</span><span class="o">.</span><span class="n">Normal</span>
+    <span class="n">normal2</span> <span class="o">=</span> <span class="n">plane2</span><span class="o">.</span><span class="n">Normal</span>
+
+    <span class="c1"># 检查平面是否平行（法向量是否平行）</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">normal1</span><span class="o">.</span><span class="n">IsParallelTo</span><span class="p">(</span><span class="n">normal2</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The planes are not parallel.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 判断是否平行于X\Y\Z轴</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">vector_parallel_to_axis</span><span class="p">(</span><span class="n">normal1</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The planes are not parallel to any axis&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 获取第一个平面的原点</span>
+    <span class="n">point_on_plane1</span> <span class="o">=</span> <span class="n">plane1</span><span class="o">.</span><span class="n">Origin</span>
+
+    <span class="c1"># 计算第一个平面上的点到第二个平面的距离</span>
+    <span class="n">distance</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">plane2</span><span class="o">.</span><span class="n">DistanceTo</span><span class="p">(</span><span class="n">point_on_plane1</span><span class="p">))</span>
+
+    <span class="c1"># 返回距离的绝对值</span>
+    <span class="k">return</span> <span class="n">distance</span></div>
+
+
+
+<div class="viewcode-block" id="get_brep_bottom_and_height">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.get_brep_bottom_and_height">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_brep_bottom_and_height</span><span class="p">(</span><span class="n">brep</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Optimized function to find the bottom edge curve and height of a Brep object.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        - brep: The Brep object to analyze.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        - A tuple containing the outer loop curve of the bottom face and its height relative to another parallel face,</span>
+<span class="sd">      or None if no parallel faces are found.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">faces</span> <span class="o">=</span> <span class="n">brep</span><span class="o">.</span><span class="n">Faces</span>
+    <span class="n">faces</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">faces</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">face</span><span class="p">:</span> <span class="n">get_area</span><span class="p">(</span><span class="n">face</span><span class="p">),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">brep</span><span class="o">.</span><span class="n">Faces</span><span class="o">.</span><span class="n">Count</span><span class="p">):</span>
+        <span class="n">face1</span> <span class="o">=</span> <span class="n">faces</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">plane1</span> <span class="o">=</span> <span class="n">face1</span><span class="o">.</span><span class="n">TryGetPlane</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">area1</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">AreaMassProperties</span><span class="o">.</span><span class="n">Compute</span><span class="p">(</span><span class="n">face1</span><span class="p">)</span><span class="o">.</span><span class="n">Area</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">plane1</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">brep</span><span class="o">.</span><span class="n">Faces</span><span class="o">.</span><span class="n">Count</span><span class="p">):</span>
+            <span class="n">face2</span> <span class="o">=</span> <span class="n">faces</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">plane2</span> <span class="o">=</span> <span class="n">face2</span><span class="o">.</span><span class="n">TryGetPlane</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">area2</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">AreaMassProperties</span><span class="o">.</span><span class="n">Compute</span><span class="p">(</span><span class="n">face2</span><span class="p">)</span><span class="o">.</span><span class="n">Area</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">plane2</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="n">are_vectors_parallel_dot</span><span class="p">(</span><span class="n">plane1</span><span class="o">.</span><span class="n">Normal</span><span class="p">,</span> <span class="n">plane2</span><span class="o">.</span><span class="n">Normal</span><span class="p">)</span>
+                <span class="ow">and</span> <span class="nb">abs</span><span class="p">(</span><span class="n">area1</span> <span class="o">-</span> <span class="n">area2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.01</span>
+            <span class="p">):</span>
+                <span class="c1"># print area1, area2</span>
+                <span class="n">distance</span> <span class="o">=</span> <span class="n">plane_distance</span><span class="p">(</span><span class="n">plane1</span><span class="p">,</span> <span class="n">plane2</span><span class="p">)</span>
+
+                <span class="n">print_time</span><span class="p">(</span>
+                    <span class="s2">&quot;vectors(</span><span class="si">{}</span><span class="s2"> and </span><span class="si">{}</span><span class="s2">) are parallel, plane distance is </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">plane1</span><span class="o">.</span><span class="n">Normal</span><span class="p">,</span> <span class="n">plane2</span><span class="o">.</span><span class="n">Normal</span><span class="p">,</span> <span class="n">distance</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="n">distance</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="p">(</span>
+                        <span class="n">plane1</span><span class="o">.</span><span class="n">Origin</span><span class="o">.</span><span class="n">X</span> <span class="o">+</span> <span class="n">plane1</span><span class="o">.</span><span class="n">Origin</span><span class="o">.</span><span class="n">Y</span> <span class="o">+</span> <span class="n">plane1</span><span class="o">.</span><span class="n">Origin</span><span class="o">.</span><span class="n">Z</span>
+                        <span class="o">&lt;</span> <span class="n">plane2</span><span class="o">.</span><span class="n">Origin</span><span class="o">.</span><span class="n">X</span> <span class="o">+</span> <span class="n">plane2</span><span class="o">.</span><span class="n">Origin</span><span class="o">.</span><span class="n">Y</span> <span class="o">+</span> <span class="n">plane2</span><span class="o">.</span><span class="n">Origin</span><span class="o">.</span><span class="n">Z</span>
+                    <span class="p">):</span>
+                        <span class="n">base_face</span> <span class="o">=</span> <span class="n">face1</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">base_face</span> <span class="o">=</span> <span class="n">face2</span>
+                    <span class="n">height</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+                    <span class="c1"># Assuming the first face found is the bottom one</span>
+                    <span class="k">return</span> <span class="n">base_face</span><span class="o">.</span><span class="n">OuterLoop</span><span class="o">.</span><span class="n">To3dCurve</span><span class="p">(),</span> <span class="n">height</span>
+
+    <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">0</span></div>
+
+
+
+<div class="viewcode-block" id="are_vectors_parallel_dot">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.are_vectors_parallel_dot">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">are_vectors_parallel_dot</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span>
+    <span class="c1"># 归一化向量</span>
+    <span class="n">v1</span><span class="o">.</span><span class="n">Unitize</span><span class="p">()</span>
+    <span class="n">v2</span><span class="o">.</span><span class="n">Unitize</span><span class="p">()</span>
+
+    <span class="c1"># 计算点积</span>
+    <span class="n">dot_product</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">Multiply</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">)</span>
+    <span class="c1"># print &quot;dot_product&quot;,dot_product,&quot;XXXXXXXXXXXXXXXXXXX&quot;</span>
+
+    <span class="c1"># 自定义比较函数</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">isclose</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">rel_tol</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">,</span> <span class="n">abs_tol</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+        <span class="c1"># print abs(a-b), max(rel_tol * max(abs(a), abs(b)), abs_tol)</span>
+        <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nb">max</span><span class="p">(</span><span class="n">rel_tol</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">b</span><span class="p">)),</span> <span class="n">abs_tol</span><span class="p">)</span>
+
+    <span class="c1"># 判断点积是否接近1或-1</span>
+    <span class="k">return</span> <span class="n">isclose</span><span class="p">(</span><span class="n">dot_product</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">abs_tol</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">)</span> <span class="ow">or</span> <span class="n">isclose</span><span class="p">(</span>
+        <span class="n">dot_product</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">abs_tol</span><span class="o">=</span><span class="mf">1e-2</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="get_common_program_files">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.get_common_program_files">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_common_program_files</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;nt&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;ProgramFiles&quot;</span><span class="p">],</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;ProgramFiles(x86)&quot;</span><span class="p">]]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;/usr/local/bin&quot;</span><span class="p">,</span> <span class="s2">&quot;/usr/bin&quot;</span><span class="p">,</span> <span class="s2">&quot;/usr/sbin&quot;</span><span class="p">,</span> <span class="s2">&quot;/bin&quot;</span><span class="p">,</span> <span class="s2">&quot;/sbin&quot;</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="find_paraview_exe_file">
+<a class="viewcode-back" href="../../../ant_pak.airpak.utility.html#ant_pak.airpak.utility.find_paraview_exe_file">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">find_paraview_exe_file</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    查找指定目录及其子目录下的paraview..exe文件</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dir_paths</span> <span class="o">=</span> <span class="n">get_common_program_files</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">dir_path</span> <span class="ow">in</span> <span class="n">dir_paths</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">dir_path</span><span class="p">):</span>
+            <span class="c1"># print dir_path,filename</span>
+            <span class="k">if</span> <span class="s2">&quot;ParaView&quot;</span> <span class="ow">in</span> <span class="n">filename</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">dir_path</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">bin</span><span class="se">\\</span><span class="s2">paraview.exe&quot;</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No exe file found in the folder.&quot;</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ringo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

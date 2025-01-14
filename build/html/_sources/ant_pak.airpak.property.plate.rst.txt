@@ -1,0 +1,7 @@
+ant\_pak.airpak.property.plate module
+=====================================
+
+.. automodule:: ant_pak.airpak.property.plate
+   :members:
+   :undoc-members:
+   :show-inheritance:

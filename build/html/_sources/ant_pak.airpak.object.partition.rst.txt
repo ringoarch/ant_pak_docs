@@ -1,0 +1,7 @@
+ant\_pak.airpak.object.partition module
+=======================================
+
+.. automodule:: ant_pak.airpak.object.partition
+   :members:
+   :undoc-members:
+   :show-inheritance:

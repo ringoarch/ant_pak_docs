@@ -1,0 +1,511 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ant_pak.geometry.utility &mdash; ant_pak 0.1.1 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/documentation_options.js?v=d06dfecd"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ant_pak
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">模块:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">ant_pak</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ant_pak</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">模块代码</a></li>
+      <li class="breadcrumb-item active">ant_pak.geometry.utility</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>ant_pak.geometry.utility 源代码</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding:UTF-8 -*-</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">Rhino.Geometry</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rg</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utility</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+
+<div class="viewcode-block" id="offset_curve">
+<a class="viewcode-back" href="../../../ant_pak.geometry.utility.html#ant_pak.geometry.utility.offset_curve">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">offset_curve</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="n">distance</span><span class="p">):</span>
+
+    <span class="n">offset_crvs</span> <span class="o">=</span> <span class="n">curve</span><span class="o">.</span><span class="n">Offset</span><span class="p">(</span>
+        <span class="n">rg</span><span class="o">.</span><span class="n">Plane</span><span class="o">.</span><span class="n">WorldXY</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">CurveOffsetCornerStyle</span><span class="o">.</span><span class="n">Sharp</span>
+    <span class="p">)</span>
+    <span class="c1"># 确保偏移结果是一个有效的曲线列表</span>
+    <span class="k">if</span> <span class="n">offset_crvs</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">offset_crvs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">offset_crvs</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">print_time</span><span class="p">(</span><span class="s2">&quot;Error: Offset curve failed.&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="convert_to_curves">
+<a class="viewcode-back" href="../../../ant_pak.geometry.utility.html#ant_pak.geometry.utility.convert_to_curves">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">convert_to_curves</span><span class="p">(</span><span class="n">objects</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert a list of Polylines, PolyCurves, or PolylineCurves to Curves.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">    objects (list): A list containing Polylines, PolyCurves, or PolylineCurves.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    list: A list of Curves.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">curves</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">objects</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span>
+            <span class="n">obj</span><span class="p">,</span> <span class="p">(</span><span class="n">rg</span><span class="o">.</span><span class="n">Polyline</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Rectangle3d</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">PolylineCurve</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">PolyCurve</span><span class="p">)</span>
+        <span class="p">):</span>
+            <span class="n">curve</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">ToNurbsCurve</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">curve</span> <span class="o">=</span> <span class="n">obj</span>  <span class="c1"># Assume it is already a curve or an unknown type that can&#39;t be converted</span>
+        <span class="n">curves</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">curve</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">curves</span></div>
+
+
+
+<div class="viewcode-block" id="boundary_surfaces">
+<a class="viewcode-back" href="../../../ant_pak.geometry.utility.html#ant_pak.geometry.utility.boundary_surfaces">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">boundary_surfaces</span><span class="p">(</span><span class="n">curves</span><span class="p">):</span>
+    <span class="n">curves</span> <span class="o">=</span> <span class="n">item_to_list</span><span class="p">(</span><span class="n">curves</span><span class="p">)</span>
+    <span class="n">curves</span> <span class="o">=</span> <span class="n">convert_to_curves</span><span class="p">(</span><span class="n">curves</span><span class="p">)</span>
+    <span class="c1"># 创建平面的边界曲面</span>
+    <span class="n">boundary_surfaces</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Brep</span><span class="o">.</span><span class="n">CreatePlanarBreps</span><span class="p">(</span><span class="n">curves</span><span class="p">)</span>
+    <span class="c1"># 确保创建的边界曲面是有效的</span>
+    <span class="k">if</span> <span class="n">boundary_surfaces</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">boundary_surfaces</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">boundary_surfaces</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">print_time</span><span class="p">(</span><span class="s2">&quot;Error: Could not create boundary surfaces.&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="extrude_surface">
+<a class="viewcode-back" href="../../../ant_pak.geometry.utility.html#ant_pak.geometry.utility.extrude_surface">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">extrude_surface</span><span class="p">(</span><span class="n">surface</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">surface</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Brep</span><span class="p">):</span>
+        <span class="n">surface</span> <span class="o">=</span> <span class="n">surface</span><span class="o">.</span><span class="n">Faces</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">extrude</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Brep</span><span class="o">.</span><span class="n">CreateFromOffsetFace</span><span class="p">(</span>
+        <span class="n">surface</span><span class="p">,</span>
+        <span class="nb">float</span><span class="p">(</span><span class="n">distance</span><span class="p">),</span>
+        <span class="mf">0.001</span><span class="p">,</span>
+        <span class="kc">False</span><span class="p">,</span>
+        <span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">extrude</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">extrude</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">print_time</span><span class="p">(</span><span class="s2">&quot;Error: Could not extrude surface.&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="extrude_surfaces">
+<a class="viewcode-back" href="../../../ant_pak.geometry.utility.html#ant_pak.geometry.utility.extrude_surfaces">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">extrude_surfaces</span><span class="p">(</span><span class="n">surfaces</span><span class="p">):</span>
+    <span class="n">surfaces</span> <span class="o">=</span> <span class="n">item_to_list</span><span class="p">(</span><span class="n">surfaces</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">extrude_surface</span><span class="p">(</span><span class="n">surface</span><span class="p">)</span> <span class="k">for</span> <span class="n">surface</span> <span class="ow">in</span> <span class="n">surfaces</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="extrude_line_to_surface">
+<a class="viewcode-back" href="../../../ant_pak.geometry.utility.html#ant_pak.geometry.utility.extrude_line_to_surface">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">extrude_line_to_surface</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">vector</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    将一条线沿一个向量拉伸为一个面</span>
+<span class="sd">    :param line: 要拉伸的线 (Curve)</span>
+<span class="sd">    :param vector: 拉伸的向量 (Vector3d)</span>
+<span class="sd">    :return: 生成的面 (Surface)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 检查输入是否为线</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="p">(</span><span class="n">rg</span><span class="o">.</span><span class="n">LineCurve</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Line</span><span class="p">)):</span>
+        <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;Input must be a LineCurve.&quot;</span>
+
+    <span class="c1"># 创建拉伸</span>
+    <span class="n">surface</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Surface</span><span class="o">.</span><span class="n">CreateExtrusion</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">vector</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">surface</span></div>
+
+
+
+<div class="viewcode-block" id="move">
+<a class="viewcode-back" href="../../../ant_pak.geometry.utility.html#ant_pak.geometry.utility.move">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">move</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="n">translation_vector</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    移动几何体，可以是Point3d, Line或Curve</span>
+<span class="sd">    :param geometry: 要移动的几何体 (Point3d, Line, Curve)</span>
+<span class="sd">    :param translation_vector: 移动的向量 (Vector3d)</span>
+<span class="sd">    :return: 移动后的几何体</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 创建移动变换</span>
+    <span class="n">translation</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Transform</span><span class="o">.</span><span class="n">Translation</span><span class="p">(</span><span class="n">translation_vector</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Point3d</span><span class="p">):</span>
+        <span class="c1"># 移动Point3d</span>
+        <span class="n">moved_geometry</span> <span class="o">=</span> <span class="n">geometry</span> <span class="o">+</span> <span class="n">translation_vector</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Line</span><span class="p">):</span>
+        <span class="c1"># 移动Line</span>
+        <span class="n">moved_geometry</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Line</span><span class="p">(</span>
+            <span class="n">geometry</span><span class="o">.</span><span class="n">From</span> <span class="o">+</span> <span class="n">translation_vector</span><span class="p">,</span> <span class="n">geometry</span><span class="o">.</span><span class="n">To</span> <span class="o">+</span> <span class="n">translation_vector</span>
+        <span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="p">(</span><span class="n">rg</span><span class="o">.</span><span class="n">Curve</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Brep</span><span class="p">)):</span>
+        <span class="c1"># 移动Curve</span>
+        <span class="n">moved_geometry</span> <span class="o">=</span> <span class="n">geometry</span><span class="o">.</span><span class="n">Duplicate</span><span class="p">()</span>
+        <span class="n">moved_geometry</span><span class="o">.</span><span class="n">Transform</span><span class="p">(</span><span class="n">translation</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">NurbsSurface</span><span class="p">):</span>
+        <span class="n">moved_geometry</span> <span class="o">=</span> <span class="n">geometry</span><span class="o">.</span><span class="n">Duplicate</span><span class="p">()</span>
+        <span class="n">control_points</span> <span class="o">=</span> <span class="n">moved_geometry</span><span class="o">.</span><span class="n">Points</span>
+
+        <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">control_points</span><span class="o">.</span><span class="n">CountU</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">control_points</span><span class="o">.</span><span class="n">CountV</span><span class="p">):</span>
+                <span class="n">control_point</span> <span class="o">=</span> <span class="n">control_points</span><span class="o">.</span><span class="n">GetControlPoint</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+                <span class="n">moved_point</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">ControlPoint</span><span class="p">(</span>
+                    <span class="n">control_point</span><span class="o">.</span><span class="n">Location</span> <span class="o">+</span> <span class="n">translation_vector</span><span class="p">,</span> <span class="n">control_point</span><span class="o">.</span><span class="n">Weight</span>
+                <span class="p">)</span>
+                <span class="n">control_points</span><span class="o">.</span><span class="n">SetControlPoint</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">moved_point</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">print_time</span><span class="p">(</span><span class="s2">&quot;Unsupported geometry type </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">geometry</span><span class="p">))))</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="c1"># print_time(&quot;Success move object {}&quot;.format(str(type(geometry))))</span>
+    <span class="k">return</span> <span class="n">moved_geometry</span></div>
+
+
+
+<div class="viewcode-block" id="move_geos">
+<a class="viewcode-back" href="../../../ant_pak.geometry.utility.html#ant_pak.geometry.utility.move_geos">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">move_geos</span><span class="p">(</span><span class="n">geometries</span><span class="p">,</span> <span class="n">translation_vector</span><span class="p">):</span>
+    <span class="n">moved_geometries</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">geometries</span> <span class="o">=</span> <span class="n">item_to_list</span><span class="p">(</span><span class="n">geometries</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">geometry</span> <span class="ow">in</span> <span class="n">geometries</span><span class="p">:</span>
+        <span class="n">moved_geometries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">move</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="n">translation_vector</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">moved_geometries</span></div>
+
+
+
+<div class="viewcode-block" id="solid_union">
+<a class="viewcode-back" href="../../../ant_pak.geometry.utility.html#ant_pak.geometry.utility.solid_union">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">solid_union</span><span class="p">(</span><span class="n">breps</span><span class="p">):</span>
+    <span class="c1"># 检查输入是否为空或包含少于两个Brep对象</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">breps</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">breps</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">breps</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">breps</span>
+    <span class="c1"># 初始并集结果设为第一个Brep对象</span>
+    <span class="n">union_result</span> <span class="o">=</span> <span class="n">breps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># 逐个合并后续的Brep对象</span>
+    <span class="k">for</span> <span class="n">brep</span> <span class="ow">in</span> <span class="n">breps</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="c1"># 执行布尔并集操作</span>
+        <span class="n">union_result</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Brep</span><span class="o">.</span><span class="n">CreateBooleanUnion</span><span class="p">([</span><span class="n">union_result</span><span class="p">,</span> <span class="n">brep</span><span class="p">],</span> <span class="mf">0.01</span><span class="p">)</span>
+        <span class="c1"># 检查布尔操作是否成功</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">union_result</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">union_result</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">union_result</span> <span class="o">=</span> <span class="n">union_result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">union_result</span></div>
+
+
+
+<div class="viewcode-block" id="get_surface_direction">
+<a class="viewcode-back" href="../../../ant_pak.geometry.utility.html#ant_pak.geometry.utility.get_surface_direction">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_surface_direction</span><span class="p">(</span><span class="n">surface</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">surface</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Brep</span><span class="p">):</span>
+        <span class="n">surface</span> <span class="o">=</span> <span class="n">surface</span><span class="o">.</span><span class="n">Faces</span><span class="o">.</span><span class="n">Item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># 获取曲面在指定参数点的法向量</span>
+    <span class="n">normal</span> <span class="o">=</span> <span class="n">surface</span><span class="o">.</span><span class="n">NormalAt</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">normal</span></div>
+
+
+
+<div class="viewcode-block" id="translate_direction">
+<a class="viewcode-back" href="../../../ant_pak.geometry.utility.html#ant_pak.geometry.utility.translate_direction">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">translate_direction</span><span class="p">(</span><span class="n">normal</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">normal</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">normal</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">y</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">xy</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">y</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">xy</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">999</span>
+    <span class="k">if</span> <span class="n">normal</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">xy</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">xy</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">xy</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">xy</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">4</span>
+    <span class="k">elif</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">xy</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">xy</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">3</span></div>
+
+
+
+<div class="viewcode-block" id="dict_direction">
+<a class="viewcode-back" href="../../../ant_pak.geometry.utility.html#ant_pak.geometry.utility.dict_direction">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">dict_direction</span><span class="p">(</span><span class="n">srfs</span><span class="p">):</span>
+    <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">srf</span> <span class="ow">in</span> <span class="n">srfs</span><span class="p">:</span>
+        <span class="n">area</span> <span class="o">=</span> <span class="n">get_area</span><span class="p">(</span><span class="n">srf</span><span class="p">)</span>
+        <span class="n">direction</span> <span class="o">=</span> <span class="n">translate_direction</span><span class="p">(</span><span class="n">get_surface_direction</span><span class="p">(</span><span class="n">srf</span><span class="p">))</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">area</span>
+        <span class="nb">dict</span><span class="p">[</span><span class="n">direction</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">return</span> <span class="nb">dict</span></div>
+
+
+
+<div class="viewcode-block" id="window_wall_ratio">
+<a class="viewcode-back" href="../../../ant_pak.geometry.utility.html#ant_pak.geometry.utility.window_wall_ratio">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">window_wall_ratio</span><span class="p">(</span><span class="n">ext_walls</span><span class="p">,</span> <span class="n">ext_windows</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+    <span class="c1"># dict_name = {0: &quot;屋顶&quot;, 1: &quot;北&quot;, 2: &quot;东&quot;, 3: &quot;南&quot;, 4: &quot;西&quot;}</span>
+    <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">dict_wwr</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">wall_dict</span> <span class="o">=</span> <span class="n">dict_direction</span><span class="p">(</span><span class="n">ext_walls</span><span class="p">)</span>
+    <span class="n">windows_dict</span> <span class="o">=</span> <span class="n">dict_direction</span><span class="p">(</span><span class="n">ext_windows</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">wall_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">wwr</span> <span class="o">=</span> <span class="n">windows_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">wall_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">dict_wwr</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">wwr</span>
+    <span class="nb">dict</span><span class="p">[</span><span class="s2">&quot;wall&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wall_dict</span>
+    <span class="nb">dict</span><span class="p">[</span><span class="s2">&quot;window&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">windows_dict</span>
+    <span class="nb">dict</span><span class="p">[</span><span class="s2">&quot;wwr&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dict_wwr</span>
+    <span class="c1">#     rs.SetDocumentUserText(dict_name.get(key), str(wwr))</span>
+    <span class="c1"># rs.SetDocumentUserText(&quot;WWR&quot;, str(dict))</span>
+    <span class="k">return</span> <span class="nb">dict</span></div>
+
+
+
+<div class="viewcode-block" id="get_brep_volume">
+<a class="viewcode-back" href="../../../ant_pak.geometry.utility.html#ant_pak.geometry.utility.get_brep_volume">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_brep_volume</span><span class="p">(</span><span class="n">brep</span><span class="p">):</span>
+    <span class="c1"># 计算Brep的体积</span>
+    <span class="n">volume_properties</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">VolumeMassProperties</span><span class="o">.</span><span class="n">Compute</span><span class="p">(</span><span class="n">brep</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">volume_properties</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">volume_properties</span><span class="o">.</span><span class="n">Volume</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span></div>
+
+
+
+<div class="viewcode-block" id="get_breps_volume">
+<a class="viewcode-back" href="../../../ant_pak.geometry.utility.html#ant_pak.geometry.utility.get_breps_volume">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_breps_volume</span><span class="p">(</span><span class="n">breps</span><span class="p">):</span>
+    <span class="n">breps</span> <span class="o">=</span> <span class="n">item_to_list</span><span class="p">(</span><span class="n">breps</span><span class="p">)</span>
+    <span class="n">volumee</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">brep</span> <span class="ow">in</span> <span class="n">breps</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">brep</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">get_brep_volume</span><span class="p">(</span><span class="n">brep</span><span class="p">)</span>
+            <span class="n">volumee</span> <span class="o">+=</span> <span class="n">v</span>
+    <span class="k">return</span> <span class="n">volumee</span></div>
+
+
+
+<div class="viewcode-block" id="brep_face_to_brep">
+<a class="viewcode-back" href="../../../ant_pak.geometry.utility.html#ant_pak.geometry.utility.brep_face_to_brep">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">brep_face_to_brep</span><span class="p">(</span><span class="n">brep_face</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert a BrepFace to a Brep.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">    brep_face (rg.BrepFace): The BrepFace to convert.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    rg.Brep: The new Brep created from the BrepFace.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Duplicate the underlying Brep</span>
+    <span class="n">brep</span> <span class="o">=</span> <span class="n">brep_face</span><span class="o">.</span><span class="n">DuplicateFace</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="c1"># Create a new Brep</span>
+    <span class="n">new_brep</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Brep</span><span class="p">()</span>
+
+    <span class="c1"># Add the duplicated face to the new Brep</span>
+    <span class="n">new_brep</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="n">brep</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">new_brep</span></div>
+
+
+
+<div class="viewcode-block" id="explode_brep_to_surfaces">
+<a class="viewcode-back" href="../../../ant_pak.geometry.utility.html#ant_pak.geometry.utility.explode_brep_to_surfaces">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">explode_brep_to_surfaces</span><span class="p">(</span><span class="n">brep</span><span class="p">):</span>
+    <span class="n">trimmed_surfaces</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">face</span> <span class="ow">in</span> <span class="n">brep</span><span class="o">.</span><span class="n">Faces</span><span class="p">:</span>
+        <span class="n">trimmed_surface</span> <span class="o">=</span> <span class="n">face</span><span class="o">.</span><span class="n">DuplicateFace</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">trimmed_surfaces</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trimmed_surface</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">trimmed_surfaces</span></div>
+
+
+
+<div class="viewcode-block" id="points_near">
+<a class="viewcode-back" href="../../../ant_pak.geometry.utility.html#ant_pak.geometry.utility.points_near">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">points_near</span><span class="p">(</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">point1</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="n">point1</span> <span class="o">=</span> <span class="n">point1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">point1</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Point3d</span><span class="p">(</span><span class="n">point1</span><span class="p">)</span>
+        <span class="n">point2</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Point3d</span><span class="p">(</span><span class="n">point2</span><span class="p">)</span>
+
+        <span class="n">distance</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">point1</span><span class="o">.</span><span class="n">X</span> <span class="o">-</span> <span class="n">point2</span><span class="o">.</span><span class="n">X</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+            <span class="o">+</span> <span class="p">(</span><span class="n">point1</span><span class="o">.</span><span class="n">Y</span> <span class="o">-</span> <span class="n">point2</span><span class="o">.</span><span class="n">Y</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+            <span class="o">+</span> <span class="p">(</span><span class="n">point1</span><span class="o">.</span><span class="n">Z</span> <span class="o">-</span> <span class="n">point2</span><span class="o">.</span><span class="n">Z</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">distance</span> <span class="o">&lt;</span> <span class="n">tolerance</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
+            <span class="s2">&quot;Failed to get distance of points, Check input point1 </span><span class="si">{}</span><span class="s2">, point2 </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="nb">type</span><span class="p">(</span><span class="n">point1</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">point2</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="get_bottom">
+<a class="viewcode-back" href="../../../ant_pak.geometry.utility.html#ant_pak.geometry.utility.get_bottom">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_bottom</span><span class="p">(</span><span class="n">brep</span><span class="p">):</span>
+    <span class="n">faces</span> <span class="o">=</span> <span class="n">brep</span><span class="o">.</span><span class="n">Faces</span>
+    <span class="n">bottom</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">lowest_z</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">face</span> <span class="ow">in</span> <span class="n">faces</span><span class="p">:</span>
+        <span class="n">trimmed_surface</span> <span class="o">=</span> <span class="n">face</span><span class="o">.</span><span class="n">DuplicateFace</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="c1"># 获取面的包围框</span>
+        <span class="n">bbox</span> <span class="o">=</span> <span class="n">face</span><span class="o">.</span><span class="n">GetBoundingBox</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="c1"># 获取包围框的最低点</span>
+        <span class="n">min_point</span> <span class="o">=</span> <span class="n">bbox</span><span class="o">.</span><span class="n">Min</span>
+
+        <span class="c1"># 找到 z 坐标最小的面</span>
+        <span class="k">if</span> <span class="n">min_point</span><span class="o">.</span><span class="n">Z</span> <span class="o">&lt;</span> <span class="n">lowest_z</span><span class="p">:</span>
+            <span class="n">lowest_z</span> <span class="o">=</span> <span class="n">min_point</span><span class="o">.</span><span class="n">Z</span>
+            <span class="n">bottom</span> <span class="o">=</span> <span class="n">trimmed_surface</span>
+
+    <span class="k">return</span> <span class="n">bottom</span></div>
+
+
+
+<div class="viewcode-block" id="color_bottom">
+<a class="viewcode-back" href="../../../ant_pak.geometry.utility.html#ant_pak.geometry.utility.color_bottom">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">color_bottom</span><span class="p">(</span><span class="n">geo</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+    <span class="n">bottom</span> <span class="o">=</span> <span class="n">get_bottom</span><span class="p">(</span><span class="n">geo</span><span class="p">)</span>
+    <span class="n">meshes</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Mesh</span><span class="o">.</span><span class="n">CreateFromBrep</span><span class="p">(</span><span class="n">bottom</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">mesh</span> <span class="ow">in</span> <span class="n">meshes</span><span class="p">:</span>
+        <span class="n">mesh</span><span class="o">.</span><span class="n">VertexColors</span><span class="o">.</span><span class="n">CreateMonotoneMesh</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">meshes</span></div>
+
+
+
+<div class="viewcode-block" id="get_bottom_point">
+<a class="viewcode-back" href="../../../ant_pak.geometry.utility.html#ant_pak.geometry.utility.get_bottom_point">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_bottom_point</span><span class="p">(</span><span class="n">geo</span><span class="p">):</span>
+    <span class="n">bottom</span> <span class="o">=</span> <span class="n">get_bottom</span><span class="p">(</span><span class="n">geo</span><span class="p">)</span>
+    <span class="n">point</span> <span class="o">=</span> <span class="n">get_point_from_geo</span><span class="p">(</span><span class="n">bottom</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">point</span></div>
+
+
+
+<div class="viewcode-block" id="rotate">
+<a class="viewcode-back" href="../../../ant_pak.geometry.utility.html#ant_pak.geometry.utility.rotate">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">rotate</span><span class="p">(</span>
+    <span class="n">geometry</span><span class="p">,</span>
+    <span class="n">angle_degrees</span><span class="p">,</span>
+    <span class="n">rotation_plane</span><span class="o">=</span><span class="n">rg</span><span class="o">.</span><span class="n">Plane</span><span class="p">(</span><span class="n">rg</span><span class="o">.</span><span class="n">Point3d</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span>
+<span class="p">):</span>
+    <span class="c1"># 将角度从度数转换为弧度</span>
+    <span class="n">angle_radians</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">angle_degrees</span><span class="p">)</span>
+
+    <span class="c1"># 从平面获取旋转中心和轴</span>
+    <span class="n">center</span> <span class="o">=</span> <span class="n">rotation_plane</span><span class="o">.</span><span class="n">Origin</span>
+    <span class="n">axis</span> <span class="o">=</span> <span class="n">rotation_plane</span><span class="o">.</span><span class="n">Normal</span>
+
+    <span class="c1"># 创建旋转变换</span>
+    <span class="n">rotation_transform</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Transform</span><span class="o">.</span><span class="n">Rotation</span><span class="p">(</span><span class="n">angle_radians</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">center</span><span class="p">)</span>
+
+    <span class="c1"># 应用旋转变换到几何物体</span>
+    <span class="n">geometry</span><span class="o">.</span><span class="n">Transform</span><span class="p">(</span><span class="n">rotation_transform</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">geometry</span></div>
+
+
+
+<div class="viewcode-block" id="rotate_by_z_axis">
+<a class="viewcode-back" href="../../../ant_pak.geometry.utility.html#ant_pak.geometry.utility.rotate_by_z_axis">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">rotate_by_z_axis</span><span class="p">(</span><span class="n">geometries</span><span class="p">,</span> <span class="n">angle_degrees</span><span class="p">,</span> <span class="n">point</span><span class="p">):</span>
+    <span class="n">geometries</span> <span class="o">=</span> <span class="n">item_to_list</span><span class="p">(</span><span class="n">geometries</span><span class="p">)</span>
+    <span class="n">plane</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Plane</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">rotate</span><span class="p">(</span><span class="n">geo</span><span class="p">,</span> <span class="n">angle_degrees</span><span class="p">,</span> <span class="n">plane</span><span class="p">)</span> <span class="k">for</span> <span class="n">geo</span> <span class="ow">in</span> <span class="n">geometries</span><span class="p">]</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ringo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

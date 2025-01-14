@@ -1,0 +1,7 @@
+ant\_pak.airpak.geometry.prism module
+=====================================
+
+.. automodule:: ant_pak.airpak.geometry.prism
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,23 @@
+ant\_pak.airpak.geometry package
+================================
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   ant_pak.airpak.geometry.circle
+   ant_pak.airpak.geometry.cylinder
+   ant_pak.airpak.geometry.incline
+   ant_pak.airpak.geometry.polygon
+   ant_pak.airpak.geometry.prism
+   ant_pak.airpak.geometry.rectangle
+
+Module contents
+---------------
+
+.. automodule:: ant_pak.airpak.geometry
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,428 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ant_pak.graphic.text &mdash; ant_pak 0.1.1 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/documentation_options.js?v=d06dfecd"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ant_pak
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">模块:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">ant_pak</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ant_pak</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">模块代码</a></li>
+      <li class="breadcrumb-item active">ant_pak.graphic.text</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>ant_pak.graphic.text 源代码</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding:UTF-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;Functions to add text to the Rhino scene and create Grasshopper text objects.&quot;&quot;&quot;</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">division</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">Rhino.Geometry</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rg</span>
+
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.color</span><span class="w"> </span><span class="kn">import</span> <span class="n">black</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utility</span><span class="w"> </span><span class="kn">import</span> <span class="n">item_to_list</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">System.Guid</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">guid</span>
+<span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Failed to import System</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">Rhino</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rh</span>
+<span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;Failed to import Rhino.</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">Grasshopper</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gh</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="s2">&quot;Failed to import Grasshopper.</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;Only functions for adding text to Rhino will be available.&quot;</span>
+    <span class="p">)</span>
+
+
+<div class="viewcode-block" id="text_objects">
+<a class="viewcode-back" href="../../../ant_pak.graphic.text.html#ant_pak.graphic.text.text_objects">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">text_objects</span><span class="p">(</span>
+    <span class="n">text</span><span class="p">,</span> <span class="n">plane</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="s2">&quot;Arial&quot;</span><span class="p">,</span> <span class="n">horizontal_alignment</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vertical_alignment</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate a Bake-able Grasshopper text object from a text string and ladybug Plane.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        text: A text string to be converted to a a Grasshopper text object.</span>
+<span class="sd">        plane: A Ladybug Plane object to locate and orient the text in the Rhino scene.</span>
+<span class="sd">        height: A number for the height of the text in the Rhino scene.</span>
+<span class="sd">        font: An optional text string for the font in which to draw the text.</span>
+<span class="sd">        horizontal_alignment: An optional integer to specify the horizontal alignment</span>
+<span class="sd">             of the text. Choose from: (0 = Left, 1 = Center, 2 = Right)</span>
+<span class="sd">        vertical_alignment: An optional integer to specify the vertical alignment</span>
+<span class="sd">             of the text. Choose from: (0 = Top, 1 = MiddleOfTop, 2 = BottomOfTop,</span>
+<span class="sd">             3 = Middle, 4 = MiddleOfBottom, 5 = Bottom, 6 = BottomOfBoundingBox)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">txt</span> <span class="o">=</span> <span class="n">rh</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">Text3d</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">plane</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+    <span class="n">txt</span><span class="o">.</span><span class="n">FontFace</span> <span class="o">=</span> <span class="n">font</span>
+    <span class="n">txt</span><span class="o">.</span><span class="n">HorizontalAlignment</span> <span class="o">=</span> <span class="n">AlignmentTypes</span><span class="o">.</span><span class="n">horizontal</span><span class="p">(</span><span class="n">horizontal_alignment</span><span class="p">)</span>
+    <span class="n">txt</span><span class="o">.</span><span class="n">VerticalAlignment</span> <span class="o">=</span> <span class="n">AlignmentTypes</span><span class="o">.</span><span class="n">vertical</span><span class="p">(</span><span class="n">vertical_alignment</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">TextGoo</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span></div>
+
+
+
+<span class="sd">&quot;&quot;&quot;____________EXTRA HELPER OBJECTS____________&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="TextGoo">
+<a class="viewcode-back" href="../../../ant_pak.graphic.text.html#ant_pak.graphic.text.TextGoo">[文档]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TextGoo</span><span class="p">(</span>
+    <span class="n">gh</span><span class="o">.</span><span class="n">Kernel</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">GH_GeometricGoo</span><span class="p">[</span><span class="n">rh</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">Text3d</span><span class="p">],</span>
+    <span class="n">gh</span><span class="o">.</span><span class="n">Kernel</span><span class="o">.</span><span class="n">IGH_BakeAwareData</span><span class="p">,</span>
+    <span class="n">gh</span><span class="o">.</span><span class="n">Kernel</span><span class="o">.</span><span class="n">IGH_PreviewData</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A Text object that can be baked and transformed in Grasshopper.</span>
+
+<span class="sd">    The code for this entire class was taken from David Rutten and Giulio Piacentino&#39;s</span>
+<span class="sd">    script described here:</span>
+<span class="sd">    https://discourse.mcneel.com/t/creating-text-objects-and-outputting-them-as-normal-rhino-geometry/47834/7</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        text: A Rhino Text3d object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize Bake-able text.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">m_value</span> <span class="o">=</span> <span class="n">text</span>
+
+<div class="viewcode-block" id="TextGoo.DuplicateText3d">
+<a class="viewcode-back" href="../../../ant_pak.graphic.text.html#ant_pak.graphic.text.TextGoo.DuplicateText3d">[文档]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">DuplicateText3d</span><span class="p">(</span><span class="n">original</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">original</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">rh</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">Text3d</span><span class="p">(</span><span class="n">original</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">original</span><span class="o">.</span><span class="n">TextPlane</span><span class="p">,</span> <span class="n">original</span><span class="o">.</span><span class="n">Height</span><span class="p">)</span>
+        <span class="n">text</span><span class="o">.</span><span class="n">Bold</span> <span class="o">=</span> <span class="n">original</span><span class="o">.</span><span class="n">Bold</span>
+        <span class="n">text</span><span class="o">.</span><span class="n">Italic</span> <span class="o">=</span> <span class="n">original</span><span class="o">.</span><span class="n">Italic</span>
+        <span class="n">text</span><span class="o">.</span><span class="n">FontFace</span> <span class="o">=</span> <span class="n">original</span><span class="o">.</span><span class="n">FontFace</span>
+        <span class="k">return</span> <span class="n">text</span></div>
+
+
+<div class="viewcode-block" id="TextGoo.DuplicateGeometry">
+<a class="viewcode-back" href="../../../ant_pak.graphic.text.html#ant_pak.graphic.text.TextGoo.DuplicateGeometry">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">DuplicateGeometry</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">TextGoo</span><span class="p">(</span><span class="n">TextGoo</span><span class="o">.</span><span class="n">DuplicateText3d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="TextGoo.get_TypeName">
+<a class="viewcode-back" href="../../../ant_pak.graphic.text.html#ant_pak.graphic.text.TextGoo.get_TypeName">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_TypeName</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;3D Text&quot;</span></div>
+
+
+<div class="viewcode-block" id="TextGoo.get_TypeDescription">
+<a class="viewcode-back" href="../../../ant_pak.graphic.text.html#ant_pak.graphic.text.TextGoo.get_TypeDescription">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_TypeDescription</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;3D Text&quot;</span></div>
+
+
+<div class="viewcode-block" id="TextGoo.get_Boundingbox">
+<a class="viewcode-back" href="../../../ant_pak.graphic.text.html#ant_pak.graphic.text.TextGoo.get_Boundingbox">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_Boundingbox</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">rh</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">BoundingBox</span><span class="o">.</span><span class="n">Empty</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="o">.</span><span class="n">BoundingBox</span></div>
+
+
+<div class="viewcode-block" id="TextGoo.GetBoundingBox">
+<a class="viewcode-back" href="../../../ant_pak.graphic.text.html#ant_pak.graphic.text.TextGoo.GetBoundingBox">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">GetBoundingBox</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xform</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">rh</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">BoundingBox</span><span class="o">.</span><span class="n">Empty</span>
+        <span class="n">box</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="o">.</span><span class="n">BoundingBox</span>
+        <span class="n">corners</span> <span class="o">=</span> <span class="n">xform</span><span class="o">.</span><span class="n">TransformList</span><span class="p">(</span><span class="n">box</span><span class="o">.</span><span class="n">GetCorners</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">rh</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">BoundingBox</span><span class="p">(</span><span class="n">corners</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TextGoo.Transform">
+<a class="viewcode-back" href="../../../ant_pak.graphic.text.html#ant_pak.graphic.text.TextGoo.Transform">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">Transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xform</span><span class="p">):</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">TextGoo</span><span class="o">.</span><span class="n">DuplicateText3d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">text</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">TextGoo</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+
+        <span class="n">plane</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">TextPlane</span>
+        <span class="n">point</span> <span class="o">=</span> <span class="n">plane</span><span class="o">.</span><span class="n">PointAt</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">plane</span><span class="o">.</span><span class="n">Transform</span><span class="p">(</span><span class="n">xform</span><span class="p">)</span>
+        <span class="n">point</span><span class="o">.</span><span class="n">Transform</span><span class="p">(</span><span class="n">xform</span><span class="p">)</span>
+        <span class="n">dd</span> <span class="o">=</span> <span class="n">point</span><span class="o">.</span><span class="n">DistanceTo</span><span class="p">(</span><span class="n">plane</span><span class="o">.</span><span class="n">Origin</span><span class="p">)</span>
+
+        <span class="n">text</span><span class="o">.</span><span class="n">TextPlane</span> <span class="o">=</span> <span class="n">plane</span>
+        <span class="n">text</span><span class="o">.</span><span class="n">Height</span> <span class="o">*=</span> <span class="n">dd</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">new_text</span> <span class="o">=</span> <span class="n">TextGoo</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+        <span class="n">new_text</span><span class="o">.</span><span class="n">m_value</span><span class="o">.</span><span class="n">Bold</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="o">.</span><span class="n">Bold</span>
+        <span class="n">new_text</span><span class="o">.</span><span class="n">m_value</span><span class="o">.</span><span class="n">Italic</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="o">.</span><span class="n">Italic</span>
+        <span class="n">new_text</span><span class="o">.</span><span class="n">m_value</span><span class="o">.</span><span class="n">FontFace</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="o">.</span><span class="n">FontFace</span>
+        <span class="k">return</span> <span class="n">new_text</span></div>
+
+
+<div class="viewcode-block" id="TextGoo.Morph">
+<a class="viewcode-back" href="../../../ant_pak.graphic.text.html#ant_pak.graphic.text.TextGoo.Morph">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">Morph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xmorph</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">DuplicateGeometry</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="TextGoo.get_ClippingBox">
+<a class="viewcode-back" href="../../../ant_pak.graphic.text.html#ant_pak.graphic.text.TextGoo.get_ClippingBox">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_ClippingBox</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_Boundingbox</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="TextGoo.DrawViewportWires">
+<a class="viewcode-back" href="../../../ant_pak.graphic.text.html#ant_pak.graphic.text.TextGoo.DrawViewportWires">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">DrawViewportWires</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">black</span><span class="p">()</span> <span class="k">if</span> <span class="n">black</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">args</span><span class="o">.</span><span class="n">Color</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">Pipeline</span><span class="o">.</span><span class="n">Draw3dText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TextGoo.DrawViewportMeshes">
+<a class="viewcode-back" href="../../../ant_pak.graphic.text.html#ant_pak.graphic.text.TextGoo.DrawViewportMeshes">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">DrawViewportMeshes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+        <span class="c1"># Do not draw in meshing layer.</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="TextGoo.BakeGeometry">
+<a class="viewcode-back" href="../../../ant_pak.graphic.text.html#ant_pak.graphic.text.TextGoo.BakeGeometry">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">BakeGeometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">doc</span><span class="p">,</span> <span class="n">att</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+        <span class="nb">id</span> <span class="o">=</span> <span class="n">guid</span><span class="o">.</span><span class="n">Empty</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="nb">id</span>
+        <span class="k">if</span> <span class="n">att</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">att</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">CreateDefaultAttributes</span><span class="p">()</span>
+        <span class="n">original_plane</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">d_txt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="o">.</span><span class="n">Text</span>
+        <span class="n">nl_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">d_txt</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">nl_count</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="o">.</span><span class="n">VerticalAlignment</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Bottom&quot;</span><span class="p">:</span>
+            <span class="n">y_ax</span> <span class="o">=</span> <span class="n">rh</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">Vector3d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="o">.</span><span class="n">TextPlane</span><span class="o">.</span><span class="n">YAxis</span><span class="p">)</span>
+            <span class="n">txt_h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="o">.</span><span class="n">Height</span> <span class="o">*</span> <span class="p">(</span><span class="mi">3</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">m_vec</span> <span class="o">=</span> <span class="n">rh</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">Multiply</span><span class="p">(</span><span class="n">y_ax</span><span class="p">,</span> <span class="n">txt_h</span> <span class="o">*</span> <span class="o">-</span><span class="n">nl_count</span><span class="p">)</span>
+            <span class="n">original_plane</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="o">.</span><span class="n">TextPlane</span>
+            <span class="n">new_plane</span> <span class="o">=</span> <span class="n">rh</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">Plane</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="o">.</span><span class="n">TextPlane</span><span class="p">)</span>
+            <span class="n">new_plane</span><span class="o">.</span><span class="n">Translate</span><span class="p">(</span><span class="n">m_vec</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="o">.</span><span class="n">TextPlane</span> <span class="o">=</span> <span class="n">new_plane</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="o">.</span><span class="n">Height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="o">.</span><span class="n">Height</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="nb">id</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">Objects</span><span class="o">.</span><span class="n">AddText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="p">,</span> <span class="n">att</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="o">.</span><span class="n">Height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="o">.</span><span class="n">Height</span> <span class="o">*</span> <span class="p">(</span><span class="mi">3</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">original_plane</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="o">.</span><span class="n">TextPlane</span> <span class="o">=</span> <span class="n">original_plane</span>
+        <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="nb">id</span></div>
+
+
+<div class="viewcode-block" id="TextGoo.ScriptVariable">
+<a class="viewcode-back" href="../../../ant_pak.graphic.text.html#ant_pak.graphic.text.TextGoo.ScriptVariable">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ScriptVariable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Overwrite Grasshopper ScriptVariable method.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="TextGoo.ToString">
+<a class="viewcode-back" href="../../../ant_pak.graphic.text.html#ant_pak.graphic.text.TextGoo.ToString">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ToString</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Overwrite .NET ToString method.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;&lt;null&gt;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="o">.</span><span class="n">Text</span></div>
+
+
+
+<div class="viewcode-block" id="AlignmentTypes">
+<a class="viewcode-back" href="../../../ant_pak.graphic.text.html#ant_pak.graphic.text.AlignmentTypes">[文档]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">AlignmentTypes</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Enumeration of text alignment types.&quot;&quot;&quot;</span>
+
+    <span class="n">_HORIZONTAL</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">rh</span><span class="o">.</span><span class="n">DocObjects</span><span class="o">.</span><span class="n">TextHorizontalAlignment</span><span class="o">.</span><span class="n">Left</span><span class="p">,</span>
+        <span class="n">rh</span><span class="o">.</span><span class="n">DocObjects</span><span class="o">.</span><span class="n">TextHorizontalAlignment</span><span class="o">.</span><span class="n">Center</span><span class="p">,</span>
+        <span class="n">rh</span><span class="o">.</span><span class="n">DocObjects</span><span class="o">.</span><span class="n">TextHorizontalAlignment</span><span class="o">.</span><span class="n">Right</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">_VERTICAL</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">rh</span><span class="o">.</span><span class="n">DocObjects</span><span class="o">.</span><span class="n">TextVerticalAlignment</span><span class="o">.</span><span class="n">Top</span><span class="p">,</span>
+        <span class="n">rh</span><span class="o">.</span><span class="n">DocObjects</span><span class="o">.</span><span class="n">TextVerticalAlignment</span><span class="o">.</span><span class="n">MiddleOfTop</span><span class="p">,</span>
+        <span class="n">rh</span><span class="o">.</span><span class="n">DocObjects</span><span class="o">.</span><span class="n">TextVerticalAlignment</span><span class="o">.</span><span class="n">BottomOfTop</span><span class="p">,</span>
+        <span class="n">rh</span><span class="o">.</span><span class="n">DocObjects</span><span class="o">.</span><span class="n">TextVerticalAlignment</span><span class="o">.</span><span class="n">Middle</span><span class="p">,</span>
+        <span class="n">rh</span><span class="o">.</span><span class="n">DocObjects</span><span class="o">.</span><span class="n">TextVerticalAlignment</span><span class="o">.</span><span class="n">MiddleOfBottom</span><span class="p">,</span>
+        <span class="n">rh</span><span class="o">.</span><span class="n">DocObjects</span><span class="o">.</span><span class="n">TextVerticalAlignment</span><span class="o">.</span><span class="n">Bottom</span><span class="p">,</span>
+        <span class="n">rh</span><span class="o">.</span><span class="n">DocObjects</span><span class="o">.</span><span class="n">TextVerticalAlignment</span><span class="o">.</span><span class="n">BottomOfBoundingBox</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<div class="viewcode-block" id="AlignmentTypes.horizontal">
+<a class="viewcode-back" href="../../../ant_pak.graphic.text.html#ant_pak.graphic.text.AlignmentTypes.horizontal">[文档]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">horizontal</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">field_number</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a Rhino horizontal alignment object by its integer field number.</span>
+
+<span class="sd">        * 0 - Left</span>
+<span class="sd">        * 1 - Center</span>
+<span class="sd">        * 2 - Right</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_HORIZONTAL</span><span class="p">[</span><span class="n">field_number</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="AlignmentTypes.vertical">
+<a class="viewcode-back" href="../../../ant_pak.graphic.text.html#ant_pak.graphic.text.AlignmentTypes.vertical">[文档]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">vertical</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">field_number</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a Rhino vertical alignment object by its integer field number.</span>
+
+<span class="sd">        * 0 - Top</span>
+<span class="sd">        * 1 - MiddleOfTop</span>
+<span class="sd">        * 2 - BottomOfTop</span>
+<span class="sd">        * 3 - Middle</span>
+<span class="sd">        * 4 - MiddleOfBottom</span>
+<span class="sd">        * 5 - Bottom</span>
+<span class="sd">        * 6 - BottomOfBoundingBox</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_VERTICAL</span><span class="p">[</span><span class="n">field_number</span><span class="p">]</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="generate_text_objects">
+<a class="viewcode-back" href="../../../ant_pak.graphic.text.html#ant_pak.graphic.text.generate_text_objects">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_text_objects</span><span class="p">(</span>
+    <span class="n">texts</span><span class="p">,</span> <span class="n">point_or_planes</span><span class="p">,</span> <span class="n">horizontal_alignment</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vertical_alignment</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">heights</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">):</span>
+    <span class="n">text_objs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">heights</span> <span class="o">=</span> <span class="n">item_to_list</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">heights</span> <span class="o">=</span> <span class="n">heights</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">text</span><span class="p">,</span> <span class="n">point_or_plane</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">point_or_planes</span><span class="p">):</span>
+        <span class="n">text_obj</span> <span class="o">=</span> <span class="n">generate_text_object</span><span class="p">(</span>
+            <span class="n">text</span><span class="p">,</span> <span class="n">point_or_plane</span><span class="p">,</span> <span class="n">horizontal_alignment</span><span class="p">,</span> <span class="n">vertical_alignment</span><span class="p">,</span> <span class="n">heights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">text_objs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text_obj</span><span class="p">)</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">text_objs</span></div>
+
+
+
+<div class="viewcode-block" id="generate_text_object">
+<a class="viewcode-back" href="../../../ant_pak.graphic.text.html#ant_pak.graphic.text.generate_text_object">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_text_object</span><span class="p">(</span>
+    <span class="n">text</span><span class="p">,</span> <span class="n">point_or_plane</span><span class="p">,</span> <span class="n">horizontal_alignment</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vertical_alignment</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">point_or_plane</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Point3d</span><span class="p">):</span>
+        <span class="n">plane</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Plane</span><span class="p">(</span><span class="n">point_or_plane</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">ZAxis</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">plane</span> <span class="o">=</span> <span class="n">point_or_plane</span>
+    <span class="n">text_obj</span> <span class="o">=</span> <span class="n">text_objects</span><span class="p">(</span>
+        <span class="nb">str</span><span class="p">(</span><span class="n">text</span><span class="p">),</span> <span class="n">plane</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="s2">&quot;Arial&quot;</span><span class="p">,</span> <span class="n">horizontal_alignment</span><span class="p">,</span> <span class="n">vertical_alignment</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">text_obj</span></div>
+
+
+
+<div class="viewcode-block" id="create_wall_text_object">
+<a class="viewcode-back" href="../../../ant_pak.graphic.text.html#ant_pak.graphic.text.create_wall_text_object">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_wall_text_object</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">vector</span><span class="o">=</span><span class="n">rg</span><span class="o">.</span><span class="n">Vector3d</span><span class="o">.</span><span class="n">ZAxis</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
+    <span class="n">plane</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Plane</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">vector</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">plane</span><span class="o">.</span><span class="n">XAxis</span><span class="o">.</span><span class="n">Z</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">plane</span><span class="o">.</span><span class="n">Rotate</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">90</span><span class="p">),</span> <span class="n">vector</span><span class="p">,</span> <span class="n">point</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">plane</span><span class="o">.</span><span class="n">YAxis</span><span class="o">.</span><span class="n">Z</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">plane</span><span class="o">.</span><span class="n">Rotate</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">180</span><span class="p">),</span> <span class="n">vector</span><span class="p">,</span> <span class="n">point</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">text_objects</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">plane</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="s2">&quot;Arial&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ringo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
