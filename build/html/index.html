@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ant pak 文档 &mdash; Ant pak 0.1.1 文档</title>
+  <title>Ant pak 用户手册 &mdash; Ant pak 0.1.1 文档</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -17,7 +17,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="搜索" href="search.html" />
-    <link rel="next" title="ant_pak" href="modules.html" /> 
+    <link rel="next" title="Airpak支持的Objects" href="intro.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,9 +39,30 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">模块:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">简介</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">ant_pak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Airpak支持的Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id1">支持的几何形状</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id2">建模原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#why-rhino">Why Rhino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id3">插件功能特性</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">安装</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#id2">安装依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#ant-pak">安装Ant pak插件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#id3">学习案例</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">开发文档</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Ant pak 开发文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html#id3">项目地址</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">关于我们</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">团队简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html#id2">联系我们</a></li>
 </ul>
 
         </div>
@@ -58,7 +79,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Ant pak 文档</li>
+      <li class="breadcrumb-item active">Ant pak 用户手册</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -69,49 +90,61 @@
            <div itemprop="articleBody">
              
   <section id="ant-pak">
-<h1>Ant pak 文档<a class="headerlink" href="#ant-pak" title="Link to this heading">¶</a></h1>
-<p>这是关于Ant pak的文档，包括安装、使用、API等内容。</p>
-<p>本插件基于Rhino和Grasshopper开发，支持在Rhino中对airpak建模、设置，并调用paraview进行可视化后处理。本插件基于如下环境测试：</p>
-<p>Windows 10/11
-Rhino 7
-Grasshopper 1.0
-Aiaprk 3.0.16
-Paraview 5.10.1
-Python 3.10.11</p>
+<h1>Ant pak 用户手册<a class="headerlink" href="#ant-pak" title="Link to this heading">¶</a></h1>
+<p>这是关于Ant pak的文档，包括简介、安装、使用、API等内容。</p>
+<p>本插件使用Python语言，基于Rhino和Grasshopper开发，支持在Rhino中对airpak建模、设置，并调用paraview进行可视化后处理。本插件基于如下环境测试：</p>
+<ul class="simple">
+<li><p>Windows 10/11</p></li>
+<li><p>Rhino 7</p></li>
+<li><p>Grasshopper 1.0</p></li>
+<li><p>Aiaprk 3.0.16</p></li>
+<li><p>Paraview 5.10.1</p></li>
+<li><p>Python 3.10.11</p></li>
+</ul>
+<p>其他版本可能会有不同，但基本思路是一样的。</p>
 <div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">模块:</span></p>
+<p class="caption" role="heading"><span class="caption-text">简介</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">ant_pak</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ant_pak.html">ant_pak package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="ant_pak.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.html">ant_pak.ant_pak package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="ant_pak.geometry.html">ant_pak.geometry package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="ant_pak.graphic.html">ant_pak.graphic package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Airpak支持的Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id1">支持的几何形状</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id2">建模原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#why-rhino">Why Rhino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id3">插件功能特性</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">安装</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#id2">安装依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#ant-pak">安装Ant pak插件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#id3">学习案例</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">开发文档</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Ant pak 开发文档</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#id1">模块说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#api">API 文档</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ant_pak.html">ant_pak package</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="ant_pak.html#submodules">Submodules</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="ant_pak.config.html">ant_pak.config module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="ant_pak.core.html">ant_pak.core module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="ant_pak.setup.html">ant_pak.setup module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="ant_pak.utility.html">ant_pak.utility module</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="ant_pak.html#module-ant_pak">Module contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html#id3">项目地址</a></li>
 </ul>
-</li>
-</ul>
-</li>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">关于我们</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">团队简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html#id2">联系我们</a></li>
 </ul>
 </div>
 </section>
 <section id="id1">
-<h1>项目地址<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
-<ul class="simple">
-<li><p><a class="reference external" href="https://gitee.com/y1hong/ant_pak">Gitee</a></p></li>
-</ul>
-</section>
-<section id="id2">
-<h1>引用<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h1>
+<h1>索引与查找<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">索引</span></a></p></li>
 <li><p><a class="reference internal" href="search.html"><span class="std std-ref">搜索页面</span></a></p></li>
@@ -122,7 +155,7 @@ Python 3.10.11</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="modules.html" class="btn btn-neutral float-right" title="ant_pak" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="intro.html" class="btn btn-neutral float-right" title="Airpak支持的Objects" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

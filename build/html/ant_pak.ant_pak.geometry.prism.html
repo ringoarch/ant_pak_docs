@@ -40,7 +40,20 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">模块:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">简介</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Airpak支持的Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id1">支持的几何形状</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id2">建模原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#why-rhino">Why Rhino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id3">插件功能特性</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">安装</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">安装方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#id2">插件使用方法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">模块</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">ant_pak</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="ant_pak.html">ant_pak package</a><ul class="current">
@@ -98,23 +111,52 @@
 <dt class="sig sig-object py" id="ant_pak.ant_pak.geometry.prism.PrismMixIn">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ant_pak.ant_pak.geometry.prism.</span></span><span class="sig-name descname"><span class="pre">PrismMixIn</span></span><a class="reference internal" href="_modules/ant_pak/ant_pak/geometry/prism.html#PrismMixIn"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.geometry.prism.PrismMixIn" title="Link to this definition">¶</a></dt>
 <dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">_BaseGeo</span></code></p>
+<p>立方体的混合类
+该类继承自_BaseGeo类，并提供了立方体的相关属性和方法。</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="ant_pak.ant_pak.geometry.prism.PrismMixIn.from_brep">
 <span class="sig-name descname"><span class="pre">from_brep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">box</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/geometry/prism.html#PrismMixIn.from_brep"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.geometry.prism.PrismMixIn.from_brep" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>从BREP对象创建立方体。</p>
+<p>该方法使用给定的BREP对象创建一个立方体，并设置立方体的几何信息。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>box</strong> -- 表示立方体的BREP对象。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>返回立方体对象。</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ant_pak.ant_pak.geometry.prism.PrismMixIn.from_points">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/geometry/prism.html#PrismMixIn.from_points"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.geometry.prism.PrismMixIn.from_points" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>从两个点创建立方体。</p>
+<p>该方法使用给定的两个点创建一个立方体，并设置立方体的几何信息。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point1</strong> -- 第一个点，表示立方体的第一个角点。</p></li>
+<li><p><strong>point2</strong> -- 第二个点，表示立方体的第二个角点。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>返回立方体对象。</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ant_pak.ant_pak.geometry.prism.PrismMixIn.geo_to_str">
 <span class="sig-name descname"><span class="pre">geo_to_str</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/geometry/prism.html#PrismMixIn.geo_to_str"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.geometry.prism.PrismMixIn.geo_to_str" title="Link to this definition">¶</a></dt>
-<dd><p>将锥体的几何信息转换为字符串表示形式。</p>
-<p>该方法将锥体的中心点、半径、高度等信息转换为字符串，并将这些字符串拼接成一个完整的形状字符串。</p>
-<dl class="simple">
-<dt>返回:</dt><dd><p>str: 表示锥体几何信息的字符串。</p>
+<dd><p>将立方体的几何信息转换为字符串表示形式。</p>
+<p>该方法将立方体的中心点、半径、高度等信息转换为字符串，并将这些字符串拼接成一个完整的形状字符串。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>str</strong> -- 表示立方体几何信息的字符串。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>返回立方体的形状字符串。</p>
 </dd>
 </dl>
 </dd></dl>

@@ -1,0 +1,217 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ant_pak.ant_pak.object.recirc_opening &mdash; Ant pak 0.1.1 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../../_static/documentation_options.js?v=d06dfecd"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Ant pak
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">简介</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html">Airpak支持的Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html#id1">支持的几何形状</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html#id2">建模原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html#why-rhino">Why Rhino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html#id3">插件功能特性</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">安装</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html">下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html#id2">安装依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html#ant-pak">安装Ant pak插件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html#id3">学习案例</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">开发文档</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">Ant pak 开发文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html#id3">项目地址</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">关于我们</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contact.html">团队简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contact.html#id2">联系我们</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Ant pak</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">模块代码</a></li>
+      <li class="breadcrumb-item active">ant_pak.ant_pak.object.recirc_opening</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>ant_pak.ant_pak.object.recirc_opening 源代码</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">._base_object</span><span class="w"> </span><span class="kn">import</span> <span class="n">_BaseObj</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">..config</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utility</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..model</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..property.mass_flow</span><span class="w"> </span><span class="kn">import</span> <span class="n">MassFlowMixIn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..property.heat_flow</span><span class="w"> </span><span class="kn">import</span> <span class="n">HeatFlowMixIn</span>
+
+
+<div class="viewcode-block" id="RecircOpening">
+<a class="viewcode-back" href="../../../../ant_pak.ant_pak.object.recirc_opening.html#ant_pak.ant_pak.object.recirc_opening.RecircOpening">[文档]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">RecircOpening</span><span class="p">(</span><span class="n">_BaseObj</span><span class="p">,</span> <span class="n">MassFlowMixIn</span><span class="p">,</span> <span class="n">HeatFlowMixIn</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        初始化RecircOpening对象。</span>
+
+<span class="sd">        该方法调用父类的初始化方法，并设置一些默认属性。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">_BaseObj</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>  <span class="c1"># process the identifier</span>
+        <span class="n">MassFlowMixIn</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">HeatFlowMixIn</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">display_name</span> <span class="o">=</span> <span class="s2">&quot;recirc opening.</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">identifier</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_genus</span> <span class="o">=</span> <span class="s2">&quot;recirc&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">obj_type</span> <span class="o">=</span> <span class="s2">&quot;opening&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">supply</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extract</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_section</span> <span class="o">=</span> <span class="s2">&quot;supply&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">body_settings</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;creation_order&quot;</span><span class="p">,</span> <span class="s2">&quot;current_genus&quot;</span><span class="p">,</span> <span class="s2">&quot;current_section&quot;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="RecircOpening.from_crvs">
+<a class="viewcode-back" href="../../../../ant_pak.ant_pak.object.recirc_opening.html#ant_pak.ant_pak.object.recirc_opening.RecircOpening.from_crvs">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_crvs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">supply</span><span class="p">,</span> <span class="n">extract</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">supply</span> <span class="o">=</span> <span class="n">create_opening</span><span class="p">(</span><span class="n">supply</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extract</span> <span class="o">=</span> <span class="n">create_opening</span><span class="p">(</span><span class="n">extract</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">supply</span><span class="o">.</span><span class="n">shape_type</span> <span class="o">=</span> <span class="s2">&quot;supply&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extract</span><span class="o">.</span><span class="n">shape_type</span> <span class="o">=</span> <span class="s2">&quot;extract&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">supply</span><span class="o">.</span><span class="n">geometry</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract</span><span class="o">.</span><span class="n">geometry</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">point</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">supply</span><span class="o">.</span><span class="n">point</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="RecircOpening.to_str">
+<a class="viewcode-back" href="../../../../ant_pak.ant_pak.object.recirc_opening.html#ant_pak.ant_pak.object.recirc_opening.RecircOpening.to_str">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_str</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">creation_order</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">param_on</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">begin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">str_begin</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">creation_order</span> <span class="o">=</span> <span class="n">creation_order</span>
+        <span class="n">str_supply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">clear_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">supply</span><span class="o">.</span><span class="n">to_str</span><span class="p">())</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+            <span class="s2">&quot;body_shape&quot;</span><span class="p">,</span> <span class="s2">&quot;supply_shape&quot;</span>
+        <span class="p">)</span>
+        <span class="n">str_extract</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">clear_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extract</span><span class="o">.</span><span class="n">to_str</span><span class="p">())</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+            <span class="s2">&quot;body_shape&quot;</span><span class="p">,</span> <span class="s2">&quot;extract_shape&quot;</span>
+        <span class="p">)</span>
+        <span class="n">str_body_settings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">str_by_setting</span><span class="p">()</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="n">str_supply</span> <span class="o">+</span> <span class="n">str_extract</span> <span class="o">+</span> <span class="n">str_body_settings</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">str_end</span><span class="p">()</span>
+        <span class="n">string</span> <span class="o">=</span> <span class="n">begin</span> <span class="o">+</span> <span class="n">body</span> <span class="o">+</span> <span class="n">end</span>
+        <span class="k">return</span> <span class="n">string</span></div>
+
+
+<div class="viewcode-block" id="RecircOpening.clear_string">
+<a class="viewcode-back" href="../../../../ant_pak.ant_pak.object.recirc_opening.html#ant_pak.ant_pak.object.recirc_opening.RecircOpening.clear_string">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clear_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
+        <span class="n">split_strings</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">new_strings</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="nb">str</span> <span class="ow">in</span> <span class="n">split_strings</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="s2">&quot;object opening&quot;</span> <span class="ow">in</span> <span class="nb">str</span>
+                <span class="ow">or</span> <span class="s2">&quot;end object&quot;</span> <span class="ow">in</span> <span class="nb">str</span>
+                <span class="ow">or</span> <span class="s2">&quot;creation_order&quot;</span> <span class="ow">in</span> <span class="nb">str</span>
+                <span class="ow">or</span> <span class="s2">&quot;current_genus&quot;</span> <span class="ow">in</span> <span class="nb">str</span>
+            <span class="p">):</span>
+                <span class="k">continue</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">new_strings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+
+        <span class="n">new_string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">n_str</span> <span class="ow">in</span> <span class="n">new_strings</span><span class="p">:</span>
+            <span class="n">new_string</span> <span class="o">+=</span> <span class="n">n_str</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="n">new_string</span></div>
+
+
+<div class="viewcode-block" id="RecircOpening.set_pressure">
+<a class="viewcode-back" href="../../../../ant_pak.ant_pak.object.recirc_opening.html#ant_pak.ant_pak.object.recirc_opening.RecircOpening.set_pressure">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_pressure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">supply</span><span class="o">.</span><span class="n">set_pressure</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="RecircOpening.set_vel_by_vector">
+<a class="viewcode-back" href="../../../../ant_pak.ant_pak.object.recirc_opening.html#ant_pak.ant_pak.object.recirc_opening.RecircOpening.set_vel_by_vector">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_vel_by_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vector</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">supply</span><span class="o">.</span><span class="n">set_vel_by_vector</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ringo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

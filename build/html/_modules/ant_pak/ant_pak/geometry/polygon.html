@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ant_pak.ant_pak.geometry.polygon &mdash; ant_pak 0.1.1 文档</title>
+  <title>ant_pak.ant_pak.geometry.polygon &mdash; Ant pak 0.1.1 文档</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
 
@@ -27,7 +27,7 @@
           
           
           <a href="../../../../index.html" class="icon icon-home">
-            ant_pak
+            Ant pak
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -37,9 +37,30 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">简介</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">ant_pak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html">Airpak支持的Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html#id1">支持的几何形状</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html#id2">建模原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html#why-rhino">Why Rhino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html#id3">插件功能特性</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">安装</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html">下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html#id2">安装依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html#ant-pak">安装Ant pak插件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html#id3">学习案例</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">开发文档</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">Ant pak 开发文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html#id3">项目地址</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">关于我们</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contact.html">团队简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contact.html#id2">联系我们</a></li>
 </ul>
 
         </div>
@@ -48,7 +69,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../../index.html">ant_pak</a>
+          <a href="../../../../index.html">Ant pak</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -86,9 +107,11 @@
 <div class="viewcode-block" id="PolygonMixIn">
 <a class="viewcode-back" href="../../../../ant_pak.ant_pak.geometry.polygon.html#ant_pak.ant_pak.geometry.polygon.PolygonMixIn">[文档]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">PolygonMixIn</span><span class="p">(</span><span class="n">_BaseGeo</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Polygon Mixin</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Polygon Mixin是一个多边形的混合类。</span>
+
+<span class="sd">    该类提供了一些方法来创建和操作多边形对象。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">_BaseGeo</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
@@ -102,6 +125,15 @@
 <div class="viewcode-block" id="PolygonMixIn.from_extrude">
 <a class="viewcode-back" href="../../../../ant_pak.ant_pak.geometry.polygon.html#ant_pak.ant_pak.geometry.polygon.PolygonMixIn.from_extrude">[文档]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_extrude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">brep</span><span class="p">,</span> <span class="n">vect</span><span class="o">=</span><span class="s2">&quot;z&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        从BREP对象创建多边形。</span>
+
+<span class="sd">        该方法从给定的BREP对象中提取多边形的几何信息，并将其转换为多边形对象。</span>
+
+<span class="sd">        :param brep: 要转换的BREP对象。</span>
+<span class="sd">        :param vect: 要沿着哪个方向进行挤出。默认为&quot;z&quot;。</span>
+<span class="sd">        :return: 转换后的多边形对象。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span> <span class="o">=</span> <span class="n">brep</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">refresh_point</span><span class="p">()</span>
 
@@ -121,6 +153,14 @@
 <div class="viewcode-block" id="PolygonMixIn.from_polygon">
 <a class="viewcode-back" href="../../../../ant_pak.ant_pak.geometry.polygon.html#ant_pak.ant_pak.geometry.polygon.PolygonMixIn.from_polygon">[文档]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_polygon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">polyline</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        从Polyline对象创建多边形。</span>
+
+<span class="sd">        该方法从给定的Polyline对象中提取多边形的几何信息，并将其转换为多边形对象。</span>
+
+<span class="sd">        :param polyline: 要转换的Polyline对象。</span>
+<span class="sd">        :return: 转换后的多边形对象。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span> <span class="o">=</span> <span class="n">polyline</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">refresh_point</span><span class="p">()</span>
         <span class="n">verts</span> <span class="o">=</span> <span class="n">get_polyline_points</span><span class="p">(</span><span class="n">polyline</span><span class="p">)</span>

@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ant_pak.ant_pak.geometry.rectangle &mdash; ant_pak 0.1.1 文档</title>
+  <title>ant_pak.ant_pak.geometry.rectangle &mdash; Ant pak 0.1.1 文档</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
 
@@ -27,7 +27,7 @@
           
           
           <a href="../../../../index.html" class="icon icon-home">
-            ant_pak
+            Ant pak
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -37,9 +37,30 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">简介</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">ant_pak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html">Airpak支持的Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html#id1">支持的几何形状</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html#id2">建模原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html#why-rhino">Why Rhino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html#id3">插件功能特性</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">安装</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html">下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html#id2">安装依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html#ant-pak">安装Ant pak插件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html#id3">学习案例</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">开发文档</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">Ant pak 开发文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html#id3">项目地址</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">关于我们</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contact.html">团队简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contact.html#id2">联系我们</a></li>
 </ul>
 
         </div>
@@ -48,7 +69,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../../index.html">ant_pak</a>
+          <a href="../../../../index.html">Ant pak</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -96,6 +117,13 @@
 <div class="viewcode-block" id="RectangleMixIn.from_rect">
 <a class="viewcode-back" href="../../../../ant_pak.ant_pak.geometry.rectangle.html#ant_pak.ant_pak.geometry.rectangle.RectangleMixIn.from_rect">[文档]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_rect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rectangle</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        从矩形对象创建矩形。</span>
+<span class="sd">        该方法从给定的矩形对象中提取几何信息，并将其应用到当前矩形对象中。</span>
+
+<span class="sd">        :param rectangle: 要从中复制几何信息的矩形对象。</span>
+<span class="sd">        :return RectangleMixIn: 创建的矩形对象。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span> <span class="o">=</span> <span class="n">rectangle</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">refresh_point</span><span class="p">()</span>
         <span class="n">point1</span> <span class="o">=</span> <span class="n">rectangle</span><span class="o">.</span><span class="n">Corner</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -111,6 +139,16 @@
 <div class="viewcode-block" id="RectangleMixIn.from_plane_and_points">
 <a class="viewcode-back" href="../../../../ant_pak.ant_pak.geometry.rectangle.html#ant_pak.ant_pak.geometry.rectangle.RectangleMixIn.from_plane_and_points">[文档]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_plane_and_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plane</span><span class="p">,</span> <span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        从平面和点创建矩形。</span>
+
+<span class="sd">        该方法根据给定的平面和点创建一个矩形对象，并将其应用到当前矩形对象中。</span>
+
+<span class="sd">        :param plane: 矩形所在的平面。</span>
+<span class="sd">        :param point1: 矩形的第一个点。</span>
+<span class="sd">        :param point2: 矩形的第二个点。</span>
+<span class="sd">        :return RectangleMixIn: 创建的矩形对象。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">rectangle</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Rectangle3d</span><span class="p">(</span><span class="n">plane</span><span class="p">,</span> <span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">)</span>
         <span class="bp">self</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_rect</span><span class="p">(</span><span class="n">rectangle</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span></div>
@@ -124,8 +162,7 @@
 
 <span class="sd">        该方法将矩形的中心点、半径、高度等信息转换为字符串，并将这些字符串拼接成一个完整的形状字符串。</span>
 
-<span class="sd">        返回:</span>
-<span class="sd">            str: 表示矩形几何信息的字符串。</span>
+<span class="sd">        :return str: 表示矩形几何信息的字符串。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">str_geo</span> <span class="o">=</span> <span class="n">points_to_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">point1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">point2</span><span class="p">)</span>
@@ -158,6 +195,15 @@
 <a class="viewcode-back" href="../../../../ant_pak.ant_pak.geometry.rectangle.html#ant_pak.ant_pak.geometry.rectangle.RectangleMixIn.from_points_string">[文档]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_points_string</span><span class="p">(</span><span class="n">point1_string</span><span class="p">,</span> <span class="n">point2_string</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        从点字符串创建矩形。</span>
+
+<span class="sd">        该方法根据给定的点字符串创建一个矩形对象，并将其应用到当前矩形对象中。</span>
+
+<span class="sd">        :param point1_string: 第一个点的字符串表示形式。</span>
+<span class="sd">        :param point2_string: 第二个点的字符串表示形式。</span>
+<span class="sd">        :return RectangleMixIn: 创建的矩形对象。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">rectangle</span> <span class="o">=</span> <span class="n">RectangleMixIn</span><span class="p">()</span>
         <span class="n">point1</span> <span class="o">=</span> <span class="n">str_to_point</span><span class="p">(</span><span class="n">point1_string</span><span class="p">)</span>
         <span class="n">point2</span> <span class="o">=</span> <span class="n">str_to_point</span><span class="p">(</span><span class="n">point2_string</span><span class="p">)</span>

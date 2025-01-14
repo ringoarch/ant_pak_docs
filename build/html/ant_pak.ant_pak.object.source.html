@@ -40,7 +40,20 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">模块:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">简介</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Airpak支持的Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id1">支持的几何形状</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id2">建模原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#why-rhino">Why Rhino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id3">插件功能特性</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">安装</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">安装方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#id2">插件使用方法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">模块</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">ant_pak</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="ant_pak.html">ant_pak package</a><ul class="current">
@@ -86,8 +99,65 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="ant-pak-ant-pak-object-source-module">
-<h1>ant_pak.ant_pak.object.source module<a class="headerlink" href="#ant-pak-ant-pak-object-source-module" title="Link to this heading">¶</a></h1>
+  <section id="module-ant_pak.ant_pak.object.source">
+<span id="ant-pak-ant-pak-object-source-module"></span><h1>ant_pak.ant_pak.object.source module<a class="headerlink" href="#module-ant_pak.ant_pak.object.source" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.source.Source">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ant_pak.ant_pak.object.source.</span></span><span class="sig-name descname"><span class="pre">Source</span></span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/source.html#Source"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.source.Source" title="Link to this definition">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">_BaseObj</span></code>, <a class="reference internal" href="ant_pak.ant_pak.property.temperature.html#ant_pak.ant_pak.property.temperature.TemperatureMixIn" title="ant_pak.ant_pak.property.temperature.TemperatureMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">TemperatureMixIn</span></code></a>, <a class="reference internal" href="ant_pak.ant_pak.property.species.html#ant_pak.ant_pak.property.species.SpeciesMixIn" title="ant_pak.ant_pak.property.species.SpeciesMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpeciesMixIn</span></code></a></p>
+<dl class="simple">
+<dt>Properties:</dt><dd><ul class="simple">
+<li><p>identifier</p></li>
+<li><p>display_name</p></li>
+<li><p>base_point</p></li>
+<li><p>rooms</p></li>
+<li><p>geometry</p></li>
+<li><p>story</p></li>
+<li><p>height</p></li>
+<li><p>repeat</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.source.SourcePolygon">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ant_pak.ant_pak.object.source.</span></span><span class="sig-name descname"><span class="pre">SourcePolygon</span></span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/source.html#SourcePolygon"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.source.SourcePolygon" title="Link to this definition">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#ant_pak.ant_pak.object.source.Source" title="ant_pak.ant_pak.object.source.Source"><code class="xref py py-class docutils literal notranslate"><span class="pre">Source</span></code></a>, <a class="reference internal" href="ant_pak.ant_pak.geometry.polygon.html#ant_pak.ant_pak.geometry.polygon.PolygonMixIn" title="ant_pak.ant_pak.geometry.polygon.PolygonMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">PolygonMixIn</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.source.SourcePolygon.from_polygon_3d">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_polygon_3d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extrude</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/source.html#SourcePolygon.from_polygon_3d"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.source.SourcePolygon.from_polygon_3d" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.source.SourcePolygon.from_polyline">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_polyline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">polygon</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/source.html#SourcePolygon.from_polyline"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.source.SourcePolygon.from_polyline" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.source.SourcePrism">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ant_pak.ant_pak.object.source.</span></span><span class="sig-name descname"><span class="pre">SourcePrism</span></span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/source.html#SourcePrism"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.source.SourcePrism" title="Link to this definition">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#ant_pak.ant_pak.object.source.Source" title="ant_pak.ant_pak.object.source.Source"><code class="xref py py-class docutils literal notranslate"><span class="pre">Source</span></code></a>, <a class="reference internal" href="ant_pak.ant_pak.geometry.prism.html#ant_pak.ant_pak.geometry.prism.PrismMixIn" title="ant_pak.ant_pak.geometry.prism.PrismMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">PrismMixIn</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.source.SourcePrism.from_box">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_box</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">box</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/source.html#SourcePrism.from_box"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.source.SourcePrism.from_box" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.source.SourceRectangle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ant_pak.ant_pak.object.source.</span></span><span class="sig-name descname"><span class="pre">SourceRectangle</span></span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/source.html#SourceRectangle"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.source.SourceRectangle" title="Link to this definition">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#ant_pak.ant_pak.object.source.Source" title="ant_pak.ant_pak.object.source.Source"><code class="xref py py-class docutils literal notranslate"><span class="pre">Source</span></code></a>, <a class="reference internal" href="ant_pak.ant_pak.geometry.rectangle.html#ant_pak.ant_pak.geometry.rectangle.RectangleMixIn" title="ant_pak.ant_pak.geometry.rectangle.RectangleMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">RectangleMixIn</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.source.SourceRectangle.from_rectangle">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_rectangle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rectangle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/source.html#SourceRectangle.from_rectangle"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.source.SourceRectangle.from_rectangle" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 
 

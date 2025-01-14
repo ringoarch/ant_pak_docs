@@ -1,0 +1,791 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ant_pak.ant_pak.model &mdash; Ant pak 0.1.1 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/documentation_options.js?v=d06dfecd"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Ant pak
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">简介</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Airpak支持的Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html#id1">支持的几何形状</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html#id2">建模原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html#why-rhino">Why Rhino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html#id3">插件功能特性</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">安装</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html#id2">安装依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html#ant-pak">安装Ant pak插件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html#id3">学习案例</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">开发文档</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Ant pak 开发文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html#id3">项目地址</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">关于我们</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact.html">团队简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact.html#id2">联系我们</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Ant pak</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">模块代码</a></li>
+      <li class="breadcrumb-item active">ant_pak.ant_pak.model</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>ant_pak.ant_pak.model 源代码</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">@DATE: 2024-12-23 13:52:55</span>
+<span class="sd">@Author: ringo</span>
+<span class="sd">@Version: 1.0</span>
+<span class="sd">@File: ant_pak\model.py</span>
+<span class="sd">@Software: vscode</span>
+<span class="sd">@Description:</span>
+<span class="sd">        </span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.object.domain</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.object.opening</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.object.block</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.object.source</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.object.vent</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.object.wall</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.object.partition</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.object.resistance</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.object.fan</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.object.person</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+
+<div class="viewcode-block" id="create_domain">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_domain">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_domain</span><span class="p">(</span><span class="n">box</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    创建domain</span>
+
+<span class="sd">    :param box: box</span>
+<span class="sd">    :return domain: domain</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">domain</span> <span class="o">=</span> <span class="n">Domain</span><span class="p">()</span>
+    <span class="n">domain</span> <span class="o">=</span> <span class="n">domain</span><span class="o">.</span><span class="n">from_box</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">domain</span></div>
+
+
+
+<div class="viewcode-block" id="copy_problem">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.copy_problem">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">copy_problem</span><span class="p">(</span><span class="n">work_folder</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    复制问题文件</span>
+
+<span class="sd">    :param work_folder: 工作文件夹</span>
+<span class="sd">    :return problem: 问题文件</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+    <span class="n">problem</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="s2">&quot;resources\problem&quot;</span><span class="p">)</span>
+    <span class="n">current_problem</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">work_folder</span><span class="p">,</span> <span class="s2">&quot;problem&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">current_problem</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">work_folder</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">work_folder</span><span class="p">,</span> <span class="s2">&quot;problem&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="get_geo_apk_type">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.get_geo_apk_type">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_geo_apk_type</span><span class="p">(</span><span class="n">geo</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    获取几何体类型</span>
+
+<span class="sd">    :param geo: 几何体</span>
+<span class="sd">    :return geo_type: 几何体类型</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">geo_type</span> <span class="o">=</span> <span class="n">geo</span><span class="o">.</span><span class="n">ObjectType</span>
+
+    <span class="k">if</span> <span class="n">geo_type</span> <span class="o">==</span> <span class="s2">&quot;Brep&quot;</span><span class="p">:</span>
+        <span class="n">geo_type</span> <span class="o">=</span> <span class="n">get_brep_apk_type</span><span class="p">(</span><span class="n">geo</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">geo_type</span> <span class="o">==</span> <span class="s2">&quot;Curve&quot;</span><span class="p">:</span>
+        <span class="n">geo_type</span> <span class="o">=</span> <span class="n">get_crv_apk_type</span><span class="p">(</span><span class="n">geo</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">geo_type</span></div>
+
+
+
+<div class="viewcode-block" id="get_brep_apk_type">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.get_brep_apk_type">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_brep_apk_type</span><span class="p">(</span><span class="n">brep</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    获取几何体类型</span>
+
+<span class="sd">    :param brep: 几何体</span>
+<span class="sd">    :return geo_type: 几何体类型</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">geo_type</span> <span class="o">=</span> <span class="n">brep</span><span class="o">.</span><span class="n">ObjectType</span>
+
+    <span class="k">return</span> <span class="n">geo_type</span></div>
+
+
+
+<div class="viewcode-block" id="get_crv_apk_type">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.get_crv_apk_type">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_crv_apk_type</span><span class="p">(</span><span class="n">crv</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    获取几何体类型</span>
+
+<span class="sd">    :param crv: 几何体</span>
+<span class="sd">    :return geo_type: 几何体类型</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">geo_type</span> <span class="o">=</span> <span class="n">crv</span><span class="o">.</span><span class="n">ObjectType</span>
+
+    <span class="k">return</span> <span class="n">geo_type</span></div>
+
+
+
+<div class="viewcode-block" id="get_problem">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.get_problem">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_problem</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    获取问题文件</span>
+
+<span class="sd">    :return problem: 问题文件</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="s2">&quot;resources\problem&quot;</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># ~~~~~~~~~~~~~~~opening~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+
+
+<div class="viewcode-block" id="create_opening_from_crv">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_opening_from_crv">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_opening_from_crv</span><span class="p">(</span><span class="n">crv</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    从曲线创建开口，支持矩形、多段线、圆形。</span>
+
+<span class="sd">    * 如果是矩形，返回OpeningRectangle；</span>
+<span class="sd">    * 如果是多段线，返回OpeningPolygon；</span>
+<span class="sd">    * 如果是圆形，返回OpeningCircle；</span>
+<span class="sd">    * 如果是其他类型，返回None。</span>
+
+<span class="sd">    :param crv: 曲线</span>
+<span class="sd">    :return opening: 开口或者None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Circle</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">create_opening_from_circle</span><span class="p">(</span><span class="n">crv</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="p">(</span>
+        <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">PolyCurve</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Polyline</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">PolylineCurve</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">NurbsCurve</span><span class="p">)</span>
+    <span class="p">):</span>
+        <span class="n">polyline</span> <span class="o">=</span> <span class="n">convert_to_polyline</span><span class="p">(</span><span class="n">crv</span><span class="p">)</span>
+        <span class="n">rectangle</span> <span class="o">=</span> <span class="n">polyline_to_rectangle</span><span class="p">(</span><span class="n">polyline</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rectangle</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Rectangle3d</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">create_opening_from_rectangle</span><span class="p">(</span><span class="n">rectangle</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">create_opening_from_polyline</span><span class="p">(</span><span class="n">rectangle</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Rectangle3d</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">create_opening_from_rectangle</span><span class="p">(</span><span class="n">crv</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="create_opening_from_rectangle">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_opening_from_rectangle">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_opening_from_rectangle</span><span class="p">(</span><span class="n">rectangle</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    从矩形创建开口，支持水平矩形、垂直矩形。</span>
+
+<span class="sd">    * 如果是水平矩形，返回OpeningRectangle；</span>
+<span class="sd">    * 如果是垂直矩形，返回OpeningIncline；</span>
+<span class="sd">    * 如果是其他类型，返回None。</span>
+
+<span class="sd">    :param rectangle: 矩形</span>
+<span class="sd">    :return opening: 开口</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">normal</span> <span class="o">=</span> <span class="n">rectangle</span><span class="o">.</span><span class="n">Plane</span><span class="o">.</span><span class="n">Normal</span>
+    <span class="k">if</span> <span class="n">vector_parallel_to_axis</span><span class="p">(</span><span class="n">normal</span><span class="p">):</span>
+        <span class="n">opening</span> <span class="o">=</span> <span class="n">OpeningRectangle</span><span class="o">.</span><span class="n">from_rectangle</span><span class="p">(</span><span class="n">rectangle</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">opening</span> <span class="o">=</span> <span class="n">OpeningIncline</span><span class="o">.</span><span class="n">from_rectangle</span><span class="p">(</span><span class="n">rectangle</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">opening</span></div>
+
+
+
+<div class="viewcode-block" id="create_opening_from_polyline">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_opening_from_polyline">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_opening_from_polyline</span><span class="p">(</span><span class="n">polyline</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    从多段线创建开口，支持多边形、倾斜多边形。</span>
+
+<span class="sd">    * 如果是多边形，返回OpeningPolygon；</span>
+<span class="sd">    * 如果是倾斜多边形，返回OpeningIncline；</span>
+<span class="sd">    * 如果是其他类型，返回None。</span>
+
+<span class="sd">    :param polyline: 多段线</span>
+<span class="sd">    :return opening: 开口</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">normal</span> <span class="o">=</span> <span class="n">get_polyline_normal</span><span class="p">(</span><span class="n">polyline</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">normal</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">vector_parallel_to_axis</span><span class="p">(</span><span class="n">normal</span><span class="p">):</span>
+        <span class="n">opening</span> <span class="o">=</span> <span class="n">OpeningPolygon</span><span class="o">.</span><span class="n">from_polyline</span><span class="p">(</span><span class="n">polyline</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">opening</span> <span class="o">=</span> <span class="n">OpeningIncline</span><span class="o">.</span><span class="n">from_polyline</span><span class="p">(</span><span class="n">polyline</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">opening</span></div>
+
+
+
+<div class="viewcode-block" id="create_opening_from_circle">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_opening_from_circle">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_opening_from_circle</span><span class="p">(</span><span class="n">circle</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    从圆形创建开口，返回OpeningCircle。</span>
+
+<span class="sd">    :param circle: 圆形</span>
+<span class="sd">    :return opening: 开口</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">opening</span> <span class="o">=</span> <span class="n">OpeningCircle</span><span class="o">.</span><span class="n">from_circle</span><span class="p">(</span><span class="n">circle</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">opening</span></div>
+
+
+
+<div class="viewcode-block" id="create_opening">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_opening">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_opening</span><span class="p">(</span><span class="n">crv</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Rectangle3d</span><span class="p">):</span>
+        <span class="n">opening</span> <span class="o">=</span> <span class="n">create_opening_from_rectangle</span><span class="p">(</span><span class="n">crv</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Polyline</span><span class="p">):</span>
+        <span class="n">opening</span> <span class="o">=</span> <span class="n">create_opening_from_polyline</span><span class="p">(</span><span class="n">crv</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">PolylineCurve</span><span class="p">):</span>
+        <span class="n">crv</span> <span class="o">=</span> <span class="n">crv</span><span class="o">.</span><span class="n">ToPolyline</span><span class="p">()</span>
+        <span class="n">opening</span> <span class="o">=</span> <span class="n">create_opening_from_polyline</span><span class="p">(</span><span class="n">crv</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Circle</span><span class="p">):</span>
+        <span class="n">opening</span> <span class="o">=</span> <span class="n">create_opening_from_circle</span><span class="p">(</span><span class="n">crv</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">opening</span></div>
+
+
+
+<span class="c1"># def create_recirc_opening(supply_crv, extract_crv):</span>
+<span class="c1">#     opening = RecircOpening()</span>
+<span class="c1">#     opening.fom_crvs(supply_crv, extract_crv)</span>
+<span class="c1">#     return opening</span>
+
+
+<span class="c1"># ~~~~~~~~~~~~~~~wall~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+<div class="viewcode-block" id="create_wall_from_crv">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_wall_from_crv">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_wall_from_crv</span><span class="p">(</span><span class="n">crv</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    从曲线创建墙，支持矩形、多段线、圆形。</span>
+
+<span class="sd">    * 如果是矩形，返回WallRectangle；</span>
+<span class="sd">    * 如果是多段线，返回WallPolygon；</span>
+<span class="sd">    * 如果是圆形，返回WallCircle；</span>
+<span class="sd">    * 如果是其他类型，返回None。</span>
+
+<span class="sd">    :param crv: 曲线</span>
+<span class="sd">    :return wall: 墙</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">PolyCurve</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Polyline</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">PolylineCurve</span><span class="p">)</span>
+    <span class="p">):</span>
+        <span class="n">polyline</span> <span class="o">=</span> <span class="n">convert_to_polyline</span><span class="p">(</span><span class="n">crv</span><span class="p">)</span>
+        <span class="n">rectangle</span> <span class="o">=</span> <span class="n">polyline_to_rectangle</span><span class="p">(</span><span class="n">polyline</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rectangle</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Rectangle3d</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">create_wall_from_rectangle</span><span class="p">(</span><span class="n">rectangle</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">create_wall_from_polyline</span><span class="p">(</span><span class="n">rectangle</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Rectangle3d</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">create_wall_from_rectangle</span><span class="p">(</span><span class="n">crv</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="create_wall_from_rectangle">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_wall_from_rectangle">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_wall_from_rectangle</span><span class="p">(</span><span class="n">rectangle</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    从矩形创建墙，支持水平矩形、垂直矩形。</span>
+
+<span class="sd">    * 如果是水平矩形，返回WallRectangle；</span>
+<span class="sd">    * 如果是垂直矩形，返回WallIncline；</span>
+<span class="sd">    * 如果是其他类型，返回None。</span>
+
+<span class="sd">    :param rectangle: 矩形</span>
+<span class="sd">    :return wall: 墙</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">normal</span> <span class="o">=</span> <span class="n">rectangle</span><span class="o">.</span><span class="n">Plane</span><span class="o">.</span><span class="n">Normal</span>
+    <span class="k">if</span> <span class="n">vector_parallel_to_axis</span><span class="p">(</span><span class="n">normal</span><span class="p">):</span>
+        <span class="n">wall</span> <span class="o">=</span> <span class="n">WallRectangle</span><span class="o">.</span><span class="n">from_rectangle</span><span class="p">(</span><span class="n">rectangle</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">wall</span> <span class="o">=</span> <span class="n">WallIncline</span><span class="o">.</span><span class="n">from_rectangle</span><span class="p">(</span><span class="n">rectangle</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wall</span></div>
+
+
+
+<div class="viewcode-block" id="create_wall_from_polyline">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_wall_from_polyline">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_wall_from_polyline</span><span class="p">(</span><span class="n">polyline</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    从多段线创建墙，支持多边形、倾斜多边形。</span>
+
+<span class="sd">    * 如果是多边形，返回WallPolygon；</span>
+<span class="sd">    * 如果是倾斜多边形，返回WallIncline；</span>
+<span class="sd">    * 如果是其他类型，返回None。</span>
+
+<span class="sd">    :param polyline: 多段线</span>
+<span class="sd">    :return wall: 墙</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">normal</span> <span class="o">=</span> <span class="n">get_polyline_normal</span><span class="p">(</span><span class="n">polyline</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">normal</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">vector_parallel_to_axis</span><span class="p">(</span><span class="n">normal</span><span class="p">):</span>
+        <span class="n">wall</span> <span class="o">=</span> <span class="n">WallPolygon</span><span class="o">.</span><span class="n">from_polyline</span><span class="p">(</span><span class="n">polyline</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">wall</span> <span class="o">=</span> <span class="n">WallIncline</span><span class="o">.</span><span class="n">from_polyline</span><span class="p">(</span><span class="n">polyline</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wall</span></div>
+
+
+
+<span class="c1"># ~~~~~~~~~~~~~~~partition~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+
+
+<div class="viewcode-block" id="create_partition_from_crv">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_partition_from_crv">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_partition_from_crv</span><span class="p">(</span><span class="n">crv</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    从曲线创建分区，支持矩形、多段线、圆形。</span>
+
+<span class="sd">    * 如果是矩形，返回PartitionRectangle；</span>
+<span class="sd">    * 如果是多段线，返回PartitionPolygon；</span>
+<span class="sd">    * 如果是圆形，返回PartitionCircle；</span>
+<span class="sd">    * 如果是其他类型，返回None。</span>
+
+<span class="sd">    :param crv: 曲线</span>
+<span class="sd">    :return partition: 分区</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Circle</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">create_partition_from_circle</span><span class="p">(</span><span class="n">crv</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="p">(</span>
+        <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">PolyCurve</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Polyline</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">PolylineCurve</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">NurbsCurve</span><span class="p">)</span>
+    <span class="p">):</span>
+        <span class="n">polyline</span> <span class="o">=</span> <span class="n">convert_to_polyline</span><span class="p">(</span><span class="n">crv</span><span class="p">)</span>
+        <span class="n">rectangle</span> <span class="o">=</span> <span class="n">polyline_to_rectangle</span><span class="p">(</span><span class="n">polyline</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rectangle</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Rectangle3d</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">create_partition_from_rectangle</span><span class="p">(</span><span class="n">rectangle</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">create_partition_from_polyline</span><span class="p">(</span><span class="n">polyline</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Rectangle3d</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">create_partition_from_rectangle</span><span class="p">(</span><span class="n">crv</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="create_partition_from_rectangle">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_partition_from_rectangle">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_partition_from_rectangle</span><span class="p">(</span><span class="n">rectangle</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    从矩形创建分区，支持水平矩形、垂直矩形。</span>
+
+<span class="sd">    * 如果是水平矩形，返回PartitionRectangle；</span>
+<span class="sd">    * 如果是垂直矩形，返回PartitionIncline；</span>
+<span class="sd">    * 如果是其他类型，返回None。</span>
+
+<span class="sd">    :param rectangle: 矩形</span>
+<span class="sd">    :return partition: 分区</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">get_rectangle_rotated_axis</span><span class="p">(</span><span class="n">rectangle</span><span class="p">):</span>
+        <span class="n">partition</span> <span class="o">=</span> <span class="n">PartitionIncline</span><span class="o">.</span><span class="n">from_rectangle</span><span class="p">(</span><span class="n">rectangle</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">partition</span> <span class="o">=</span> <span class="n">PartitionRectangle</span><span class="o">.</span><span class="n">from_rectangle</span><span class="p">(</span><span class="n">rectangle</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">partition</span></div>
+
+
+
+<div class="viewcode-block" id="create_partition_from_polyline">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_partition_from_polyline">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_partition_from_polyline</span><span class="p">(</span><span class="n">polyline</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    从多段线创建分区，支持多边形、倾斜多边形。</span>
+
+<span class="sd">    * 如果是多边形，返回PartitionPolygon；</span>
+<span class="sd">    * 如果是倾斜多边形，返回PartitionIncline；</span>
+<span class="sd">    * 如果是其他类型，返回None。</span>
+
+<span class="sd">    :param polyline: 多段线</span>
+<span class="sd">    :return partition: 分区</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">get_polyline_rotated_axis</span><span class="p">(</span><span class="n">polyline</span><span class="p">):</span>
+        <span class="n">partition</span> <span class="o">=</span> <span class="n">PartitionIncline</span><span class="p">()</span>
+        <span class="n">partition</span><span class="o">.</span><span class="n">from_incline</span><span class="p">(</span><span class="n">polyline</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">partition</span> <span class="o">=</span> <span class="n">PartitionPolygon</span><span class="o">.</span><span class="n">from_polygon</span><span class="p">(</span><span class="n">polyline</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">partition</span></div>
+
+
+
+<div class="viewcode-block" id="create_partition_from_circle">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_partition_from_circle">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_partition_from_circle</span><span class="p">(</span><span class="n">circle</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    从圆形创建分区，返回PartitionCircle。</span>
+
+<span class="sd">    :param circle: 圆形</span>
+<span class="sd">    :return partition: 分区</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">partition</span> <span class="o">=</span> <span class="n">PartitionCircle</span><span class="o">.</span><span class="n">from_circle</span><span class="p">(</span><span class="n">circle</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">partition</span></div>
+
+
+
+<span class="c1"># ~~~~~~~~~~~~~~~resistance~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+<div class="viewcode-block" id="create_resistance_from_brep">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_resistance_from_brep">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_resistance_from_brep</span><span class="p">(</span><span class="n">brep</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    从BREP创建阻力，支持Box、Brep、Cylinder。</span>
+
+<span class="sd">    * 如果是Box，返回ResistancePrism；</span>
+<span class="sd">    * 如果是Brep，返回ResistancePolygon；</span>
+<span class="sd">    * 如果是Cylinder，返回ResistanceCylinder；</span>
+<span class="sd">    * 如果是其他类型，返回None。</span>
+
+<span class="sd">    :param brep: BREP</span>
+<span class="sd">    :return resistance: 阻力</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">brep</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Box</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">create_resistance_from_box</span><span class="p">(</span><span class="n">brep</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">brep</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Brep</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">create_resistance_from_polygon</span><span class="p">(</span><span class="n">brep</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">brep</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Cylinder</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">create_resistance_from_cylinder</span><span class="p">(</span><span class="n">brep</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="create_resistance_from_box">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_resistance_from_box">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_resistance_from_box</span><span class="p">(</span><span class="n">box</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    从Box创建阻力，返回ResistancePrism。</span>
+
+<span class="sd">    :param box: Box</span>
+<span class="sd">    :return resistance: 阻力</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">resistance</span> <span class="o">=</span> <span class="n">ResistancePrism</span><span class="o">.</span><span class="n">from_box</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">resistance</span></div>
+
+
+
+<div class="viewcode-block" id="create_resistance_from_cylinder">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_resistance_from_cylinder">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_resistance_from_cylinder</span><span class="p">(</span><span class="n">cylinder</span><span class="p">):</span>
+    <span class="n">resistance</span> <span class="o">=</span> <span class="n">ResistanceCylinder</span><span class="o">.</span><span class="n">from_cylinder</span><span class="p">(</span><span class="n">cylinder</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">resistance</span></div>
+
+
+
+<div class="viewcode-block" id="create_resistance_from_polygon">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_resistance_from_polygon">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_resistance_from_polygon</span><span class="p">(</span><span class="n">brep</span><span class="p">):</span>
+    <span class="n">resistance</span> <span class="o">=</span> <span class="n">ResistancePolygon</span><span class="o">.</span><span class="n">from_brep</span><span class="p">(</span><span class="n">brep</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">resistance</span></div>
+
+
+
+<span class="c1"># ~~~~~~~~~~~~~~~vent~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+<div class="viewcode-block" id="create_vent_from_crv">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_vent_from_crv">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_vent_from_crv</span><span class="p">(</span><span class="n">crv</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Circle</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">create_vent_from_circle</span><span class="p">(</span><span class="n">crv</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="p">(</span>
+        <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">PolyCurve</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Polyline</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">PolylineCurve</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">NurbsCurve</span><span class="p">)</span>
+    <span class="p">):</span>
+        <span class="n">polyline</span> <span class="o">=</span> <span class="n">convert_to_polyline</span><span class="p">(</span><span class="n">crv</span><span class="p">)</span>
+        <span class="n">rectangle</span> <span class="o">=</span> <span class="n">polyline_to_rectangle</span><span class="p">(</span><span class="n">polyline</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rectangle</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Rectangle3d</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">create_vent_from_rectangle</span><span class="p">(</span><span class="n">rectangle</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">create_vent_from_polyline</span><span class="p">(</span><span class="n">rectangle</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">crv</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Rectangle3d</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">create_vent_from_rectangle</span><span class="p">(</span><span class="n">crv</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="create_vent_from_rectangle">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_vent_from_rectangle">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_vent_from_rectangle</span><span class="p">(</span><span class="n">rectangle</span><span class="p">):</span>
+    <span class="n">normal</span> <span class="o">=</span> <span class="n">rectangle</span><span class="o">.</span><span class="n">Plane</span><span class="o">.</span><span class="n">Normal</span>
+    <span class="k">if</span> <span class="n">vector_parallel_to_axis</span><span class="p">(</span><span class="n">normal</span><span class="p">):</span>
+        <span class="n">vent</span> <span class="o">=</span> <span class="n">VentRectangle</span><span class="o">.</span><span class="n">from_rectangle</span><span class="p">(</span><span class="n">rectangle</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">vent</span> <span class="o">=</span> <span class="n">VentIncline</span><span class="o">.</span><span class="n">from_rectangle</span><span class="p">(</span><span class="n">rectangle</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">vent</span></div>
+
+
+
+<div class="viewcode-block" id="create_vent_from_polyline">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_vent_from_polyline">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_vent_from_polyline</span><span class="p">(</span><span class="n">polyline</span><span class="p">):</span>
+    <span class="n">normal</span> <span class="o">=</span> <span class="n">get_polyline_normal</span><span class="p">(</span><span class="n">polyline</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">normal</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">vector_parallel_to_axis</span><span class="p">(</span><span class="n">normal</span><span class="p">):</span>
+        <span class="n">vent</span> <span class="o">=</span> <span class="n">VentPolygon</span><span class="o">.</span><span class="n">from_polyline</span><span class="p">(</span><span class="n">polyline</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">vent</span> <span class="o">=</span> <span class="n">VentIncline</span><span class="o">.</span><span class="n">from_polyline</span><span class="p">(</span><span class="n">polyline</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">vent</span></div>
+
+
+
+<div class="viewcode-block" id="create_vent_from_circle">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_vent_from_circle">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_vent_from_circle</span><span class="p">(</span><span class="n">circle</span><span class="p">):</span>
+    <span class="n">vent</span> <span class="o">=</span> <span class="n">VentCircle</span><span class="o">.</span><span class="n">from_circle</span><span class="p">(</span><span class="n">circle</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">vent</span></div>
+
+
+
+<div class="viewcode-block" id="create_block_from_box">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_block_from_box">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_block_from_box</span><span class="p">(</span><span class="n">box</span><span class="p">):</span>
+    <span class="n">block</span> <span class="o">=</span> <span class="n">BlockPrism</span><span class="o">.</span><span class="n">from_box</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">block</span></div>
+
+
+
+<div class="viewcode-block" id="create_block_from_brep">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_block_from_brep">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_block_from_brep</span><span class="p">(</span><span class="n">brep</span><span class="p">):</span>
+    <span class="n">block</span> <span class="o">=</span> <span class="n">BlockPolygon</span><span class="o">.</span><span class="n">from_brep</span><span class="p">(</span><span class="n">brep</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">block</span></div>
+
+
+
+<div class="viewcode-block" id="create_source_from_box">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_source_from_box">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_source_from_box</span><span class="p">(</span><span class="n">box</span><span class="p">):</span>
+    <span class="n">source</span> <span class="o">=</span> <span class="n">SourcePrism</span><span class="o">.</span><span class="n">from_box</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">source</span></div>
+
+
+
+<div class="viewcode-block" id="create_source_from_polygon_2d">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_source_from_polygon_2d">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_source_from_polygon_2d</span><span class="p">(</span><span class="n">polyline</span><span class="p">):</span>
+    <span class="n">source</span> <span class="o">=</span> <span class="n">SourcePolygon</span><span class="o">.</span><span class="n">from_polygon_2d</span><span class="p">(</span><span class="n">polyline</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">source</span></div>
+
+
+
+<div class="viewcode-block" id="create_source_from_polygon_3d">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_source_from_polygon_3d">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_source_from_polygon_3d</span><span class="p">(</span><span class="n">extrude</span><span class="p">):</span>
+    <span class="n">source</span> <span class="o">=</span> <span class="n">SourcePolygon</span><span class="o">.</span><span class="n">from_polygon_3d</span><span class="p">(</span><span class="n">extrude</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">source</span></div>
+
+
+
+<div class="viewcode-block" id="create_fan_from_circle">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_fan_from_circle">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_fan_from_circle</span><span class="p">(</span><span class="n">circle</span><span class="p">):</span>
+    <span class="n">fan</span> <span class="o">=</span> <span class="n">FanCircle</span><span class="o">.</span><span class="n">from_circle</span><span class="p">(</span><span class="n">circle</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fan</span></div>
+
+
+
+<div class="viewcode-block" id="create_person_from_point">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_person_from_point">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_person_from_point</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">posture</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">facing_dir</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">person</span> <span class="o">=</span> <span class="n">Person</span><span class="p">()</span>
+    <span class="n">person</span> <span class="o">=</span> <span class="n">person</span><span class="o">.</span><span class="n">from_point</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">posture</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">facing_dir</span><span class="o">=</span><span class="n">facing_dir</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">person</span></div>
+
+
+
+<div class="viewcode-block" id="create_source_from_person">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_source_from_person">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_source_from_person</span><span class="p">(</span><span class="n">person</span><span class="p">):</span>
+    <span class="n">head</span> <span class="o">=</span> <span class="n">person</span><span class="o">.</span><span class="n">head</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="mf">0.05</span>
+    <span class="n">point1</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Point3d</span><span class="p">(</span><span class="n">head</span><span class="o">.</span><span class="n">point1</span><span class="o">.</span><span class="n">X</span> <span class="o">-</span> <span class="n">n</span><span class="p">,</span> <span class="n">head</span><span class="o">.</span><span class="n">point1</span><span class="o">.</span><span class="n">Y</span> <span class="o">-</span> <span class="n">n</span><span class="p">,</span> <span class="n">head</span><span class="o">.</span><span class="n">point1</span><span class="o">.</span><span class="n">Z</span> <span class="o">-</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">point2</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">Point3d</span><span class="p">(</span><span class="n">head</span><span class="o">.</span><span class="n">point2</span><span class="o">.</span><span class="n">X</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="n">head</span><span class="o">.</span><span class="n">point2</span><span class="o">.</span><span class="n">Y</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="n">head</span><span class="o">.</span><span class="n">point2</span><span class="o">.</span><span class="n">Z</span> <span class="o">+</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">box</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">BoundingBox</span><span class="p">([</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">])</span>
+    <span class="n">source</span> <span class="o">=</span> <span class="n">SourcePrism</span><span class="o">.</span><span class="n">from_box</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+    <span class="n">source</span><span class="o">.</span><span class="n">visiable</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">source</span></div>
+
+
+
+<div class="viewcode-block" id="object_instance">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.object_instance">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">object_instance</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    获取对象的实例类型，支持Domain、Wall、Partition、Opening、Vent、Block、Source、Fan、Person、Resistance。</span>
+
+<span class="sd">    :param obj: 对象</span>
+<span class="sd">    :return: 实例类型</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Domain</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;domain&quot;</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Wall</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;wall&quot;</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Partition</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;partition&quot;</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Opening</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;opening&quot;</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Vent</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;vent&quot;</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Block</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;block&quot;</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Source</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;source&quot;</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Fan</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;fan&quot;</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Person</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;person&quot;</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Resistance</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;resistance&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Wrong object&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="run">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.run">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">project</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    运行项目。</span>
+
+<span class="sd">    :param path: 项目路径</span>
+<span class="sd">    :param project: 项目名称</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">process</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="n">path</span><span class="p">,</span> <span class="n">project</span><span class="p">])</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">process</span><span class="o">.</span><span class="n">kill</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="get_brep_parallel">
+<a class="viewcode-back" href="../../../ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.get_brep_parallel">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_brep_parallel</span><span class="p">(</span><span class="n">brep</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    获取BREP的平行面。</span>
+
+<span class="sd">    :param brep: BREP</span>
+<span class="sd">    :return: x_parallel, y_parallel, z_parallel</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tol</span> <span class="o">=</span> <span class="mf">0.001</span>
+    <span class="n">x_parallel</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">y_parallel</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">z_parallel</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="n">normals</span> <span class="o">=</span> <span class="p">[</span><span class="n">face</span><span class="o">.</span><span class="n">Normal</span> <span class="k">for</span> <span class="n">face</span> <span class="ow">in</span> <span class="n">brep</span><span class="o">.</span><span class="n">Faces</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">([</span><span class="n">normal</span><span class="o">.</span><span class="n">X</span> <span class="k">for</span> <span class="n">normal</span> <span class="ow">in</span> <span class="n">normals</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">normal</span><span class="o">.</span><span class="n">X</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">tol</span><span class="p">])</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">x_parallel</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">([</span><span class="n">normal</span><span class="o">.</span><span class="n">Y</span> <span class="k">for</span> <span class="n">normal</span> <span class="ow">in</span> <span class="n">normals</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">normal</span><span class="o">.</span><span class="n">Y</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">tol</span><span class="p">])</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">y_parallel</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">([</span><span class="n">normal</span><span class="o">.</span><span class="n">Z</span> <span class="k">for</span> <span class="n">normal</span> <span class="ow">in</span> <span class="n">normals</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">normal</span><span class="o">.</span><span class="n">Z</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">tol</span><span class="p">])</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">z_parallel</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">return</span> <span class="n">x_parallel</span><span class="p">,</span> <span class="n">y_parallel</span><span class="p">,</span> <span class="n">z_parallel</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ringo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

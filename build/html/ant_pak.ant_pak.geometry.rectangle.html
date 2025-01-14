@@ -40,7 +40,20 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">模块:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">简介</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Airpak支持的Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id1">支持的几何形状</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id2">建模原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#why-rhino">Why Rhino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id3">插件功能特性</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">安装</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">安装方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#id2">插件使用方法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">模块</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">ant_pak</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="ant_pak.html">ant_pak package</a><ul class="current">
@@ -102,25 +115,63 @@ ectangle.py
 <dl class="py method">
 <dt class="sig sig-object py" id="ant_pak.ant_pak.geometry.rectangle.RectangleMixIn.from_plane_and_points">
 <span class="sig-name descname"><span class="pre">from_plane_and_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plane</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/geometry/rectangle.html#RectangleMixIn.from_plane_and_points"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.geometry.rectangle.RectangleMixIn.from_plane_and_points" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>从平面和点创建矩形。</p>
+<p>该方法根据给定的平面和点创建一个矩形对象，并将其应用到当前矩形对象中。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plane</strong> -- 矩形所在的平面。</p></li>
+<li><p><strong>point1</strong> -- 矩形的第一个点。</p></li>
+<li><p><strong>point2</strong> -- 矩形的第二个点。</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return RectangleMixIn<span class="colon">:</span></dt>
+<dd class="field-even"><p>创建的矩形对象。</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ant_pak.ant_pak.geometry.rectangle.RectangleMixIn.from_points_string">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_points_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point2_string</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/geometry/rectangle.html#RectangleMixIn.from_points_string"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.geometry.rectangle.RectangleMixIn.from_points_string" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>从点字符串创建矩形。</p>
+<p>该方法根据给定的点字符串创建一个矩形对象，并将其应用到当前矩形对象中。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point1_string</strong> -- 第一个点的字符串表示形式。</p></li>
+<li><p><strong>point2_string</strong> -- 第二个点的字符串表示形式。</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return RectangleMixIn<span class="colon">:</span></dt>
+<dd class="field-even"><p>创建的矩形对象。</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ant_pak.ant_pak.geometry.rectangle.RectangleMixIn.from_rect">
 <span class="sig-name descname"><span class="pre">from_rect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rectangle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/geometry/rectangle.html#RectangleMixIn.from_rect"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.geometry.rectangle.RectangleMixIn.from_rect" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>从矩形对象创建矩形。
+该方法从给定的矩形对象中提取几何信息，并将其应用到当前矩形对象中。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rectangle</strong> -- 要从中复制几何信息的矩形对象。</p>
+</dd>
+<dt class="field-even">Return RectangleMixIn<span class="colon">:</span></dt>
+<dd class="field-even"><p>创建的矩形对象。</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ant_pak.ant_pak.geometry.rectangle.RectangleMixIn.geo_to_str">
 <span class="sig-name descname"><span class="pre">geo_to_str</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/geometry/rectangle.html#RectangleMixIn.geo_to_str"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.geometry.rectangle.RectangleMixIn.geo_to_str" title="Link to this definition">¶</a></dt>
 <dd><p>将矩形的几何信息转换为字符串表示形式。</p>
 <p>该方法将矩形的中心点、半径、高度等信息转换为字符串，并将这些字符串拼接成一个完整的形状字符串。</p>
-<dl class="simple">
-<dt>返回:</dt><dd><p>str: 表示矩形几何信息的字符串。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return str<span class="colon">:</span></dt>
+<dd class="field-odd"><p>表示矩形几何信息的字符串。</p>
 </dd>
 </dl>
 </dd></dl>

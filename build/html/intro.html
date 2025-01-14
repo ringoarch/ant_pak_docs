@@ -1,0 +1,227 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Airpak支持的Objects &mdash; Ant pak 0.1.1 文档</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/documentation_options.js?v=d06dfecd"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="安装方法" href="install.html" />
+    <link rel="prev" title="Ant pak 开发文档" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Ant pak
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">简介</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Airpak支持的Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#id1">支持的几何形状</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#id2">建模原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#why-rhino">Why Rhino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#id3">插件功能特性</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">安装</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">安装方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#id2">插件使用方法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">模块</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">ant_pak</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Ant pak</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Airpak支持的Objects</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/intro.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="airpakobjects">
+<h1>Airpak支持的Objects<a class="headerlink" href="#airpakobjects" title="Link to this heading">¶</a></h1>
+<p>Airpak是基于<code class="docutils literal notranslate"><span class="pre">object</span></code>的建模方式，这些<code class="docutils literal notranslate"><span class="pre">object</span></code>包括:</p>
+<ul class="simple">
+<li><p>房间 <code class="docutils literal notranslate"><span class="pre">Domain</span></code></p></li>
+<li><p>人体 <code class="docutils literal notranslate"><span class="pre">persons</span></code></p></li>
+<li><p>块 <code class="docutils literal notranslate"><span class="pre">blocks</span></code></p></li>
+<li><p>风扇 <code class="docutils literal notranslate"><span class="pre">fans</span></code></p></li>
+<li><p>通风孔 <code class="docutils literal notranslate"><span class="pre">openings</span></code></p></li>
+<li><p>墙壁 <code class="docutils literal notranslate"><span class="pre">walls</span></code></p></li>
+<li><p>隔板 <code class="docutils literal notranslate"><span class="pre">partitions</span></code></p></li>
+<li><p>热负荷源 <code class="docutils literal notranslate"><span class="pre">source</span></code></p></li>
+<li><p>阻尼板（块） <code class="docutils literal notranslate"><span class="pre">resistances</span></code></p></li>
+<li><p>排烟罩 <code class="docutils literal notranslate"><span class="pre">hoods</span></code></p></li>
+<li><p>热交换器 <code class="docutils literal notranslate"><span class="pre">exchanges</span></code></p></li>
+</ul>
+<p>另外，Airpak还提供了各式各样的<code class="docutils literal notranslate"><span class="pre">diffuser</span></code>模型，以及用于计算大气边界层的模型。</p>
+</section>
+<section id="id1">
+<h1>支持的几何形状<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<p>Airpak提供了与CAD软件的接口，可以通过<code class="docutils literal notranslate"><span class="pre">IGES</span></code>和<code class="docutils literal notranslate"><span class="pre">DXF</span></code>格式导入<code class="docutils literal notranslate"><span class="pre">CAD</span></code>软件的几何。但导入后，还需要重新描图重新转换为模型，因此建模速度相当受限。 常规建模方式可参考：<a class="reference external" href="https://www.bilibili.com/video/BV1L8411s7Rq/?vd_source=6c183c6a7ab72d7497f506752c5e8071">airpak精讲课2-建模</a><br />
+Airpak一般支持的简单的几何形状建模，同时也支持复杂网格建模，但其默认的网格划分工具不支持，大部分时候都是不可以用的。因此，对于异性体建模，可以通过简化成多个上述支持的简单几何形状来表示。</p>
+</section>
+<section id="id2">
+<h1>建模原理<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h1>
+<p>Airpak的模型文件是保存在一个项目文件夹里面的，包括如下文件：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model</span></code>——模型文件</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">problem</span></code>——项目设置文件</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">post_objects</span></code>——后处理文件</p></li>
+</ul>
+<p>上述文件均是文本文件，可以通过编辑文本的方式建立模型，因此，只要将模型几何图形和软件设置翻译为文本格式，就可以通过例如<code class="docutils literal notranslate"><span class="pre">Rhino</span></code>、<code class="docutils literal notranslate"><span class="pre">AutoCAD</span></code>等第三方建模工具进行建模。本插件为基于Rhino的实现方法。</p>
+</section>
+<section id="why-rhino">
+<h1>Why Rhino<a class="headerlink" href="#why-rhino" title="Link to this heading">¶</a></h1>
+<p>Rhino本身建模相对比较简单强大，可以快速进行几何建模工作，此外，利用Grasshopper插件进行Airpak建模，还有如下优势：</p>
+<ul class="simple">
+<li><p>参数化建模，对于有规律布置的组件，可以通过参数化快速进行建模，在优化过程中，通过调节参数，可以实现快速批量化建模；</p></li>
+<li><p>批量化参数设置，对多个组件可以进行批量化设置风速、温度、热量、污染物扩散率等参数设置；</p></li>
+<li><p>通过简单设置，可以快速进行后处理切片设置；</p></li>
+<li><p>快速对常规的模拟设置进行修改；</p></li>
+<li><p>可视化编程，自定义功能强大。</p></li>
+</ul>
+</section>
+<section id="id3">
+<h1>插件功能特性<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>支持简单几何体建模，不支持复杂网格建模。具体包括如下几何体：</p>
+<ul>
+<li><p>三维几何体</p>
+<ul>
+<li><p>正六面体<code class="docutils literal notranslate"><span class="pre">prism</span></code></p></li>
+<li><p>圆柱体   <code class="docutils literal notranslate"><span class="pre">cylinder</span></code></p></li>
+<li><p>球体 <code class="docutils literal notranslate"><span class="pre">sphere</span></code></p></li>
+<li><p>多边体 <code class="docutils literal notranslate"><span class="pre">polyhedron</span></code></p></li>
+</ul>
+</li>
+<li><p>二维集合体</p>
+<ul>
+<li><p>矩形<code class="docutils literal notranslate"><span class="pre">rectangle</span></code></p></li>
+<li><p>圆形 <code class="docutils literal notranslate"><span class="pre">circular</span></code></p></li>
+<li><p>多边形 <code class="docutils literal notranslate"><span class="pre">polygon</span></code></p></li>
+<li><p>倾斜面 <code class="docutils literal notranslate"><span class="pre">inclined</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>支持模型在Rhino界面的可视化。</p></li>
+<li><p>支持下述Object建模：</p>
+<ul>
+<li><p>房间 <code class="docutils literal notranslate"><span class="pre">Domain</span></code></p></li>
+<li><p>人体 <code class="docutils literal notranslate"><span class="pre">persons</span></code></p></li>
+<li><p>块 <code class="docutils literal notranslate"><span class="pre">blocks</span></code></p></li>
+<li><p>风扇 <code class="docutils literal notranslate"><span class="pre">fans</span></code></p></li>
+<li><p>通风孔 <code class="docutils literal notranslate"><span class="pre">openings</span></code></p></li>
+<li><p>墙壁 <code class="docutils literal notranslate"><span class="pre">walls</span></code></p></li>
+<li><p>隔板 <code class="docutils literal notranslate"><span class="pre">partitions</span></code></p></li>
+<li><p>热负荷源 <code class="docutils literal notranslate"><span class="pre">source</span></code></p></li>
+<li><p>阻尼板（块） <code class="docutils literal notranslate"><span class="pre">resistances</span></code></p></li>
+</ul>
+</li>
+<li><p>支持下述Object属性设置：</p>
+<ul>
+<li><p>温度<code class="docutils literal notranslate"><span class="pre">temperature</span></code></p></li>
+<li><p>压力<code class="docutils literal notranslate"><span class="pre">pressure</span></code></p></li>
+<li><p>污染物<code class="docutils literal notranslate"><span class="pre">species</span></code></p></li>
+<li><p>发热量<code class="docutils literal notranslate"><span class="pre">total</span> <span class="pre">heat</span></code></p></li>
+<li><p>人员MET <code class="docutils literal notranslate"><span class="pre">met</span></code></p></li>
+<li><p>阻力 <code class="docutils literal notranslate"><span class="pre">loss</span> <span class="pre">coefficient</span></code></p></li>
+</ul>
+</li>
+<li><p>支持后处理设置，包括：</p>
+<ul>
+<li><p>物体面 <code class="docutils literal notranslate"><span class="pre">object</span> <span class="pre">face</span></code></p></li>
+<li><p>切面 <code class="docutils literal notranslate"><span class="pre">cut</span></code></p></li>
+<li><p>ISO面 <code class="docutils literal notranslate"><span class="pre">iso</span></code></p></li>
+<li><p>监测点 <code class="docutils literal notranslate"><span class="pre">point</span></code></p></li>
+</ul>
+</li>
+<li><p>模拟设置，包括：</p>
+<ul>
+<li><p>湍流模型设置  <code class="docutils literal notranslate"><span class="pre">turbulent</span> <span class="pre">model</span></code></p></li>
+<li><p>污染物设置 <code class="docutils literal notranslate"><span class="pre">species</span></code></p></li>
+<li><p>模拟步长 <code class="docutils literal notranslate"><span class="pre">steps</span></code></p></li>
+<li><p>后处理设置 <code class="docutils literal notranslate"><span class="pre">post</span></code></p></li>
+<li><p>初始温度设置 <code class="docutils literal notranslate"><span class="pre">ambient</span> <span class="pre">temperature</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Ant pak 开发文档" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="install.html" class="btn btn-neutral float-right" title="安装方法" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ringo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

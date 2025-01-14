@@ -30,7 +30,7 @@ sys.path.insert(
 #     os.path.abspath("C:\\Program Files\\Rhino 7\\Plug-ins\\IronPython\\Lib"),
 # )
 
-print(sys.path)
+# print(sys.path)
 project = "Ant pak"
 copyright = "2025, ringo"
 author = "ringo"
@@ -40,6 +40,7 @@ release = "0.1.1"
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
+    "myst_parser",
     "sphinx.ext.autodoc",
     "sphinx.ext.doctest",
     "sphinx.ext.todo",
@@ -61,12 +62,14 @@ autodoc_mock_imports = [
     "System",
     "Grasshopper",
     "gh",
+    "ant_pak.setup",
+    # "ant_pak",
 ]
 
 templates_path = ["_templates"]
 exclude_patterns = []
 
-source_suffix = ".rst"
+# source_suffix = ".rst"
 
 
 language = "zh"

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ant_pak &mdash; Ant pak 0.1.1 文档</title>
+  <title>Ant pak 开发文档 &mdash; Ant pak 0.1.1 文档</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -18,7 +18,7 @@
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="搜索" href="search.html" />
     <link rel="next" title="ant_pak package" href="ant_pak.html" />
-    <link rel="prev" title="Ant pak 文档" href="index.html" /> 
+    <link rel="prev" title="安装方法" href="install.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -40,12 +40,30 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">模块:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">简介</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Airpak支持的Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id1">支持的几何形状</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id2">建模原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#why-rhino">Why Rhino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id3">插件功能特性</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">安装</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">安装方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#id2">插件使用方法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">开发文档</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">ant_pak</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ant_pak.html">ant_pak package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Ant pak 开发文档</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">模块说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#api">API 文档</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ant_pak.html">ant_pak package</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#id3">项目地址</a></li>
 </ul>
 
         </div>
@@ -62,7 +80,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">ant_pak</li>
+      <li class="breadcrumb-item active">Ant pak 开发文档</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/modules.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -73,7 +91,30 @@
            <div itemprop="articleBody">
              
   <section id="ant-pak">
-<h1>ant_pak<a class="headerlink" href="#ant-pak" title="Link to this heading">¶</a></h1>
+<h1>Ant pak 开发文档<a class="headerlink" href="#ant-pak" title="Link to this heading">¶</a></h1>
+<p>关于 ant_pak 开发文档，主要面对 ant_pak 开发者，提供了 ant_pak 的 API 文档和开发指南。</p>
+<p>开发者可以通过以下方式获取 ant_pak 开发文档：</p>
+<ul class="simple">
+<li><p>在线阅读：在线阅读：<a class="reference external" href="https://ant-pak.readthedocs.io/zh_CN/latest/">https://ant-pak.readthedocs.io/zh_CN/latest/</a></p></li>
+<li><p>下载文档：下载文档：</p></li>
+</ul>
+<section id="id1">
+<h2>模块说明<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<p>该模块包含以下子模块：</p>
+<ul class="simple">
+<li><p><a class="reference external" href="ant_pak.html">ant_pak</a> 核心模块，包括基本的数据结构和算法。</p></li>
+<li><p><a class="reference external" href="ant_pak.geometry.html">geometry</a> 几何模块，包括点、线、多边形等基本几何元素。</p></li>
+<li><p><a class="reference external" href="ant_pak.graphic.html">graphic</a> 图形模块，包括图形绘制、颜色设置等。</p></li>
+</ul>
+<p>除此之外，还包括如下组件：</p>
+<ul class="simple">
+<li><p><a class="reference external" href="ant_pak.config.html">config</a> 配置模块，包括配置文件读取、设置等。</p></li>
+<li><p><a class="reference external" href="ant_pak.utility.html">utility</a> 工具模块，包括常用的工具函数。</p></li>
+<li><p><a class="reference external" href="ant_pak.core.html">core</a> 核心模块，包括基本的数据结构和算法。</p></li>
+</ul>
+</section>
+<section id="api">
+<h2>API 文档<a class="headerlink" href="#api" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="ant_pak.html">ant_pak package</a><ul>
@@ -100,14 +141,6 @@
 <li class="toctree-l3"><a class="reference internal" href="ant_pak.config.html">ant_pak.config module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="ant_pak.config.html#ant_pak.config.check_and_set_doc_user_text"><code class="docutils literal notranslate"><span class="pre">check_and_set_doc_user_text()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="ant_pak.config.html#ant_pak.config.clean_objects"><code class="docutils literal notranslate"><span class="pre">clean_objects()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="ant_pak.config.html#ant_pak.config.get_all_apertures"><code class="docutils literal notranslate"><span class="pre">get_all_apertures()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="ant_pak.config.html#ant_pak.config.get_all_buildings"><code class="docutils literal notranslate"><span class="pre">get_all_buildings()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="ant_pak.config.html#ant_pak.config.get_all_curt_walls"><code class="docutils literal notranslate"><span class="pre">get_all_curt_walls()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="ant_pak.config.html#ant_pak.config.get_all_doors"><code class="docutils literal notranslate"><span class="pre">get_all_doors()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="ant_pak.config.html#ant_pak.config.get_all_floors"><code class="docutils literal notranslate"><span class="pre">get_all_floors()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="ant_pak.config.html#ant_pak.config.get_all_rooms"><code class="docutils literal notranslate"><span class="pre">get_all_rooms()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="ant_pak.config.html#ant_pak.config.get_all_surfaces"><code class="docutils literal notranslate"><span class="pre">get_all_surfaces()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="ant_pak.config.html#ant_pak.config.get_all_windows"><code class="docutils literal notranslate"><span class="pre">get_all_windows()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="ant_pak.config.html#ant_pak.config.get_cloud_ip"><code class="docutils literal notranslate"><span class="pre">get_cloud_ip()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="ant_pak.config.html#ant_pak.config.get_doc_user_text"><code class="docutils literal notranslate"><span class="pre">get_doc_user_text()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="ant_pak.config.html#ant_pak.config.get_doc_user_text_keys"><code class="docutils literal notranslate"><span class="pre">get_doc_user_text_keys()</span></code></a></li>
@@ -241,12 +274,19 @@
 </ul>
 </div>
 </section>
+</section>
+<section id="id3">
+<h1>项目地址<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gitee.com/y1hong/ant_pak">Gitee</a></p></li>
+</ul>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Ant pak 文档" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="install.html" class="btn btn-neutral float-left" title="安装方法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="ant_pak.html" class="btn btn-neutral float-right" title="ant_pak package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

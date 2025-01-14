@@ -40,7 +40,20 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">模块:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">简介</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Airpak支持的Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id1">支持的几何形状</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id2">建模原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#why-rhino">Why Rhino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id3">插件功能特性</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">安装</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">安装方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#id2">插件使用方法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">模块</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">ant_pak</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="ant_pak.html">ant_pak package</a><ul class="current">
@@ -86,8 +99,107 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="ant-pak-ant-pak-object-wall-module">
-<h1>ant_pak.ant_pak.object.wall module<a class="headerlink" href="#ant-pak-ant-pak-object-wall-module" title="Link to this heading">¶</a></h1>
+  <section id="module-ant_pak.ant_pak.object.wall">
+<span id="ant-pak-ant-pak-object-wall-module"></span><h1>ant_pak.ant_pak.object.wall module<a class="headerlink" href="#module-ant_pak.ant_pak.object.wall" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.wall.Wall">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ant_pak.ant_pak.object.wall.</span></span><span class="sig-name descname"><span class="pre">Wall</span></span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/wall.html#Wall"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.wall.Wall" title="Link to this definition">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">_BaseObj</span></code>, <a class="reference internal" href="ant_pak.ant_pak.property.temperature.html#ant_pak.ant_pak.property.temperature.TemperatureMixIn" title="ant_pak.ant_pak.property.temperature.TemperatureMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">TemperatureMixIn</span></code></a>, <a class="reference internal" href="ant_pak.ant_pak.property.thermal.html#ant_pak.ant_pak.property.thermal.ThermalMixIn" title="ant_pak.ant_pak.property.thermal.ThermalMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThermalMixIn</span></code></a>, <a class="reference internal" href="ant_pak.ant_pak.property.radiation.html#ant_pak.ant_pak.property.radiation.RadiationMixIn" title="ant_pak.ant_pak.property.radiation.RadiationMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadiationMixIn</span></code></a></p>
+<dl class="simple">
+<dt>Properties:</dt><dd><ul class="simple">
+<li><p>identifier</p></li>
+<li><p>display_name</p></li>
+<li><p>base_point</p></li>
+<li><p>rooms</p></li>
+<li><p>geometry</p></li>
+<li><p>story</p></li>
+<li><p>height</p></li>
+<li><p>repeat</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.wall.Wall.set_itemp">
+<span class="sig-name descname"><span class="pre">set_itemp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">itemp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">26</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'C'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/wall.html#Wall.set_itemp"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.wall.Wall.set_itemp" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> -- 温度值</p></li>
+<li><p><strong>unit</strong> -- 温度单位，默认为摄氏度</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.wall.Wall.set_out_flux">
+<span class="sig-name descname"><span class="pre">set_out_flux</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/wall.html#Wall.set_out_flux"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.wall.Wall.set_out_flux" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.wall.Wall.set_thick">
+<span class="sig-name descname"><span class="pre">set_thick</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wall_thickness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eff_thick_on</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/wall.html#Wall.set_thick"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.wall.Wall.set_thick" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.wall.Wall.vtype">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">vtype</span></span><a class="headerlink" href="#ant_pak.ant_pak.object.wall.Wall.vtype" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.wall.WallCircle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ant_pak.ant_pak.object.wall.</span></span><span class="sig-name descname"><span class="pre">WallCircle</span></span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/wall.html#WallCircle"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.wall.WallCircle" title="Link to this definition">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#ant_pak.ant_pak.object.wall.Wall" title="ant_pak.ant_pak.object.wall.Wall"><code class="xref py py-class docutils literal notranslate"><span class="pre">Wall</span></code></a>, <a class="reference internal" href="ant_pak.ant_pak.geometry.circle.html#ant_pak.ant_pak.geometry.circle.CircleMixIn" title="ant_pak.ant_pak.geometry.circle.CircleMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">CircleMixIn</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.wall.WallCircle.from_circle">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_circle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circ</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/wall.html#WallCircle.from_circle"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.wall.WallCircle.from_circle" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.wall.WallIncline">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ant_pak.ant_pak.object.wall.</span></span><span class="sig-name descname"><span class="pre">WallIncline</span></span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/wall.html#WallIncline"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.wall.WallIncline" title="Link to this definition">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#ant_pak.ant_pak.object.wall.Wall" title="ant_pak.ant_pak.object.wall.Wall"><code class="xref py py-class docutils literal notranslate"><span class="pre">Wall</span></code></a>, <a class="reference internal" href="ant_pak.ant_pak.geometry.incline.html#ant_pak.ant_pak.geometry.incline.InclineMixIn" title="ant_pak.ant_pak.geometry.incline.InclineMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">InclineMixIn</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.wall.WallIncline.from_polyline">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_polyline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">polyline</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/wall.html#WallIncline.from_polyline"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.wall.WallIncline.from_polyline" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.wall.WallIncline.from_rectangle">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_rectangle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rectangle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/wall.html#WallIncline.from_rectangle"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.wall.WallIncline.from_rectangle" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.wall.WallPolygon">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ant_pak.ant_pak.object.wall.</span></span><span class="sig-name descname"><span class="pre">WallPolygon</span></span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/wall.html#WallPolygon"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.wall.WallPolygon" title="Link to this definition">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#ant_pak.ant_pak.object.wall.Wall" title="ant_pak.ant_pak.object.wall.Wall"><code class="xref py py-class docutils literal notranslate"><span class="pre">Wall</span></code></a>, <a class="reference internal" href="ant_pak.ant_pak.geometry.polygon.html#ant_pak.ant_pak.geometry.polygon.PolygonMixIn" title="ant_pak.ant_pak.geometry.polygon.PolygonMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">PolygonMixIn</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.wall.WallPolygon.from_polyline">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_polyline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">polyline</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/wall.html#WallPolygon.from_polyline"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.wall.WallPolygon.from_polyline" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.wall.WallRectangle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ant_pak.ant_pak.object.wall.</span></span><span class="sig-name descname"><span class="pre">WallRectangle</span></span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/wall.html#WallRectangle"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.wall.WallRectangle" title="Link to this definition">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#ant_pak.ant_pak.object.wall.Wall" title="ant_pak.ant_pak.object.wall.Wall"><code class="xref py py-class docutils literal notranslate"><span class="pre">Wall</span></code></a>, <a class="reference internal" href="ant_pak.ant_pak.geometry.rectangle.html#ant_pak.ant_pak.geometry.rectangle.RectangleMixIn" title="ant_pak.ant_pak.geometry.rectangle.RectangleMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">RectangleMixIn</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.wall.WallRectangle.from_rectangle">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_rectangle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rectangle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/wall.html#WallRectangle.from_rectangle"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.wall.WallRectangle.from_rectangle" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 
 

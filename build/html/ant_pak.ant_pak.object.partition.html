@@ -40,7 +40,20 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">模块:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">简介</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Airpak支持的Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id1">支持的几何形状</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id2">建模原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#why-rhino">Why Rhino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id3">插件功能特性</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">安装</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">安装方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#id2">插件使用方法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">模块</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">ant_pak</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="ant_pak.html">ant_pak package</a><ul class="current">
@@ -86,8 +99,161 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="ant-pak-ant-pak-object-partition-module">
-<h1>ant_pak.ant_pak.object.partition module<a class="headerlink" href="#ant-pak-ant-pak-object-partition-module" title="Link to this heading">¶</a></h1>
+  <section id="module-ant_pak.ant_pak.object.partition">
+<span id="ant-pak-ant-pak-object-partition-module"></span><h1>ant_pak.ant_pak.object.partition module<a class="headerlink" href="#module-ant_pak.ant_pak.object.partition" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.partition.Partition">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ant_pak.ant_pak.object.partition.</span></span><span class="sig-name descname"><span class="pre">Partition</span></span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/partition.html#Partition"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.partition.Partition" title="Link to this definition">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">_BaseObj</span></code>, <a class="reference internal" href="ant_pak.ant_pak.property.temperature.html#ant_pak.ant_pak.property.temperature.TemperatureMixIn" title="ant_pak.ant_pak.property.temperature.TemperatureMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">TemperatureMixIn</span></code></a>, <a class="reference internal" href="ant_pak.ant_pak.property.thermal.html#ant_pak.ant_pak.property.thermal.ThermalMixIn" title="ant_pak.ant_pak.property.thermal.ThermalMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThermalMixIn</span></code></a></p>
+<dl class="simple">
+<dt>Properties:</dt><dd><ul class="simple">
+<li><p>identifier</p></li>
+<li><p>display_name</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.partition.Partition.set_itemp">
+<span class="sig-name descname"><span class="pre">set_itemp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">itemp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">26</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'C'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/partition.html#Partition.set_itemp"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.partition.Partition.set_itemp" title="Link to this definition">¶</a></dt>
+<dd><p>设置分区内温度</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>itemp</strong> -- 分区内温度</p></li>
+<li><p><strong>unit</strong> -- 单位,默认为摄氏度</p></li>
+</ul>
+</dd>
+</dl>
+<p>:return:None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.partition.Partition.set_out_flux">
+<span class="sig-name descname"><span class="pre">set_out_flux</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/partition.html#Partition.set_out_flux"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.partition.Partition.set_out_flux" title="Link to this definition">¶</a></dt>
+<dd><p>设置分区外热流</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> -- 热流</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.partition.Partition.set_thick">
+<span class="sig-name descname"><span class="pre">set_thick</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">partition_thickness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plate_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'adiabatic_thick'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/partition.html#Partition.set_thick"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.partition.Partition.set_thick" title="Link to this definition">¶</a></dt>
+<dd><p>设置分区厚度</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>partition_thickness</strong> -- 分区厚度</p></li>
+<li><p><strong>plate_type</strong> -- 分区类型,默认为adiabatic_thick</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.partition.Partition.vtype">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">vtype</span></span><a class="headerlink" href="#ant_pak.ant_pak.object.partition.Partition.vtype" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.partition.PartitionCircle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ant_pak.ant_pak.object.partition.</span></span><span class="sig-name descname"><span class="pre">PartitionCircle</span></span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/partition.html#PartitionCircle"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.partition.PartitionCircle" title="Link to this definition">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#ant_pak.ant_pak.object.partition.Partition" title="ant_pak.ant_pak.object.partition.Partition"><code class="xref py py-class docutils literal notranslate"><span class="pre">Partition</span></code></a>, <a class="reference internal" href="ant_pak.ant_pak.geometry.circle.html#ant_pak.ant_pak.geometry.circle.CircleMixIn" title="ant_pak.ant_pak.geometry.circle.CircleMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">CircleMixIn</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.partition.PartitionCircle.from_circle">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_circle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circ</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/partition.html#PartitionCircle.from_circle"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.partition.PartitionCircle.from_circle" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>circ</strong> -- 输入的Circle对象。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>创建的PartitionCircle对象。</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.partition.PartitionIncline">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ant_pak.ant_pak.object.partition.</span></span><span class="sig-name descname"><span class="pre">PartitionIncline</span></span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/partition.html#PartitionIncline"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.partition.PartitionIncline" title="Link to this definition">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#ant_pak.ant_pak.object.partition.Partition" title="ant_pak.ant_pak.object.partition.Partition"><code class="xref py py-class docutils literal notranslate"><span class="pre">Partition</span></code></a>, <a class="reference internal" href="ant_pak.ant_pak.geometry.incline.html#ant_pak.ant_pak.geometry.incline.InclineMixIn" title="ant_pak.ant_pak.geometry.incline.InclineMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">InclineMixIn</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.partition.PartitionIncline.from_polyline">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_polyline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">polyline</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/partition.html#PartitionIncline.from_polyline"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.partition.PartitionIncline.from_polyline" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>polyline</strong> -- 输入的Polyline对象。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>创建的PartitionIncline对象。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.partition.PartitionIncline.from_rectangle">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_rectangle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rect</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/partition.html#PartitionIncline.from_rectangle"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.partition.PartitionIncline.from_rectangle" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rect</strong> -- 输入的Rectangle对象。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>创建的PartitionIncline对象。</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.partition.PartitionPolygon">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ant_pak.ant_pak.object.partition.</span></span><span class="sig-name descname"><span class="pre">PartitionPolygon</span></span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/partition.html#PartitionPolygon"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.partition.PartitionPolygon" title="Link to this definition">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#ant_pak.ant_pak.object.partition.Partition" title="ant_pak.ant_pak.object.partition.Partition"><code class="xref py py-class docutils literal notranslate"><span class="pre">Partition</span></code></a>, <a class="reference internal" href="ant_pak.ant_pak.geometry.polygon.html#ant_pak.ant_pak.geometry.polygon.PolygonMixIn" title="ant_pak.ant_pak.geometry.polygon.PolygonMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">PolygonMixIn</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.partition.PartitionPolygon.from_polyline">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_polyline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">polyline</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/partition.html#PartitionPolygon.from_polyline"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.partition.PartitionPolygon.from_polyline" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>polyline</strong> -- 输入的Polyline对象。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>创建的PartitionPolygon对象。</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.partition.PartitionRectangle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ant_pak.ant_pak.object.partition.</span></span><span class="sig-name descname"><span class="pre">PartitionRectangle</span></span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/partition.html#PartitionRectangle"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.partition.PartitionRectangle" title="Link to this definition">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#ant_pak.ant_pak.object.partition.Partition" title="ant_pak.ant_pak.object.partition.Partition"><code class="xref py py-class docutils literal notranslate"><span class="pre">Partition</span></code></a>, <a class="reference internal" href="ant_pak.ant_pak.geometry.rectangle.html#ant_pak.ant_pak.geometry.rectangle.RectangleMixIn" title="ant_pak.ant_pak.geometry.rectangle.RectangleMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">RectangleMixIn</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.partition.PartitionRectangle.from_rectangle">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_rectangle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rectangle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/partition.html#PartitionRectangle.from_rectangle"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.partition.PartitionRectangle.from_rectangle" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rectangle</strong> -- 输入的Rectangle对象。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>创建的PartitionRectangle对象。</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 

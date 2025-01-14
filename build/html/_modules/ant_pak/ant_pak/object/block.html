@@ -1,0 +1,290 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ant_pak.ant_pak.object.block &mdash; Ant pak 0.1.1 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../../_static/documentation_options.js?v=d06dfecd"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Ant pak
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">简介</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html">Airpak支持的Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html#id1">支持的几何形状</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html#id2">建模原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html#why-rhino">Why Rhino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html#id3">插件功能特性</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">安装</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html">下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html#id2">安装依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html#ant-pak">安装Ant pak插件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html#id3">学习案例</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">开发文档</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">Ant pak 开发文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html#id3">项目地址</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">关于我们</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contact.html">团队简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contact.html#id2">联系我们</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Ant pak</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">模块代码</a></li>
+      <li class="breadcrumb-item active">ant_pak.ant_pak.object.block</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>ant_pak.ant_pak.object.block 源代码</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">@DATE: 2025-01-14 17:21:53</span>
+<span class="sd">@Author: ringo</span>
+<span class="sd">@Version: 1.0</span>
+<span class="sd">@File: ant_pak\object\block.py</span>
+<span class="sd">@Software: vscode</span>
+<span class="sd">@Description:</span>
+<span class="sd">        </span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._base_object</span><span class="w"> </span><span class="kn">import</span> <span class="n">_BaseObj</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">Rhino.Geometry</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rg</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">..config</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utility</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">..property.temperature</span><span class="w"> </span><span class="kn">import</span> <span class="n">TemperatureMixIn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..property.thermal</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThermalMixIn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..property.radiation</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadiationMixIn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..geometry.prism</span><span class="w"> </span><span class="kn">import</span> <span class="n">PrismMixIn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..geometry.polygon</span><span class="w"> </span><span class="kn">import</span> <span class="n">PolygonMixIn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..geometry.rectangle</span><span class="w"> </span><span class="kn">import</span> <span class="n">RectangleMixIn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..geometry.cylinder</span><span class="w"> </span><span class="kn">import</span> <span class="n">CylinderMixIn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..property.species</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpeciesMixIn</span>
+
+
+<div class="viewcode-block" id="Block">
+<a class="viewcode-back" href="../../../../ant_pak.ant_pak.object.block.html#ant_pak.ant_pak.object.block.Block">[文档]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Block</span><span class="p">(</span><span class="n">_BaseObj</span><span class="p">,</span> <span class="n">ThermalMixIn</span><span class="p">,</span> <span class="n">SpeciesMixIn</span><span class="p">,</span> <span class="n">RadiationMixIn</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Properties:</span>
+<span class="sd">        * identifier</span>
+<span class="sd">        * display_name</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># __slots__ = (&quot;display_name&quot;,)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        初始化Block对象。</span>
+
+<span class="sd">        该方法调用父类的初始化方法，并设置一些默认属性。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">_BaseObj</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>  <span class="c1"># process the identifier</span>
+        <span class="n">ThermalMixIn</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">SpeciesMixIn</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">RadiationMixIn</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">obj_type</span> <span class="o">=</span> <span class="s2">&quot;block&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_stype</span> <span class="o">=</span> <span class="n">STYPE</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_genus</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">display_name</span> <span class="o">=</span> <span class="s2">&quot;block.</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">identifier</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">block_type</span> <span class="o">=</span> <span class="s2">&quot;hollow&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_body_settings</span><span class="p">([</span><span class="s2">&quot;current_genus&quot;</span><span class="p">,</span> <span class="s2">&quot;block_type&quot;</span><span class="p">])</span>
+
+<div class="viewcode-block" id="Block.set_all_temp">
+<a class="viewcode-back" href="../../../../ant_pak.ant_pak.object.block.html#ant_pak.ant_pak.object.block.Block.set_all_temp">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_all_temp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">all_temp</span><span class="o">=</span><span class="mi">26</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;C&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        设置所有温度相关的属性。</span>
+
+<span class="sd">        :param all_temp: 温度值，默认为26。</span>
+<span class="sd">        :param unit: 温度单位，默认为&quot;C&quot;（摄氏度）。</span>
+
+<span class="sd">        :return self: 返回当前对象，以便进行链式调用。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_body_settings</span><span class="p">(</span>
+            <span class="p">[</span><span class="s2">&quot;all_temp&quot;</span><span class="p">,</span> <span class="s2">&quot;thermal_type&quot;</span><span class="p">,</span> <span class="s2">&quot;all_thermal_type&quot;</span><span class="p">,</span> <span class="s2">&quot;thermal_rtype&quot;</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">thermal_type</span> <span class="o">=</span> <span class="s2">&quot;temp&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_temp</span> <span class="o">=</span> <span class="n">ABS_TEMP</span> <span class="o">+</span> <span class="n">all_temp</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_thermal_type</span> <span class="o">=</span> <span class="s2">&quot;temp&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">thermal_rtype</span> <span class="o">=</span> <span class="s2">&quot;reftemp&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="BlockPrism">
+<a class="viewcode-back" href="../../../../ant_pak.ant_pak.object.block.html#ant_pak.ant_pak.object.block.BlockPrism">[文档]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">BlockPrism</span><span class="p">(</span><span class="n">Block</span><span class="p">,</span> <span class="n">PrismMixIn</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">Block</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">PrismMixIn</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BlockPrism.from_box">
+<a class="viewcode-back" href="../../../../ant_pak.ant_pak.object.block.html#ant_pak.ant_pak.object.block.BlockPrism.from_box">[文档]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_box</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">box</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        从Rhino的Box对象创建一个BlockPrism对象。</span>
+
+<span class="sd">        :param box: 输入的Box对象。</span>
+
+<span class="sd">        :return: 创建的BlockPrism对象。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">block</span> <span class="o">=</span> <span class="n">BlockPrism</span><span class="p">()</span>
+        <span class="n">block</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">from_brep</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">block</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="BlockPolygon">
+<a class="viewcode-back" href="../../../../ant_pak.ant_pak.object.block.html#ant_pak.ant_pak.object.block.BlockPolygon">[文档]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">BlockPolygon</span><span class="p">(</span><span class="n">Block</span><span class="p">,</span> <span class="n">PolygonMixIn</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">Block</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">PolygonMixIn</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BlockPolygon.from_brep">
+<a class="viewcode-back" href="../../../../ant_pak.ant_pak.object.block.html#ant_pak.ant_pak.object.block.BlockPolygon.from_brep">[文档]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_brep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">brep</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param brep: 输入的Brep对象。</span>
+<span class="sd">        :return: 创建的BlockPolygon对象。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">block</span> <span class="o">=</span> <span class="n">BlockPolygon</span><span class="p">()</span>
+        <span class="n">block</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">from_extrude</span><span class="p">(</span><span class="n">brep</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">block</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="BlockRectangle">
+<a class="viewcode-back" href="../../../../ant_pak.ant_pak.object.block.html#ant_pak.ant_pak.object.block.BlockRectangle">[文档]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">BlockRectangle</span><span class="p">(</span><span class="n">Block</span><span class="p">,</span> <span class="n">RectangleMixIn</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">Block</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">RectangleMixIn</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BlockRectangle.from_rectangle">
+<a class="viewcode-back" href="../../../../ant_pak.ant_pak.object.block.html#ant_pak.ant_pak.object.block.BlockRectangle.from_rectangle">[文档]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_rectangle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rectangle</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param rectangle: 输入的Rectangle对象。</span>
+<span class="sd">        :return: 创建的BlockRectangle对象。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">block</span> <span class="o">=</span> <span class="n">BlockRectangle</span><span class="p">()</span>
+        <span class="n">block</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">from_rect</span><span class="p">(</span><span class="n">rectangle</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">block</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="BlockCylinder">
+<a class="viewcode-back" href="../../../../ant_pak.ant_pak.object.block.html#ant_pak.ant_pak.object.block.BlockCylinder">[文档]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">BlockCylinder</span><span class="p">(</span><span class="n">Block</span><span class="p">,</span> <span class="n">CylinderMixIn</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">Block</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">CylinderMixIn</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BlockCylinder.from_cylinder">
+<a class="viewcode-back" href="../../../../ant_pak.ant_pak.object.block.html#ant_pak.ant_pak.object.block.BlockCylinder.from_cylinder">[文档]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_cylinder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cylinder</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param cylinder: 输入的Cylinder对象。</span>
+<span class="sd">        :return: 创建的BlockCylinder对象。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">block</span> <span class="o">=</span> <span class="n">BlockCylinder</span><span class="p">()</span>
+        <span class="n">block</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">from_cyl</span><span class="p">(</span><span class="n">cylinder</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">block</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ringo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

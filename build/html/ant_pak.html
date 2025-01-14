@@ -40,7 +40,20 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">模块:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">简介</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Airpak支持的Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id1">支持的几何形状</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id2">建模原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#why-rhino">Why Rhino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id3">插件功能特性</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">安装</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">安装方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#id2">插件使用方法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">模块</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">ant_pak</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">ant_pak package</a><ul>
@@ -91,6 +104,8 @@
              
   <section id="ant-pak-package">
 <h1>ant_pak package<a class="headerlink" href="#ant-pak-package" title="Link to this heading">¶</a></h1>
+<p>Ant pak 开发文档
+包括核心模块、工具模块、配置模块、图形模块等。</p>
 <section id="subpackages">
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
@@ -119,15 +134,60 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="ant_pak.ant_pak.sets.html">ant_pak.ant_pak.sets package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.sets.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.sets.html#module-contents">Module contents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.sets.html#module-ant_pak.ant_pak.sets">Module contents</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="ant_pak.ant_pak.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="ant_pak.ant_pak.config.html">ant_pak.ant_pak.config module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ant_pak.ant_pak.load.html">ant_pak.ant_pak.load module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ant_pak.ant_pak.model.html">ant_pak.ant_pak.model module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ant_pak.ant_pak.load.html">ant_pak.ant_pak.load module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.load.html#ant_pak.ant_pak.load.flags_to_dict"><code class="docutils literal notranslate"><span class="pre">flags_to_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.load.html#ant_pak.ant_pak.load.load_project"><code class="docutils literal notranslate"><span class="pre">load_project()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.load.html#ant_pak.ant_pak.load.read_object_string"><code class="docutils literal notranslate"><span class="pre">read_object_string()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.load.html#ant_pak.ant_pak.load.read_object_strings"><code class="docutils literal notranslate"><span class="pre">read_object_strings()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ant_pak.ant_pak.model.html">ant_pak.ant_pak.model module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.copy_problem"><code class="docutils literal notranslate"><span class="pre">copy_problem()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_block_from_box"><code class="docutils literal notranslate"><span class="pre">create_block_from_box()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_block_from_brep"><code class="docutils literal notranslate"><span class="pre">create_block_from_brep()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_domain"><code class="docutils literal notranslate"><span class="pre">create_domain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_fan_from_circle"><code class="docutils literal notranslate"><span class="pre">create_fan_from_circle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_opening"><code class="docutils literal notranslate"><span class="pre">create_opening()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_opening_from_circle"><code class="docutils literal notranslate"><span class="pre">create_opening_from_circle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_opening_from_crv"><code class="docutils literal notranslate"><span class="pre">create_opening_from_crv()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_opening_from_polyline"><code class="docutils literal notranslate"><span class="pre">create_opening_from_polyline()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_opening_from_rectangle"><code class="docutils literal notranslate"><span class="pre">create_opening_from_rectangle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_partition_from_circle"><code class="docutils literal notranslate"><span class="pre">create_partition_from_circle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_partition_from_crv"><code class="docutils literal notranslate"><span class="pre">create_partition_from_crv()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_partition_from_polyline"><code class="docutils literal notranslate"><span class="pre">create_partition_from_polyline()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_partition_from_rectangle"><code class="docutils literal notranslate"><span class="pre">create_partition_from_rectangle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_person_from_point"><code class="docutils literal notranslate"><span class="pre">create_person_from_point()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_resistance_from_box"><code class="docutils literal notranslate"><span class="pre">create_resistance_from_box()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_resistance_from_brep"><code class="docutils literal notranslate"><span class="pre">create_resistance_from_brep()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_resistance_from_cylinder"><code class="docutils literal notranslate"><span class="pre">create_resistance_from_cylinder()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_resistance_from_polygon"><code class="docutils literal notranslate"><span class="pre">create_resistance_from_polygon()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_source_from_box"><code class="docutils literal notranslate"><span class="pre">create_source_from_box()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_source_from_person"><code class="docutils literal notranslate"><span class="pre">create_source_from_person()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_source_from_polygon_2d"><code class="docutils literal notranslate"><span class="pre">create_source_from_polygon_2d()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_source_from_polygon_3d"><code class="docutils literal notranslate"><span class="pre">create_source_from_polygon_3d()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_vent_from_circle"><code class="docutils literal notranslate"><span class="pre">create_vent_from_circle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_vent_from_crv"><code class="docutils literal notranslate"><span class="pre">create_vent_from_crv()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_vent_from_polyline"><code class="docutils literal notranslate"><span class="pre">create_vent_from_polyline()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_vent_from_rectangle"><code class="docutils literal notranslate"><span class="pre">create_vent_from_rectangle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_wall_from_crv"><code class="docutils literal notranslate"><span class="pre">create_wall_from_crv()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_wall_from_polyline"><code class="docutils literal notranslate"><span class="pre">create_wall_from_polyline()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.create_wall_from_rectangle"><code class="docutils literal notranslate"><span class="pre">create_wall_from_rectangle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.get_brep_apk_type"><code class="docutils literal notranslate"><span class="pre">get_brep_apk_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.get_brep_parallel"><code class="docutils literal notranslate"><span class="pre">get_brep_parallel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.get_crv_apk_type"><code class="docutils literal notranslate"><span class="pre">get_crv_apk_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.get_geo_apk_type"><code class="docutils literal notranslate"><span class="pre">get_geo_apk_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.get_problem"><code class="docutils literal notranslate"><span class="pre">get_problem()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.object_instance"><code class="docutils literal notranslate"><span class="pre">object_instance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.model.html#ant_pak.ant_pak.model.run"><code class="docutils literal notranslate"><span class="pre">run()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="ant_pak.ant_pak.post.html">ant_pak.ant_pak.post module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.post.html#ant_pak.ant_pak.post.Post"><code class="docutils literal notranslate"><span class="pre">Post</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.post.html#ant_pak.ant_pak.post.PostCut"><code class="docutils literal notranslate"><span class="pre">PostCut</span></code></a></li>
@@ -140,7 +200,10 @@
 <li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.project.html#ant_pak.ant_pak.project.Project"><code class="docutils literal notranslate"><span class="pre">Project</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="ant_pak.ant_pak.setting.html">ant_pak.ant_pak.setting module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ant_pak.ant_pak.setting.html">ant_pak.ant_pak.setting module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.setting.html#ant_pak.ant_pak.setting.Setting"><code class="docutils literal notranslate"><span class="pre">Setting</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="ant_pak.ant_pak.utility.html">ant_pak.ant_pak.utility module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.utility.html#ant_pak.ant_pak.utility.add_body_settings"><code class="docutils literal notranslate"><span class="pre">add_body_settings()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="ant_pak.ant_pak.utility.html#ant_pak.ant_pak.utility.are_vectors_parallel_dot"><code class="docutils literal notranslate"><span class="pre">are_vectors_parallel_dot()</span></code></a></li>
@@ -293,14 +356,6 @@
 <li class="toctree-l1"><a class="reference internal" href="ant_pak.config.html">ant_pak.config module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="ant_pak.config.html#ant_pak.config.check_and_set_doc_user_text"><code class="docutils literal notranslate"><span class="pre">check_and_set_doc_user_text()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="ant_pak.config.html#ant_pak.config.clean_objects"><code class="docutils literal notranslate"><span class="pre">clean_objects()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="ant_pak.config.html#ant_pak.config.get_all_apertures"><code class="docutils literal notranslate"><span class="pre">get_all_apertures()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="ant_pak.config.html#ant_pak.config.get_all_buildings"><code class="docutils literal notranslate"><span class="pre">get_all_buildings()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="ant_pak.config.html#ant_pak.config.get_all_curt_walls"><code class="docutils literal notranslate"><span class="pre">get_all_curt_walls()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="ant_pak.config.html#ant_pak.config.get_all_doors"><code class="docutils literal notranslate"><span class="pre">get_all_doors()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="ant_pak.config.html#ant_pak.config.get_all_floors"><code class="docutils literal notranslate"><span class="pre">get_all_floors()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="ant_pak.config.html#ant_pak.config.get_all_rooms"><code class="docutils literal notranslate"><span class="pre">get_all_rooms()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="ant_pak.config.html#ant_pak.config.get_all_surfaces"><code class="docutils literal notranslate"><span class="pre">get_all_surfaces()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="ant_pak.config.html#ant_pak.config.get_all_windows"><code class="docutils literal notranslate"><span class="pre">get_all_windows()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="ant_pak.config.html#ant_pak.config.get_cloud_ip"><code class="docutils literal notranslate"><span class="pre">get_cloud_ip()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="ant_pak.config.html#ant_pak.config.get_doc_user_text"><code class="docutils literal notranslate"><span class="pre">get_doc_user_text()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="ant_pak.config.html#ant_pak.config.get_doc_user_text_keys"><code class="docutils literal notranslate"><span class="pre">get_doc_user_text_keys()</span></code></a></li>

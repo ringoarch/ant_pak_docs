@@ -40,7 +40,20 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">模块:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">简介</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Airpak支持的Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id1">支持的几何形状</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id2">建模原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#why-rhino">Why Rhino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id3">插件功能特性</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">安装</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">安装方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#id2">插件使用方法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">模块</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">ant_pak</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="ant_pak.html">ant_pak package</a><ul class="current">
@@ -86,8 +99,121 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="ant-pak-ant-pak-object-block-module">
-<h1>ant_pak.ant_pak.object.block module<a class="headerlink" href="#ant-pak-ant-pak-object-block-module" title="Link to this heading">¶</a></h1>
+  <section id="module-ant_pak.ant_pak.object.block">
+<span id="ant-pak-ant-pak-object-block-module"></span><h1>ant_pak.ant_pak.object.block module<a class="headerlink" href="#module-ant_pak.ant_pak.object.block" title="Link to this heading">¶</a></h1>
+<p>&#64;DATE: 2025-01-14 17:21:53
+&#64;Author: ringo
+&#64;Version: 1.0
+&#64;File: ant_pakobjectlock.py
+&#64;Software: vscode
+&#64;Description:</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.block.Block">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ant_pak.ant_pak.object.block.</span></span><span class="sig-name descname"><span class="pre">Block</span></span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/block.html#Block"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.block.Block" title="Link to this definition">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">_BaseObj</span></code>, <a class="reference internal" href="ant_pak.ant_pak.property.thermal.html#ant_pak.ant_pak.property.thermal.ThermalMixIn" title="ant_pak.ant_pak.property.thermal.ThermalMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThermalMixIn</span></code></a>, <a class="reference internal" href="ant_pak.ant_pak.property.species.html#ant_pak.ant_pak.property.species.SpeciesMixIn" title="ant_pak.ant_pak.property.species.SpeciesMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpeciesMixIn</span></code></a>, <a class="reference internal" href="ant_pak.ant_pak.property.radiation.html#ant_pak.ant_pak.property.radiation.RadiationMixIn" title="ant_pak.ant_pak.property.radiation.RadiationMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadiationMixIn</span></code></a></p>
+<dl class="simple">
+<dt>Properties:</dt><dd><ul class="simple">
+<li><p>identifier</p></li>
+<li><p>display_name</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.block.Block.set_all_temp">
+<span class="sig-name descname"><span class="pre">set_all_temp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_temp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">26</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'C'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/block.html#Block.set_all_temp"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.block.Block.set_all_temp" title="Link to this definition">¶</a></dt>
+<dd><p>设置所有温度相关的属性。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_temp</strong> -- 温度值，默认为26。</p></li>
+<li><p><strong>unit</strong> -- 温度单位，默认为&quot;C&quot;（摄氏度）。</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return self<span class="colon">:</span></dt>
+<dd class="field-even"><p>返回当前对象，以便进行链式调用。</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.block.BlockCylinder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ant_pak.ant_pak.object.block.</span></span><span class="sig-name descname"><span class="pre">BlockCylinder</span></span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/block.html#BlockCylinder"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.block.BlockCylinder" title="Link to this definition">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#ant_pak.ant_pak.object.block.Block" title="ant_pak.ant_pak.object.block.Block"><code class="xref py py-class docutils literal notranslate"><span class="pre">Block</span></code></a>, <a class="reference internal" href="ant_pak.ant_pak.geometry.cylinder.html#ant_pak.ant_pak.geometry.cylinder.CylinderMixIn" title="ant_pak.ant_pak.geometry.cylinder.CylinderMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">CylinderMixIn</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.block.BlockCylinder.from_cylinder">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_cylinder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cylinder</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/block.html#BlockCylinder.from_cylinder"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.block.BlockCylinder.from_cylinder" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cylinder</strong> -- 输入的Cylinder对象。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>创建的BlockCylinder对象。</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.block.BlockPolygon">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ant_pak.ant_pak.object.block.</span></span><span class="sig-name descname"><span class="pre">BlockPolygon</span></span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/block.html#BlockPolygon"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.block.BlockPolygon" title="Link to this definition">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#ant_pak.ant_pak.object.block.Block" title="ant_pak.ant_pak.object.block.Block"><code class="xref py py-class docutils literal notranslate"><span class="pre">Block</span></code></a>, <a class="reference internal" href="ant_pak.ant_pak.geometry.polygon.html#ant_pak.ant_pak.geometry.polygon.PolygonMixIn" title="ant_pak.ant_pak.geometry.polygon.PolygonMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">PolygonMixIn</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.block.BlockPolygon.from_brep">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_brep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">brep</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/block.html#BlockPolygon.from_brep"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.block.BlockPolygon.from_brep" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>brep</strong> -- 输入的Brep对象。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>创建的BlockPolygon对象。</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.block.BlockPrism">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ant_pak.ant_pak.object.block.</span></span><span class="sig-name descname"><span class="pre">BlockPrism</span></span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/block.html#BlockPrism"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.block.BlockPrism" title="Link to this definition">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#ant_pak.ant_pak.object.block.Block" title="ant_pak.ant_pak.object.block.Block"><code class="xref py py-class docutils literal notranslate"><span class="pre">Block</span></code></a>, <a class="reference internal" href="ant_pak.ant_pak.geometry.prism.html#ant_pak.ant_pak.geometry.prism.PrismMixIn" title="ant_pak.ant_pak.geometry.prism.PrismMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">PrismMixIn</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.block.BlockPrism.from_box">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_box</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">box</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/block.html#BlockPrism.from_box"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.block.BlockPrism.from_box" title="Link to this definition">¶</a></dt>
+<dd><p>从Rhino的Box对象创建一个BlockPrism对象。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>box</strong> -- 输入的Box对象。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>创建的BlockPrism对象。</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.block.BlockRectangle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ant_pak.ant_pak.object.block.</span></span><span class="sig-name descname"><span class="pre">BlockRectangle</span></span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/block.html#BlockRectangle"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.block.BlockRectangle" title="Link to this definition">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#ant_pak.ant_pak.object.block.Block" title="ant_pak.ant_pak.object.block.Block"><code class="xref py py-class docutils literal notranslate"><span class="pre">Block</span></code></a>, <a class="reference internal" href="ant_pak.ant_pak.geometry.rectangle.html#ant_pak.ant_pak.geometry.rectangle.RectangleMixIn" title="ant_pak.ant_pak.geometry.rectangle.RectangleMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">RectangleMixIn</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.block.BlockRectangle.from_rectangle">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_rectangle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rectangle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/block.html#BlockRectangle.from_rectangle"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.block.BlockRectangle.from_rectangle" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rectangle</strong> -- 输入的Rectangle对象。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>创建的BlockRectangle对象。</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 

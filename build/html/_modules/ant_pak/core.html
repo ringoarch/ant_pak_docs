@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ant_pak.core &mdash; ant_pak 0.1.1 文档</title>
+  <title>ant_pak.core &mdash; Ant pak 0.1.1 文档</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
 
@@ -27,7 +27,7 @@
           
           
           <a href="../../index.html" class="icon icon-home">
-            ant_pak
+            Ant pak
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -37,9 +37,30 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">简介</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../modules.html">ant_pak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">Airpak支持的Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html#id1">支持的几何形状</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html#id2">建模原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html#why-rhino">Why Rhino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html#id3">插件功能特性</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">安装</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html#id2">安装依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html#ant-pak">安装Ant pak插件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html#id3">学习案例</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">开发文档</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">Ant pak 开发文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html#id3">项目地址</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">关于我们</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contact.html">团队简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact.html#id2">联系我们</a></li>
 </ul>
 
         </div>
@@ -48,7 +69,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">ant_pak</a>
+          <a href="../../index.html">Ant pak</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -92,10 +113,17 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
 
 
-
 <div class="viewcode-block" id="set_user_texts">
 <a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.set_user_texts">[文档]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">set_user_texts</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    设置Rhino的用户文本。</span>
+
+<span class="sd">    :param id: 唯一标识符</span>
+<span class="sd">    :param keys: 键列表</span>
+<span class="sd">    :param values: 值列表</span>
+<span class="sd">    :return: None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># set series user text base on guid</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">keys</span><span class="p">):</span>
         <span class="n">rs</span><span class="o">.</span><span class="n">SetUserText</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">])</span></div>
@@ -105,6 +133,12 @@
 <div class="viewcode-block" id="id_point">
 <a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.id_point">[文档]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">id_point</span><span class="p">(</span><span class="n">point</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    生成一个唯一标识符，用于标识一个点对象。</span>
+
+<span class="sd">    :param point: 点对象</span>
+<span class="sd">    :return: 唯一标识符</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># 解构点对象，获取其坐标</span>
     <span class="n">loc</span> <span class="o">=</span> <span class="n">gh</span><span class="o">.</span><span class="n">Deconstruct</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
 
@@ -437,26 +471,28 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a list of polyline and linecurve objects to a list of line objects.&quot;&quot;&quot;</span>
     <span class="n">lines</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">curves</span> <span class="o">=</span> <span class="n">item_to_list</span><span class="p">(</span><span class="n">curves</span><span class="p">)</span>
-    
+
     <span class="k">for</span> <span class="n">curve</span> <span class="ow">in</span> <span class="n">curves</span><span class="p">:</span>
         <span class="c1"># print type(curve)</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span><span class="n">rg</span><span class="o">.</span><span class="n">Polyline</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Polyline</span><span class="p">):</span>
             <span class="n">lines</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">polyline_to_lines</span><span class="p">(</span><span class="n">curve</span><span class="p">))</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="p">(</span> <span class="n">rg</span><span class="o">.</span><span class="n">PolylineCurve</span><span class="p">)):</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="p">(</span><span class="n">rg</span><span class="o">.</span><span class="n">PolylineCurve</span><span class="p">)):</span>
             <span class="c1"># print curve</span>
             <span class="n">lines</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">polyline_to_lines</span><span class="p">(</span><span class="n">curve</span><span class="o">.</span><span class="n">ToPolyline</span><span class="p">()))</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="p">(</span><span class="n">rg</span><span class="o">.</span><span class="n">PolyCurve</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">NurbsCurve</span><span class="p">)):</span>
-            <span class="c1"># print </span>
-            <span class="n">lines</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">polyline_to_lines</span><span class="p">(</span><span class="n">curve</span><span class="o">.</span><span class="n">ToPolyline</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">999</span><span class="p">)</span><span class="o">.</span><span class="n">ToPolyline</span><span class="p">()))</span>
+            <span class="c1"># print</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+                <span class="n">polyline_to_lines</span><span class="p">(</span><span class="n">curve</span><span class="o">.</span><span class="n">ToPolyline</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">999</span><span class="p">)</span><span class="o">.</span><span class="n">ToPolyline</span><span class="p">())</span>
+            <span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="p">(</span><span class="n">rg</span><span class="o">.</span><span class="n">Line</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">LineCurve</span><span class="p">)):</span>
             <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">curve</span><span class="o">.</span><span class="n">Line</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">LineCurve</span><span class="p">)</span> <span class="k">else</span> <span class="n">curve</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="p">(</span><span class="n">rg</span><span class="o">.</span><span class="n">ArcCurve</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Arc</span><span class="p">)):</span>
             <span class="n">lines</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">polyline_to_lines</span><span class="p">(</span><span class="n">arc_to_polyline</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="n">angle</span><span class="p">)))</span>
-            
+
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unsupported curve type: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">curve</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
 
-    <span class="k">return</span> <span class="p">[</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">rg</span><span class="o">.</span><span class="n">Line</span><span class="p">)]</span></div>
+    <span class="k">return</span> <span class="p">[</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Line</span><span class="p">)]</span></div>
 
 
 
@@ -639,9 +675,9 @@
     <span class="c1"># 检查曲线是否是圆</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="c1"># 如果曲线是圆，直接获取其圆心</span>
-        
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">nurbs_curve</span><span class="p">,</span><span class="n">rg</span><span class="o">.</span><span class="n">Circle</span><span class="p">):</span>
-            <span class="n">circle</span><span class="o">=</span> <span class="n">nurbs_curve</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">nurbs_curve</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">Circle</span><span class="p">):</span>
+            <span class="n">circle</span> <span class="o">=</span> <span class="n">nurbs_curve</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">circle</span> <span class="o">=</span> <span class="n">nurbs_curve</span><span class="o">.</span><span class="n">Circle</span>
         <span class="n">center_point</span> <span class="o">=</span> <span class="n">circle</span><span class="o">.</span><span class="n">Center</span>
@@ -666,11 +702,11 @@
 <a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.arc_endpoints_center_line">[文档]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">arc_endpoints_center_line</span><span class="p">(</span><span class="n">arc</span><span class="p">):</span>
     <span class="c1"># 获取弧的起点、终点和中心点</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">arc</span><span class="p">,</span> <span class="p">(</span><span class="n">rg</span><span class="o">.</span><span class="n">NurbsCurve</span><span class="p">,</span><span class="n">rg</span><span class="o">.</span><span class="n">PolyCurve</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">arc</span><span class="p">,</span> <span class="p">(</span><span class="n">rg</span><span class="o">.</span><span class="n">NurbsCurve</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">PolyCurve</span><span class="p">)):</span>
         <span class="n">center_point</span> <span class="o">=</span> <span class="n">nurbs_curve_center</span><span class="p">(</span><span class="n">arc</span><span class="p">)</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">arc</span><span class="p">,</span> <span class="n">rg</span><span class="o">.</span><span class="n">ArcCurve</span><span class="p">):</span>
         <span class="n">center_point</span> <span class="o">=</span> <span class="n">arc</span><span class="o">.</span><span class="n">Arc</span><span class="o">.</span><span class="n">Center</span>
-    
+
     <span class="n">start_point</span> <span class="o">=</span> <span class="n">arc</span><span class="o">.</span><span class="n">PointAtStart</span>
     <span class="n">end_point</span> <span class="o">=</span> <span class="n">arc</span><span class="o">.</span><span class="n">PointAtEnd</span>
 
@@ -690,7 +726,7 @@
 <a class="viewcode-back" href="../../ant_pak.core.html#ant_pak.core.arc_endpoints_center_lines">[文档]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">arc_endpoints_center_lines</span><span class="p">(</span><span class="n">arcs</span><span class="p">):</span>
     <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="n">arc_endpoints_center_line</span><span class="p">(</span><span class="n">arc</span><span class="p">)</span> <span class="k">for</span> <span class="n">arc</span> <span class="ow">in</span> <span class="n">arcs</span><span class="p">]</span>
-    
+
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">lines</span>
     <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>

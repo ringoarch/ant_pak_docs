@@ -40,7 +40,20 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">模块:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">简介</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Airpak支持的Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id1">支持的几何形状</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id2">建模原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#why-rhino">Why Rhino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id3">插件功能特性</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">安装</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">安装方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#id2">插件使用方法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">模块</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">ant_pak</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="ant_pak.html">ant_pak package</a><ul class="current">
@@ -111,25 +124,33 @@
 </ul>
 </dd>
 </dl>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ant_pak.ant_pak.property.heat_flow.HeatFlowMixIn.heat_total">
-<span class="sig-name descname"><span class="pre">heat_total</span></span><a class="headerlink" href="#ant_pak.ant_pak.property.heat_flow.HeatFlowMixIn.heat_total" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="ant_pak.ant_pak.property.heat_flow.HeatFlowMixIn.set_conductance">
 <span class="sig-name descname"><span class="pre">set_conductance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conductance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heat_ambient_temp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'W/C'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/property/heat_flow.html#HeatFlowMixIn.set_conductance"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.property.heat_flow.HeatFlowMixIn.set_conductance" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>设置传导系数。
+:param conductance: 传导
+:param heat_ambient_temp: 环境温度，默认为None
+:param unit: 单位为W/C
+:return: 块对象本身</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ant_pak.ant_pak.property.heat_flow.HeatFlowMixIn.set_heat_input">
 <span class="sig-name descname"><span class="pre">set_heat_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">heat_input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'W'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/property/heat_flow.html#HeatFlowMixIn.set_heat_input"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.property.heat_flow.HeatFlowMixIn.set_heat_input" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>设置热输入。
+:param heat_input: 热输入
+:param unit: 单位为W
+:return: 块对象本身</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ant_pak.ant_pak.property.heat_flow.HeatFlowMixIn.set_temp_change">
 <span class="sig-name descname"><span class="pre">set_temp_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temp_change</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Cd'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/property/heat_flow.html#HeatFlowMixIn.set_temp_change"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.property.heat_flow.HeatFlowMixIn.set_temp_change" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>设置温度变化。
+:param temp_change: 温度变化
+:param unit: 单位为Cd
+:return: 块对象本身</p>
+</dd></dl>
 
 </dd></dl>
 

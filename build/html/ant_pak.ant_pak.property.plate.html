@@ -40,7 +40,20 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">模块:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">简介</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Airpak支持的Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id1">支持的几何形状</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id2">建模原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#why-rhino">Why Rhino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id3">插件功能特性</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">安装</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">安装方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#id2">插件使用方法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">模块</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">ant_pak</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="ant_pak.html">ant_pak package</a><ul class="current">
@@ -102,29 +115,40 @@
 <dt>Properties:</dt><dd><ul class="simple">
 <li><p>identifier</p></li>
 <li><p>display_name</p></li>
-<li><p>base_point</p></li>
-<li><p>rooms</p></li>
-<li><p>geometry</p></li>
-<li><p>story</p></li>
-<li><p>height</p></li>
-<li><p>repeat</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="ant_pak.ant_pak.property.plate.PlateMixIn.set_mass_plate">
 <span class="sig-name descname"><span class="pre">set_mass_plate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mass_plate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'kg/s'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/property/plate.html#PlateMixIn.set_mass_plate"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.property.plate.PlateMixIn.set_mass_plate" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mass_plate</strong> -- 质量流量</p></li>
+<li><p><strong>unit</strong> -- 单位为kg/s</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>块对象本身</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ant_pak.ant_pak.property.plate.PlateMixIn.set_vol_plate">
 <span class="sig-name descname"><span class="pre">set_vol_plate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vol_plate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'m3/s'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/property/plate.html#PlateMixIn.set_vol_plate"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.property.plate.PlateMixIn.set_vol_plate" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ant_pak.ant_pak.property.plate.PlateMixIn.vol_plate">
-<span class="sig-name descname"><span class="pre">vol_plate</span></span><a class="headerlink" href="#ant_pak.ant_pak.property.plate.PlateMixIn.vol_plate" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vol_plate</strong> -- 体积流量</p></li>
+<li><p><strong>unit</strong> -- 单位为m3/s</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>块对象本身</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

@@ -40,7 +40,20 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">模块:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">简介</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Airpak支持的Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id1">支持的几何形状</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id2">建模原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#why-rhino">Why Rhino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id3">插件功能特性</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">安装</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">安装方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#id2">插件使用方法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">模块</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">ant_pak</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="ant_pak.html">ant_pak package</a><ul class="current">
@@ -86,8 +99,52 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="ant-pak-ant-pak-object-person-module">
-<h1>ant_pak.ant_pak.object.person module<a class="headerlink" href="#ant-pak-ant-pak-object-person-module" title="Link to this heading">¶</a></h1>
+  <section id="module-ant_pak.ant_pak.object.person">
+<span id="ant-pak-ant-pak-object-person-module"></span><h1>ant_pak.ant_pak.object.person module<a class="headerlink" href="#module-ant_pak.ant_pak.object.person" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.person.Person">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ant_pak.ant_pak.object.person.</span></span><span class="sig-name descname"><span class="pre">Person</span></span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/person.html#Person"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.person.Person" title="Link to this definition">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">_BaseObj</span></code>, <a class="reference internal" href="ant_pak.ant_pak.property.thermal.html#ant_pak.ant_pak.property.thermal.ThermalMixIn" title="ant_pak.ant_pak.property.thermal.ThermalMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThermalMixIn</span></code></a></p>
+<dl class="simple">
+<dt>Properties:</dt><dd><ul class="simple">
+<li><p>identifier</p></li>
+<li><p>display_name</p></li>
+<li><p>base_point</p></li>
+<li><p>rooms</p></li>
+<li><p>geometry</p></li>
+<li><p>story</p></li>
+<li><p>height</p></li>
+<li><p>repeat</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.person.Person.from_point">
+<span class="sig-name descname"><span class="pre">from_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">posture</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'standing'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.73</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">facing_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/person.html#Person.from_point"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.person.Person.from_point" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.person.Person.geo_to_str">
+<span class="sig-name descname"><span class="pre">geo_to_str</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/person.html#Person.geo_to_str"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.person.Person.geo_to_str" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.person.Person.points_from_point">
+<span class="sig-name descname"><span class="pre">points_from_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset_w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset_d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fraction_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fraction_2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">facing_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/person.html#Person.points_from_point"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.person.Person.points_from_point" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.person.Person.set_facing_dir">
+<span class="sig-name descname"><span class="pre">set_facing_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/person.html#Person.set_facing_dir"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.person.Person.set_facing_dir" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.person.Person.set_met">
+<span class="sig-name descname"><span class="pre">set_met</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">met_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/person.html#Person.set_met"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.person.Person.set_met" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 
 

@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ant_pak.ant_pak.property.press &mdash; ant_pak 0.1.1 文档</title>
+  <title>ant_pak.ant_pak.property.press &mdash; Ant pak 0.1.1 文档</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
 
@@ -27,7 +27,7 @@
           
           
           <a href="../../../../index.html" class="icon icon-home">
-            ant_pak
+            Ant pak
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -37,9 +37,30 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">简介</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">ant_pak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html">Airpak支持的Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html#id1">支持的几何形状</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html#id2">建模原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html#why-rhino">Why Rhino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html#id3">插件功能特性</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">安装</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html">下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html#id2">安装依赖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html#ant-pak">安装Ant pak插件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html#id3">学习案例</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">开发文档</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">Ant pak 开发文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html#id3">项目地址</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">关于我们</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contact.html">团队简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contact.html#id2">联系我们</a></li>
 </ul>
 
         </div>
@@ -48,7 +69,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../../index.html">ant_pak</a>
+          <a href="../../../../index.html">Ant pak</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -84,10 +105,10 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">..config</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..utility</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
+
 <div class="viewcode-block" id="PressMixIn">
 <a class="viewcode-back" href="../../../../ant_pak.ant_pak.property.press.html#ant_pak.ant_pak.property.press.PressMixIn">[文档]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">PressMixIn</span><span class="p">(</span><span class="n">_BaseProperty</span><span class="p">):</span>
-
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Properties:</span>
 <span class="sd">        * identifier</span>
@@ -100,43 +121,37 @@
 <span class="sd">        * repeat</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="s1">&#39;pressure&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;free_press_static&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;param_units&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;free_press_on&#39;</span><span class="p">,</span>
+    <span class="c1"># __slots__ = (</span>
+    <span class="c1">#     &#39;pressure&#39;,</span>
+    <span class="c1">#     &#39;free_press_static&#39;,</span>
+    <span class="c1">#     &#39;param_units&#39;,</span>
+    <span class="c1">#     &#39;free_press_on&#39;,</span>
 
-    <span class="p">)</span>
+    <span class="c1"># )</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">_BaseProperty</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>  <span class="c1"># process the identifier</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pressure</span><span class="o">=</span><span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">free_press_static</span><span class="o">=</span><span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">free_press_on</span><span class="o">=</span><span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">property_type</span><span class="o">=</span><span class="s1">&#39;press&#39;</span>
-        
+        <span class="bp">self</span><span class="o">.</span><span class="n">pressure</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">free_press_static</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">free_press_on</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">property_type</span> <span class="o">=</span> <span class="s2">&quot;press&quot;</span>
 
 <div class="viewcode-block" id="PressMixIn.set_pressure">
 <a class="viewcode-back" href="../../../../ant_pak.ant_pak.property.press.html#ant_pak.ant_pak.property.press.PressMixIn.set_pressure">[文档]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_pressure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pressure</span><span class="p">,</span><span class="n">unit</span><span class="o">=</span><span class="s1">&#39;Pa&#39;</span><span class="p">):</span>
-        <span class="n">v_body_settings</span><span class="o">=</span><span class="p">[</span>
-            <span class="s1">&#39;pressure&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;free_press_static&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;free_press_on&#39;</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_pressure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pressure</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;Pa&quot;</span><span class="p">):</span>
+        <span class="n">v_body_settings</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;pressure&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;free_press_static&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;free_press_on&quot;</span><span class="p">,</span>
         <span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pressure</span> <span class="o">=</span> <span class="n">pressure</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">free_press_static</span><span class="o">=</span><span class="n">pressure</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">free_press_on</span><span class="o">=</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">free_press_static</span> <span class="o">=</span> <span class="n">pressure</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">free_press_on</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_body_settings</span><span class="p">(</span><span class="n">v_body_settings</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">param_units</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;free_press_static&#39;</span><span class="p">:</span><span class="n">unit</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param_units</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;free_press_static&quot;</span><span class="p">:</span> <span class="n">unit</span><span class="p">})</span>
 
         <span class="k">return</span> <span class="bp">self</span></div>
 </div>
-
-
-        
-
-    
 
 </pre></div>
 

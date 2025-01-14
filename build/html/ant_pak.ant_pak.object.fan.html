@@ -40,7 +40,20 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">模块:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">简介</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Airpak支持的Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id1">支持的几何形状</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id2">建模原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#why-rhino">Why Rhino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#id3">插件功能特性</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">安装</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">安装方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#id2">插件使用方法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">模块</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">ant_pak</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="ant_pak.html">ant_pak package</a><ul class="current">
@@ -86,8 +99,41 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="ant-pak-ant-pak-object-fan-module">
-<h1>ant_pak.ant_pak.object.fan module<a class="headerlink" href="#ant-pak-ant-pak-object-fan-module" title="Link to this heading">¶</a></h1>
+  <section id="module-ant_pak.ant_pak.object.fan">
+<span id="ant-pak-ant-pak-object-fan-module"></span><h1>ant_pak.ant_pak.object.fan module<a class="headerlink" href="#module-ant_pak.ant_pak.object.fan" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.fan.Fan">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ant_pak.ant_pak.object.fan.</span></span><span class="sig-name descname"><span class="pre">Fan</span></span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/fan.html#Fan"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.fan.Fan" title="Link to this definition">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">_BaseObj</span></code>, <a class="reference internal" href="ant_pak.ant_pak.property.flow.html#ant_pak.ant_pak.property.flow.FlowMixIn" title="ant_pak.ant_pak.property.flow.FlowMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">FlowMixIn</span></code></a>, <a class="reference internal" href="ant_pak.ant_pak.property.swirl.html#ant_pak.ant_pak.property.swirl.SwirlMixIn" title="ant_pak.ant_pak.property.swirl.SwirlMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">SwirlMixIn</span></code></a>, <a class="reference internal" href="ant_pak.ant_pak.property.species.html#ant_pak.ant_pak.property.species.SpeciesMixIn" title="ant_pak.ant_pak.property.species.SpeciesMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpeciesMixIn</span></code></a></p>
+<dl class="simple">
+<dt>Properties:</dt><dd><ul class="simple">
+<li><p>identifier</p></li>
+<li><p>display_name</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.fan.FanCircle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ant_pak.ant_pak.object.fan.</span></span><span class="sig-name descname"><span class="pre">FanCircle</span></span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/fan.html#FanCircle"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.fan.FanCircle" title="Link to this definition">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#ant_pak.ant_pak.object.fan.Fan" title="ant_pak.ant_pak.object.fan.Fan"><code class="xref py py-class docutils literal notranslate"><span class="pre">Fan</span></code></a>, <a class="reference internal" href="ant_pak.ant_pak.geometry.circle.html#ant_pak.ant_pak.geometry.circle.CircleMixIn" title="ant_pak.ant_pak.geometry.circle.CircleMixIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">CircleMixIn</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ant_pak.ant_pak.object.fan.FanCircle.from_circle">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_circle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ant_pak/ant_pak/object/fan.html#FanCircle.from_circle"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#ant_pak.ant_pak.object.fan.FanCircle.from_circle" title="Link to this definition">¶</a></dt>
+<dd><p>从圆创建一个FanCircle对象。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>circle</strong> -- 圆对象。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>由圆创建的FanCircle对象。</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
