@@ -4,4 +4,4 @@ build:
   tools:
     python: "3.9"
 sphinx:
-   configuration: docs/source/conf.py  # sphinx配置文件路径
+   configuration: source/conf.py  # sphinx配置文件路径
