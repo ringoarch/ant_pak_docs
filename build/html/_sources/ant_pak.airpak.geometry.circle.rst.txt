@@ -1,7 +1,0 @@
-ant\_pak.airpak.geometry.circle module
-======================================
-
-.. automodule:: ant_pak.airpak.geometry.circle
-   :members:
-   :undoc-members:
-   :show-inheritance:

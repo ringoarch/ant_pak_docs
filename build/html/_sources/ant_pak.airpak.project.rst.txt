@@ -1,7 +1,0 @@
-ant\_pak.airpak.project module
-==============================
-
-.. automodule:: ant_pak.airpak.project
-   :members:
-   :undoc-members:
-   :show-inheritance:

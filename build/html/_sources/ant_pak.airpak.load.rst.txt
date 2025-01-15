@@ -1,7 +1,0 @@
-ant\_pak.airpak.load module
-===========================
-
-.. automodule:: ant_pak.airpak.load
-   :members:
-   :undoc-members:
-   :show-inheritance:

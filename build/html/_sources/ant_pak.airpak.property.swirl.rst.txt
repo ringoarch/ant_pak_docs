@@ -1,7 +1,0 @@
-ant\_pak.airpak.property.swirl module
-=====================================
-
-.. automodule:: ant_pak.airpak.property.swirl
-   :members:
-   :undoc-members:
-   :show-inheritance:

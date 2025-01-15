@@ -1,7 +1,0 @@
-ant\_pak.airpak.object.opening module
-=====================================
-
-.. automodule:: ant_pak.airpak.object.opening
-   :members:
-   :undoc-members:
-   :show-inheritance:

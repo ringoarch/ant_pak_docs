@@ -1,7 +1,0 @@
-ant\_pak.airpak.property.thermal module
-=======================================
-
-.. automodule:: ant_pak.airpak.property.thermal
-   :members:
-   :undoc-members:
-   :show-inheritance:

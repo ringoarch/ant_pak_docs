@@ -1,7 +1,0 @@
-ant\_pak.airpak.object.fan module
-=================================
-
-.. automodule:: ant_pak.airpak.object.fan
-   :members:
-   :undoc-members:
-   :show-inheritance:

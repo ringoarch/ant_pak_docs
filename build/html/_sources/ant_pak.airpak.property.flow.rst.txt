@@ -1,7 +1,0 @@
-ant\_pak.airpak.property.flow module
-====================================
-
-.. automodule:: ant_pak.airpak.property.flow
-   :members:
-   :undoc-members:
-   :show-inheritance:

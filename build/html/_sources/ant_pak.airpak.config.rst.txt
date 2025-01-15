@@ -1,7 +1,0 @@
-ant\_pak.airpak.config module
-=============================
-
-.. automodule:: ant_pak.airpak.config
-   :members:
-   :undoc-members:
-   :show-inheritance:

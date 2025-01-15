@@ -1,7 +1,0 @@
-ant\_pak.airpak.geometry.polygon module
-=======================================
-
-.. automodule:: ant_pak.airpak.geometry.polygon
-   :members:
-   :undoc-members:
-   :show-inheritance:

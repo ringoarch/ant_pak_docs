@@ -1,7 +1,0 @@
-ant\_pak.airpak.property.temperature module
-===========================================
-
-.. automodule:: ant_pak.airpak.property.temperature
-   :members:
-   :undoc-members:
-   :show-inheritance:

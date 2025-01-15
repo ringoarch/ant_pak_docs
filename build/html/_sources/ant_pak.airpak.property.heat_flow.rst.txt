@@ -1,7 +1,0 @@
-ant\_pak.airpak.property.heat\_flow module
-==========================================
-
-.. automodule:: ant_pak.airpak.property.heat_flow
-   :members:
-   :undoc-members:
-   :show-inheritance:

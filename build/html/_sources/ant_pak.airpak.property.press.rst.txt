@@ -1,7 +1,0 @@
-ant\_pak.airpak.property.press module
-=====================================
-
-.. automodule:: ant_pak.airpak.property.press
-   :members:
-   :undoc-members:
-   :show-inheritance:

@@ -1,7 +1,0 @@
-ant\_pak.airpak.property.velocity module
-========================================
-
-.. automodule:: ant_pak.airpak.property.velocity
-   :members:
-   :undoc-members:
-   :show-inheritance:

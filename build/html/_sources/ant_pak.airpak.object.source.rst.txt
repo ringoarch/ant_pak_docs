@@ -1,7 +1,0 @@
-ant\_pak.airpak.object.source module
-====================================
-
-.. automodule:: ant_pak.airpak.object.source
-   :members:
-   :undoc-members:
-   :show-inheritance:
