@@ -122,6 +122,14 @@
 <div class="viewcode-block" id="RecircOpening.from_crvs">
 <a class="viewcode-back" href="../../../../ant_pak.ant_pak.object.recirc_opening.html#ant_pak.ant_pak.object.recirc_opening.RecircOpening.from_crvs">[文档]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_crvs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">supply</span><span class="p">,</span> <span class="n">extract</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        从送风和回风口创建一个RecircOpening对象。</span>
+
+<span class="sd">        :param supply: 送风口。</span>
+<span class="sd">        :param extract: 回风口。</span>
+
+<span class="sd">        :return RecircOpening: 创建的RecircOpening对象。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">supply</span> <span class="o">=</span> <span class="n">create_opening</span><span class="p">(</span><span class="n">supply</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">extract</span> <span class="o">=</span> <span class="n">create_opening</span><span class="p">(</span><span class="n">extract</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">supply</span><span class="o">.</span><span class="n">shape_type</span> <span class="o">=</span> <span class="s2">&quot;supply&quot;</span>
@@ -134,6 +142,14 @@
 <div class="viewcode-block" id="RecircOpening.to_str">
 <a class="viewcode-back" href="../../../../ant_pak.ant_pak.object.recirc_opening.html#ant_pak.ant_pak.object.recirc_opening.RecircOpening.to_str">[文档]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">to_str</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">creation_order</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">param_on</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        将RecircOpening对象转换为字符串表示。</span>
+
+<span class="sd">        :param creation_order: 对象的创建顺序。</span>
+<span class="sd">        :param param_on: 是否启用参数。</span>
+
+<span class="sd">        :return str: RecircOpening对象的字符串表示。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">begin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">str_begin</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">creation_order</span> <span class="o">=</span> <span class="n">creation_order</span>
         <span class="n">str_supply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">clear_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">supply</span><span class="o">.</span><span class="n">to_str</span><span class="p">())</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
@@ -152,6 +168,13 @@
 <div class="viewcode-block" id="RecircOpening.clear_string">
 <a class="viewcode-back" href="../../../../ant_pak.ant_pak.object.recirc_opening.html#ant_pak.ant_pak.object.recirc_opening.RecircOpening.clear_string">[文档]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">clear_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        清除RecircOpening对象的字符串表示。</span>
+
+<span class="sd">        :param string: 要清除的字符串。</span>
+
+<span class="sd">        :return str: 清除后的字符串。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">split_strings</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">new_strings</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="nb">str</span> <span class="ow">in</span> <span class="n">split_strings</span><span class="p">:</span>
@@ -174,6 +197,13 @@
 <div class="viewcode-block" id="RecircOpening.set_pressure">
 <a class="viewcode-back" href="../../../../ant_pak.ant_pak.object.recirc_opening.html#ant_pak.ant_pak.object.recirc_opening.RecircOpening.set_pressure">[文档]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_pressure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        设置RecircOpening对象的压力。</span>
+
+<span class="sd">        :param value: 压力值，单位为Pa。</span>
+
+<span class="sd">        :return RecircOpening: 具有设置压力的RecircOpening对象。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">supply</span><span class="o">.</span><span class="n">set_pressure</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
@@ -181,6 +211,13 @@
 <div class="viewcode-block" id="RecircOpening.set_vel_by_vector">
 <a class="viewcode-back" href="../../../../ant_pak.ant_pak.object.recirc_opening.html#ant_pak.ant_pak.object.recirc_opening.RecircOpening.set_vel_by_vector">[文档]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_vel_by_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vector</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        根据给定的向量设置RecircOpening对象的速度。</span>
+
+<span class="sd">        :param vector: 速度向量。</span>
+
+<span class="sd">        :return RecircOpening: 具有设置速度的RecircOpening对象。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">supply</span><span class="o">.</span><span class="n">set_vel_by_vector</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 </div>

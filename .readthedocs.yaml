@@ -3,5 +3,11 @@ build:
   os: ubuntu-22.04
   tools:
     python: "3.10"
+    jobs:
+    build:
+      steps:
+        - pip install --upgrade pip setuptools wheel
+        - pip install -r requirements.txt
+        - pip install sphinx
 sphinx:
    configuration: source/conf.py  # sphinx配置文件路径

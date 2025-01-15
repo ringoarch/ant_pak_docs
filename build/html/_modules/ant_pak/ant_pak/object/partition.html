@@ -139,6 +139,14 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">vtype</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        隔断的vtype。</span>
+
+<span class="sd">        * stationery:静态</span>
+<span class="sd">        * moving:动态</span>
+
+<span class="sd">        :return: vtype值</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vtype</span>
 
     <span class="nd">@vtype</span><span class="o">.</span><span class="n">setter</span>
@@ -181,7 +189,7 @@
 <span class="sd">        :param itemp: 分区内温度</span>
 <span class="sd">        :param unit: 单位,默认为摄氏度</span>
 
-<span class="sd">        :return:None</span>
+<span class="sd">        :return self: 当前对象</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_body_settings</span><span class="p">([</span><span class="s2">&quot;thermal_itemp&quot;</span><span class="p">,</span> <span class="s2">&quot;thermal_type&quot;</span><span class="p">,</span> <span class="s2">&quot;thermal_rtype&quot;</span><span class="p">])</span>
@@ -200,7 +208,7 @@
 <span class="sd">        设置分区外热流</span>
 
 <span class="sd">        :param value: 热流</span>
-<span class="sd">        :return: None</span>
+<span class="sd">        :return self: 当前对象</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">thermal_heat_area</span> <span class="o">=</span> <span class="n">value</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_body_settings</span><span class="p">([</span><span class="s2">&quot;thermal_heat_area&quot;</span><span class="p">])</span>
